@@ -174,6 +174,29 @@
 
   .crosslink { margin-top: 1.6rem; font-size: 0.9rem; color: var(--faint); }
   .crosslink a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+  .pitch a, .prose a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+
+  .chartbox {
+    margin: 2.2rem 0 1rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--plate);
+    padding: 1.4rem 0.9rem 0.7rem;
+    position: relative;
+  }
+  .chartbox::before {
+    content: "AIRLINE-EQUIVALENCE CHART · LOWER 48 · NONSTOPS ONLY";
+    position: absolute;
+    top: -0.62em;
+    left: 1.1rem;
+    background: var(--ink);
+    padding: 0 0.55em;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    color: var(--faint);
+  }
+  .chartbox svg { width: 100%; height: auto; display: block; }
 
   .audit {
     border: 1px solid var(--line);
@@ -290,7 +313,7 @@
     <h1>I'll travel exactly <em>one second</em> to meet you.</h1>
 
     <div class="pitch">
-      <p>Relative to the universe's own rest frame, you and I are already hurtling through the cosmos together at about <span class="num">370&nbsp;km/s</span>, so my dating radius is simply one second of that motion: <span class="num">≈370&nbsp;km / 230&nbsp;miles</span>, no exceptions, the physics is settled. Don't take my word for it: every claim on this site comes with an audit prompt you can paste into the AI of your choice. Verify everything before our first date; I would.</p>
+      <p>Relative to the universe's own rest frame, you and I are already hurtling through the cosmos together at about <span class="num">370&nbsp;km/s</span>, so my dating radius is simply one second of that motion: <span class="num">≈370&nbsp;km / 230&nbsp;miles</span>, and the physics is settled. The mileage, though, is negotiable by aircraft: any US city I can reach on the same wall clock also qualifies, and <a href="#remix">The Remix</a> has the rule and the map. Don't take my word for any of it: every claim on this site comes with an audit prompt you can paste into the AI of your choice. Verify everything before our first date; I would.</p>
     </div>
 
     <div class="radius">
@@ -303,7 +326,21 @@
       </div>
     </div>
 
-    <p class="crosslink">Skeptical? Good. Proceed to <a href="#audits">the Audit Ledger</a>: the physics is Audits 01–04, and the rest of my life philosophy is 05–11.</p>
+    <p class="crosslink">Skeptical? Good. Proceed to <a href="#audits">the Audit Ledger</a>: the physics is Audits 01–04, the life philosophy is 05–11, and the airline remix is 12.</p>
+  </section>
+
+  <!-- ============ THE REMIX ============ -->
+  <section class="topic" id="remix" data-title="The Remix">
+    <h2 class="head">The Airline Remix</h2>
+    <p class="subhead">The radius was always a time budget in a distance costume. Time budgets transfer between vehicles.</p>
+    <div class="prose">
+      <p><strong>The benchmark.</strong> Driving 230 miles takes about <span class="num">3 hours 32 minutes</span> at a 65 mph average. So what the radius actually promises is roughly three and a half hours of my full attention spent getting to you, and hours, unlike miles, don't care what vehicle you pick.</p>
+      <p><strong>The rule.</strong> Any city in the United States qualifies if a nonstop flight delivers me inside the same clock. My chain: 30 minutes from my door to the airport entrance, 45 minutes from the entrance to boarding (carry-on only, TSA PreCheck), the flight itself, then 15 minutes from jet bridge to your curb. Subtract the overhead from 3:32 and the flight may spend <span class="num">2 hours 2 minutes</span> gate to gate.</p>
+      <p><strong>The qualifying set.</strong> From South Florida's airports, a two-hour block covers the whole state plus a satisfying arc of the Southeast: Jacksonville <span class="num">(1:20)</span>, Tallahassee <span class="num">(1:25)</span>, Savannah <span class="num">(1:40)</span>, Charleston <span class="num">(1:50)</span>, Atlanta <span class="num">(1:55)</span>, New Orleans <span class="num">(1:55)</span>, and Charlotte, which lands exactly on the line at <span class="num">2:00</span>. Raleigh and Nashville miss by ten to fifteen minutes, and I reserve the right to round generously for a sufficiently good reason. Houston misses by twenty and stays missed.</p>
+      <p><strong>The fine print.</strong> Nonstops only, since a single connection detonates the whole budget. Airline schedules change quarterly, so the qualifying set breathes the way the original radius breathes with Earth's orbit. And the chart below is exactly that, a chart: dots on a projection, drawn to make a point.</p>
+    </div>
+    <div class="chartbox"><div id="remixMap"></div></div>
+    <p class="crosslink">The drive math, the overhead chain, and the block times: <a href="#audits">Audit 12</a>.</p>
   </section>
 
   <!-- ============ MATCHING ============ -->
@@ -400,7 +437,7 @@
   <!-- ============ AUDIT LEDGER ============ -->
   <section class="topic" id="audits" data-title="Audit Ledger">
     <h2 class="head">The Audit Ledger</h2>
-    <p class="subhead">Every claim on this site, numbered and falsifiable. Expand one, copy its prompt, paste it into any AI assistant, and ask it to show its work. Audits 01–04 cover the physics; 05–11 cover the life philosophy.</p>
+    <p class="subhead">Every claim on this site, numbered and falsifiable. Expand one, copy its prompt, paste it into any AI assistant, and ask it to show its work. Audits 01–04 cover the physics, 05–11 the life philosophy, and 12 the airline remix.</p>
     <div id="ledger"></div>
     <p class="hint">Trust, but verify. Preferably verify.</p>
   </section>
@@ -478,7 +515,7 @@
     <p class="subhead">Signal acquisition is active. Response latency: much better than Proxima Centauri's 4.2 years.</p>
     <div class="prose">
       <p>If the audits checked out — the physics ones or the life ones — reach out. Include your favorite audit verdict, your strongest objection to anything on this site, or a counterproposal for any of the functions. Bonus points if your AI disagreed with me and you took its side.</p>
-      <p class="num" style="font-family:'IBM Plex Mono',monospace;"><a href="mailto:david@datedavid.org" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">david@datedavid.org</a></p>
+      <p class="num" style="font-family:'IBM Plex Mono',monospace;"><a id="contactLink" href="#transmission" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">[ decoding transmission address… ]</a></p>
     </div>
   </section>
 
@@ -668,6 +705,25 @@ Use real numbers where available and keep both the steelman and the critique.`
 7. VERDICT. Is the math right, is the research summarized fairly, and if you were advising a woman reading this page, what would you tell her it predicts \u2014 good and bad \u2014 about a future with this man?
 
 Use current figures where possible and keep both the endorsement and the critique sharp.`
+    },
+    {
+      title: "The airline remix: a 230-mile drive equals about two hours gate to gate",
+      claim: "Driving 230 miles takes about 3.5 hours door to door, so any US city reachable by nonstop flight inside the same wall-clock budget qualifies. With a 30-minute airport drive and lean overhead, that allows roughly two hours of flight.",
+      prompt: `CONTEXT: A dating page defines a 230-mile driving radius, then offers an "airline remix": any US city qualifies if a nonstop flight arrives within the same door-to-door wall-clock time as the drive. Audit the arithmetic and the honesty of the assumptions.
+
+THE CLAIMED CHAIN:
+- Drive benchmark: 230 miles at a 65 mph average is about 3 hours 32 minutes.
+- Air chain: 30 minutes from door to airport entrance, 45 minutes from entrance to boarding (TSA PreCheck, carry-on only), the flight gate to gate, then 15 minutes from jet bridge to curb.
+- Overhead totals 1 hour 30 minutes, leaving 2 hours 2 minutes of flight, rounded to "about two hours gate to gate."
+
+WHAT TO CHECK:
+1. THE DRIVE. Is 65 mph a fair door-to-door average for a 230-mile US highway trip once fuel, traffic, and one stop are included? What range would you defend?
+2. THE OVERHEAD. Is 45 minutes from airport entrance to boarding realistic with PreCheck and no checked bag, given typical boarding cutoffs of about 15 minutes before departure? Is 15 minutes from jet bridge to curb fair? Flag anything closer to fantasy than lean.
+3. THE BLOCK TIMES. From South Florida (FLL, PBI, MIA), check typical published nonstop block times to Jacksonville, Tallahassee, Savannah, Charleston, Atlanta, New Orleans, Charlotte, Raleigh, Nashville, and Houston. Which fit inside roughly 2:00? The page claims the first seven fit (Charlotte exactly on the line), Raleigh and Nashville miss by ten to fifteen minutes, and Houston misses by about twenty.
+4. SENSITIVITY. Show how the qualifying set changes if each assumption moves 15 minutes in either direction, and confirm that a single connection destroys the budget.
+5. VERDICT. Is the remix a fair time-for-distance translation of the original one-second radius, or motivated reasoning engineered to reach a particular city? Grade the assumptions for honesty and say what a skeptical reader should re-check quarterly, since airline schedules change.
+
+Show the arithmetic and keep the block times you find, not the ones the page wishes for.`
     }
   ];
 
@@ -718,6 +774,100 @@ Use current figures where possible and keep both the endorsement and the critiqu
     note.classList.add('show');
     setTimeout(() => note.classList.remove('show'), 2600);
   }
+
+  // ============================================================
+  // THE REMIX MAP — faint dots sketch the country by its cities;
+  // gold is reachable inside the wall-clock budget.
+  // ============================================================
+  (function () {
+    const host = document.getElementById('remixMap');
+    if (!host) return;
+    const X = lon => 30 + (lon + 125) * (940 / 59);
+    const Y = lat => 30 + (50 - lat) * (580 / 26);
+    const MONO = 'font-family="IBM Plex Mono, monospace"';
+
+    // background: enough well-known cities to suggest the lower 48
+    const BG = [
+      [47.61,-122.33],[45.52,-122.68],[47.66,-117.43],[43.62,-116.21],[46.87,-113.99],[45.79,-108.5],
+      [46.81,-100.78],[46.88,-96.79],[44.08,-103.23],[41.14,-104.82],[44.98,-93.27],[46.79,-92.1],
+      [43.55,-96.73],[41.59,-93.62],[41.26,-95.93],[39.74,-104.99],[38.83,-104.82],[39.1,-94.58],
+      [37.69,-97.34],[38.63,-90.2],[41.88,-87.63],[43.04,-87.91],[43.07,-89.4],[44.51,-88.01],
+      [42.33,-83.05],[42.96,-85.66],[41.65,-83.54],[41.5,-81.7],[39.96,-83.0],[39.1,-84.51],
+      [39.77,-86.16],[38.25,-85.76],[38.04,-84.5],[40.44,-79.99],[42.89,-78.88],[43.05,-76.15],
+      [42.65,-73.75],[44.48,-73.21],[40.71,-74.01],[42.36,-71.06],[43.66,-70.26],[41.82,-71.41],
+      [41.76,-72.67],[39.95,-75.17],[39.29,-76.61],[38.91,-77.04],[37.54,-77.44],[36.85,-76.29],
+      [36.07,-79.79],[34.0,-81.03],[35.96,-83.92],[35.15,-90.05],[34.75,-92.29],[33.52,-86.81],
+      [32.3,-90.18],[32.51,-93.75],[30.45,-91.15],[30.69,-88.04],[29.76,-95.37],[30.27,-97.74],
+      [29.42,-98.49],[32.78,-96.8],[27.8,-97.4],[26.2,-98.23],[31.76,-106.49],[35.47,-97.52],
+      [36.15,-95.99],[35.2,-101.83],[33.58,-101.86],[35.08,-106.65],[40.76,-111.89],[33.45,-112.07],
+      [32.22,-110.97],[36.17,-115.14],[39.53,-119.81],[38.58,-121.49],[37.77,-122.42],[36.75,-119.77],
+      [35.37,-119.02],[34.05,-118.24],[32.72,-117.16]
+    ];
+    // already inside the 230-mile drive ellipse (shown, unlabeled)
+    const DRIVE = [[25.76,-80.19],[24.56,-81.78],[26.64,-81.87],[27.34,-82.53],[27.95,-82.46],[28.54,-81.38]];
+    // airline additions: nonstop block time fits the ~2:00 budget
+    const AIR = [
+      { n: 'JACKSONVILLE 1:20', lat: 30.33, lon: -81.66, dx: 10,  dy: 4,   a: 'start'  },
+      { n: 'TALLAHASSEE 1:25',  lat: 30.44, lon: -84.28, dx: -8,  dy: -14, a: 'end'    },
+      { n: 'SAVANNAH 1:40',     lat: 32.08, lon: -81.09, dx: 10,  dy: 8,   a: 'start'  },
+      { n: 'CHARLESTON 1:50',   lat: 32.78, lon: -79.93, dx: 10,  dy: -2,  a: 'start'  },
+      { n: 'ATLANTA 1:55',      lat: 33.75, lon: -84.39, dx: -10, dy: -10, a: 'end'    },
+      { n: 'NEW ORLEANS 1:55',  lat: 29.95, lon: -90.07, dx: 0,   dy: 22,  a: 'middle' },
+      { n: 'CHARLOTTE 2:00',    lat: 35.23, lon: -80.84, dx: -10, dy: -8,  a: 'end'    }
+    ];
+    // near misses, ten to fifteen minutes over
+    const NEAR = [
+      { n: 'RALEIGH +0:10',   lat: 35.78, lon: -78.64, dx: 10, dy: -6,  a: 'start'  },
+      { n: 'NASHVILLE +0:15', lat: 36.16, lon: -86.78, dx: 0,  dy: -12, a: 'middle' }
+    ];
+    const HOME = { lat: 26.37, lon: -80.09 };
+
+    let s = '';
+    BG.forEach(c => {
+      s += `<circle cx="${X(c[1]).toFixed(1)}" cy="${Y(c[0]).toFixed(1)}" r="2.3" fill="#8b93b8" opacity="0.35"/>`;
+    });
+    s += `<ellipse cx="${X(HOME.lon).toFixed(1)}" cy="${Y(HOME.lat).toFixed(1)}" rx="59" ry="74" fill="none" stroke="#e8b44a" stroke-width="1.2" stroke-dasharray="5 5" opacity="0.55"/>`;
+    DRIVE.forEach(c => {
+      s += `<circle cx="${X(c[1]).toFixed(1)}" cy="${Y(c[0]).toFixed(1)}" r="3" fill="#e8b44a" opacity="0.8"/>`;
+    });
+    AIR.forEach(c => {
+      const x = X(c.lon), y = Y(c.lat);
+      s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.2" fill="#e8b44a"/>`;
+      s += `<text x="${(x + c.dx).toFixed(1)}" y="${(y + c.dy).toFixed(1)}" ${MONO} font-size="15" letter-spacing="1" fill="#e8b44a" text-anchor="${c.a}">${c.n}</text>`;
+    });
+    NEAR.forEach(c => {
+      const x = X(c.lon), y = Y(c.lat);
+      s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.2" fill="none" stroke="#e8b44a" stroke-dasharray="2 2" opacity="0.7"/>`;
+      s += `<text x="${(x + c.dx).toFixed(1)}" y="${(y + c.dy).toFixed(1)}" ${MONO} font-size="14" letter-spacing="1" fill="#e8b44a" opacity="0.6" text-anchor="${c.a}">${c.n}</text>`;
+    });
+    const hx = X(HOME.lon), hy = Y(HOME.lat);
+    s += `<circle cx="${hx.toFixed(1)}" cy="${hy.toFixed(1)}" r="6" fill="none" stroke="#eae6d8" stroke-width="1.4"/>`;
+    s += `<circle cx="${hx.toFixed(1)}" cy="${hy.toFixed(1)}" r="2" fill="#eae6d8"/>`;
+    s += `<text x="${(hx + 13).toFixed(1)}" y="${(hy + 5).toFixed(1)}" ${MONO} font-size="15" letter-spacing="2" fill="#eae6d8">HOME</text>`;
+
+    const legend = [
+      ['<circle cx="46" cy="{y}" r="4.2" fill="#e8b44a"/>', 'nonstop fits the time budget (block time shown)'],
+      ['<circle cx="46" cy="{y}" r="4.2" fill="none" stroke="#e8b44a" stroke-dasharray="2 2" opacity="0.7"/>', 'ten to fifteen minutes over'],
+      ['<line x1="38" y1="{y}" x2="54" y2="{y}" stroke="#e8b44a" stroke-dasharray="5 5" opacity="0.55"/>', 'the classic 230-mile drive radius'],
+      ['<circle cx="46" cy="{y}" r="2.3" fill="#8b93b8" opacity="0.35"/>', 'everywhere else, for shape']
+    ];
+    legend.forEach((row, i) => {
+      const y = 548 + i * 24;
+      s += row[0].replaceAll('{y}', y);
+      s += `<text x="64" y="${y + 4}" ${MONO} font-size="13" fill="#8b93b8">${row[1]}</text>`;
+    });
+
+    host.innerHTML = `<svg viewBox="0 0 1000 640" role="img" aria-label="Chart of US cities reachable nonstop within the travel time budget, all in Florida and the Southeast">${s}</svg>`;
+  })();
+
+  // contact address, assembled at view time to stay off scraper lists
+  (function () {
+    const a = document.getElementById('contactLink');
+    if (!a) return;
+    const addr = ['david', String.fromCharCode(64), 'datedavid', String.fromCharCode(46), 'org'].join('');
+    a.textContent = addr;
+    a.href = 'mailto' + String.fromCharCode(58) + addr;
+  })();
 
   // live odometer: 370 km/s in the CMB frame
   const odo = document.getElementById('odo');

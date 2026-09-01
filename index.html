@@ -339,6 +339,10 @@
     display: block;
     background: var(--plate);
   }
+  .gallery img.wide {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+  }
 
   .hint { margin-top: 1.4rem; font-size: 0.85rem; color: var(--faint); }
 
@@ -407,8 +411,9 @@
       <div class="gallery">
         <img src="photos/david-1.jpg" alt="David grinning at a Thai restaurant table behind a bowl of khao soi" loading="lazy">
         <img src="photos/david-2.jpg" alt="David laughing mid-conversation in a white shirt and silver tie" loading="lazy">
+        <img class="wide" src="photos/david-3.jpg" alt="David grinning mid-air on a tandem skydive above South Florida farmland and clouds" loading="lazy">
       </div>
-      <p class="vitals">FIG. 01–02 · THE OBSERVER IN THE FIELD · KHAO SOI NOT INCLUDED</p>
+      <p class="vitals">FIG. 01–03 · THE OBSERVER IN THE FIELD AND ABOVE IT · KHAO SOI NOT INCLUDED</p>
       <p>I build software for emergencies and for trust — systems that have to work when it matters most. I bring the same philosophy here: everything on this site is checkable, and I'd rather you verify than take my word.</p>
       <p>Ask me about the time being wrong in public taught me more than being right, or why I think the two best first-date questions are "what do you believe that you can't prove?" and "what have you changed your mind about that you once felt strongly on?"</p>
     </div>

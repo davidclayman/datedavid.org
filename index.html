@@ -171,6 +171,8 @@
     color: var(--faint);
   }
   .odometer strong { color: var(--paper); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .clockbox::before { content: "THE GRANDPARENT CLOCK · DECLINING LIVE"; }
+  .clockbox .odometer a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
 
   .crosslink { margin-top: 1.6rem; font-size: 0.9rem; color: var(--faint); }
   .crosslink a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
@@ -357,7 +359,7 @@
       </div>
     </div>
 
-    <p class="crosslink">Skeptical? Good. Proceed to <a href="#audits">the Audit Ledger</a>: the physics is Audits 01–04, and the life philosophy runs 05–15.</p>
+    <p class="crosslink">Skeptical? Good. Proceed to <a href="#audits">the Audit Ledger</a>: the physics is Audits 01–04, and the life philosophy runs 05–16.</p>
   </section>
 
   <!-- ============ THE REMIX ============ -->
@@ -396,8 +398,18 @@
       <p><strong>Path one: you already have a kid or two.</strong> This is a path I'd choose on purpose, not one I'd settle into. I want to be a real stepparent, the kind who shows up, and a blended family gets us there with more birthdays already on the calendar and fewer biological coin-flips ahead of us.</p>
       <p><strong>Path two: you're ready to pull out all the stops with me.</strong> Two or three children from scratch is still a project you commit to like a mission, not something you drift into. And if you're over 35, the fertility math makes the IVF conversation a <strong>first-few-months topic</strong>. Ovarian reserve testing, egg or embryo freezing, per-cycle success rates by age: I'd rather we look at the actual numbers together on date five than discover them in a clinic at 39. I mean that as respect for the project, not pessimism about your body.</p>
       <p>The underlying logic is the same one behind skipping the big wedding: I'm optimizing for <strong>total years</strong>: years married, years parenting, years as grandparents, overlapping years all the kids know each other. Every year of delay comes off the end of the best part.</p>
+      <p><strong>The mortality clock.</strong> Our lifespans are finite, fixed by our choices and by fate, and every month we delay getting married and having children is a month taken from watching our kids and grandkids grow up. I'm already <span class="num"><span id="proseAge">40.42</span></span> years old. If our first child were born today, married at 30, and had their own two or three kids by 35, our grandkids would graduate high school when I'm about <span class="num">93</span>, college near <span class="num">97</span>, graduate school past <span class="num">99</span>. A typical American man my age makes it to about <span class="num">78</span>. Will we both be alive to see our grandkids graduate high school? College? Graduate school? Hesitation answers that question for us, one stolen month at a time.</p>
     </div>
-    <p class="crosslink">The fertility numbers are checkable: <a href="#audits">Audit 06</a>.</p>
+
+    <div class="radius clockbox">
+      <div class="big"><span id="clkOverlap">2.6</span> <span>yrs</span></div>
+      <div class="sub">expected overlap with our grandkids under typical US male life expectancy (~78), if our first child were born today</div>
+      <div class="odometer">
+        MY AGE <strong id="clkAge">40.4</strong> · GRANDKIDS ARRIVE ≈ <strong id="clkMeet">75.4</strong> · THEIR HS GRADUATION ≈ <strong id="clkHs">93.4</strong> · COLLEGE ≈ <strong id="clkCol">97.4</strong> · GRAD SCHOOL ≈ <strong id="clkGrad">99.4</strong><br>
+        Every month we delay moves every number here one month against us. Surviving to meet the grandkids buys some overlap back; <a href="#audit-16">Audit 16</a> runs the honest conditional math.
+      </div>
+    </div>
+    <p class="crosslink">The fertility numbers are checkable: <a href="#audit-06">Audit 06</a>. The life tables behind the clock: <a href="#audit-16">Audit 16</a>.</p>
   </section>
 
   <!-- ============ WEDDING ============ -->
@@ -511,7 +523,7 @@
   <!-- ============ AUDIT LEDGER ============ -->
   <section class="topic" id="audits" data-title="Audit Ledger">
     <h2 class="head">The Audit Ledger</h2>
-    <p class="subhead">Every claim on this site, numbered and falsifiable. Expand one, copy its prompt, paste it into any AI assistant, and ask it to show its work. Audits 01–04 cover the physics, 05–11 the life philosophy, 12 the airline remix, 13 the feedback clause, 14 the grandparent effect, and 15 the money merger.</p>
+    <p class="subhead">Every claim on this site, numbered and falsifiable. Expand one, copy its prompt, paste it into any AI assistant, and ask it to show its work. Audits 01–04 cover the physics, 05–11 the life philosophy, 12 the airline remix, 13 the feedback clause, 14 the grandparent effect, 15 the money merger, and 16 the mortality clock.</p>
     <div id="ledger"></div>
     <p class="hint">Trust, but verify. Preferably verify.</p>
   </section>
@@ -977,6 +989,20 @@ Use real citations where you can and keep both the endorsement and the correctio
 6. VERDICT. Is the money design coherent, evidence-aligned, and fair to both parties? Name the one change that would most improve it.
 
 Use the real studies and real law; where states differ, say so rather than averaging.`
+    },
+    {
+      title: "The mortality clock: grandkid overlap under real life tables",
+      claim: "If the author's first child were born today, married at 30, and had kids by 35, the grandkids would finish high school when he is about 93; under typical US male life expectancy (~78) his expected overlap with grandkids is roughly two to three years and shrinks with every month of delay.",
+      prompt: `CONTEXT: A dating page displays a live "grandparent clock" for a man born March 31, 1986. The model: his first child is born today, marries at 30, and has two or three kids by 35, so grandkids arrive when he is about (age + 35), graduate high school at (age + 53), college at (age + 57), and graduate school around (age + 59). Against a typical US male life expectancy of about 78, the page computes a live, declining "expected overlap with grandkids" of roughly 78 − (age + 35) years, and argues each month of delayed marriage and childbearing steals a month of that overlap. Audit the actuarial honesty.
+
+1. THE LIFE TABLE. Using current SSA period life tables and CDC data, what is remaining life expectancy for a US male in his early 40s? Is "about 78" fair? Explain period versus cohort tables and which is more honest for a man planning decades ahead.
+2. THE ARITHMETIC. Check the model's addition chain (grandkids at age + 35, high school at + 53, college at + 57, grad school at + 59) and the overlap formula. Are the embedded assumptions (kids married at 30, grandkids by 35) realistic against current US medians for age at first marriage and first birth?
+3. CONDITIONAL SURVIVAL. The naive overlap ignores survivorship: compute the probability a male in his early 40s reaches 76, and his expected remaining years IF he reaches 76 (SSA tables put e(76) near 10 years). Also estimate the probability he reaches 94 for the high school graduation, and about 97 for college. Report how much the "honest conditional math" improves on the naive two-to-three-year overlap, and what it still says about seeing graduations.
+4. THE CONTROLLABLES. How much can behavior (exercise, not smoking, weight, socioeconomic status) shift these numbers? The page elsewhere prizes evidence-based lifespan extension: quantify the plausible upside.
+5. THE ARGUMENT. Is "every month of delay steals a month of grandkid overlap" fair arithmetic, an emotional lever, or both? Note what the model leaves out in both directions (kids may have children earlier or later; grandparent overlap depends on their timelines too).
+6. VERDICT. Grade the clock for actuarial honesty and emotional fairness, and state the single most defensible sentence a reader should take from it.
+
+Use real tables with citations and show every calculation.`
     }
   ];
 
@@ -1164,6 +1190,31 @@ Use the real studies and real law; where states differ, say so rather than avera
     const born = Date.UTC(1986, 2, 31, 5, 0, 0); // midnight US Eastern
     const YEAR = 31556952000; // mean Gregorian year in ms
     function tick() { el.textContent = ((Date.now() - born) / YEAR).toFixed(8); }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      tick(); setInterval(tick, 1000);
+    } else {
+      (function loop() { tick(); requestAnimationFrame(loop); })();
+    }
+  })();
+
+  // the grandparent clock: overlap with grandkids, declining live
+  (function () {
+    const ids = ['proseAge','clkOverlap','clkAge','clkMeet','clkHs','clkCol','clkGrad'];
+    const el = Object.fromEntries(ids.map(i => [i, document.getElementById(i)]));
+    if (ids.some(i => !el[i])) return;
+    const born = Date.UTC(1986, 2, 31, 5, 0, 0);
+    const YEAR = 31556952000;
+    const LE = 78.0; // typical US male life expectancy at this age; see Audit 16
+    function tick() {
+      const age = (Date.now() - born) / YEAR;
+      el.proseAge.textContent = age.toFixed(6);
+      el.clkOverlap.textContent = (LE - age - 35).toFixed(7);
+      el.clkAge.textContent = age.toFixed(4);
+      el.clkMeet.textContent = (age + 35).toFixed(1);
+      el.clkHs.textContent = (age + 53).toFixed(1);
+      el.clkCol.textContent = (age + 57).toFixed(1);
+      el.clkGrad.textContent = (age + 59).toFixed(1);
+    }
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       tick(); setInterval(tick, 1000);
     } else {

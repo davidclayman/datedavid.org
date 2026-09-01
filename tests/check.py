@@ -27,7 +27,7 @@ audits_src = s.split('const AUDITS = [', 1)[1].split('\n  ];', 1)[0]
 n_audits = len(re.findall(r'\n      title:', audits_src))
 check('audit count sane', 10 <= n_audits <= 40, f'found {n_audits}')
 
-valid = set(ids) | {f'audit-{i:02d}' for i in range(1, n_audits + 1)}
+valid = set(ids) | {f'audit-{i:02d}' for i in range(0, n_audits + 1)}  # 00 is the static meta-audit
 hrefs = set(re.findall(r'href="#([a-zA-Z0-9-]+)"', s))
 bad = hrefs - valid
 check('internal links resolve', not bad, f'dangling: {sorted(bad)}')

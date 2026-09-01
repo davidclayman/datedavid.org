@@ -299,6 +299,24 @@
   .vitals { margin: 1.3rem 0; font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; color: var(--faint); }
   .vitals strong { color: var(--paper); font-weight: 500; font-variant-numeric: tabular-nums; }
 
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+    margin: 1.6rem 0 0.5rem;
+    max-width: 58ch;
+  }
+  .gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 3 / 4;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    display: block;
+    background: var(--plate);
+  }
+
   .hint { margin-top: 1.4rem; font-size: 0.85rem; color: var(--faint); }
 
   footer {
@@ -505,6 +523,11 @@
     <div class="prose">
       <p>Former science teacher, current founder-engineer — which means I explain things for fun and build things for a living, and I genuinely can't tell you which one is the job. Licensed drone pilot, so technically certified to operate in three dimensions while dating in two.</p>
       <p class="vitals">AGE <strong id="age">40.4</strong> yrs (counting) · HEIGHT 5'10" / ~177 cm · MASS ~190 lb / ~86 kg · pretty average for an American male, neither tall nor short</p>
+      <div class="gallery">
+        <img src="photos/david-1.jpg" alt="David grinning at a Thai restaurant table behind a bowl of khao soi" loading="lazy">
+        <img src="photos/david-2.jpg" alt="David laughing mid-conversation in a white shirt and silver tie" loading="lazy">
+      </div>
+      <p class="vitals">FIG. 01–02 · THE OBSERVER IN THE FIELD · KHAO SOI NOT INCLUDED</p>
       <p>I build software for emergencies and for trust — systems that have to work when it matters most. I bring the same philosophy here: everything on this site is checkable, and I'd rather you verify than take my word.</p>
       <p>Ask me about the time being wrong in public taught me more than being right, or why I think the two best first-date questions are "what do you believe that you can't prove?" and "what have you changed your mind about that you once felt strongly on?"</p>
     </div>

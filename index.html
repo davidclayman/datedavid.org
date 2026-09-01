@@ -89,6 +89,37 @@
   nav.topics a:hover { color: var(--paper); }
   nav.topics a.active { color: var(--gold); border-bottom-color: var(--gold); }
   nav.topics a:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+  nav.topics::before,
+  nav.topics::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 54px;
+    display: flex;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.05rem;
+    color: var(--gold);
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.25s;
+    z-index: 1;
+  }
+  nav.topics::after {
+    content: "›";
+    right: 0;
+    justify-content: flex-end;
+    padding-right: 10px;
+    background: linear-gradient(90deg, rgba(11,16,38,0), rgba(11,16,38,0.96) 60%);
+  }
+  nav.topics::before {
+    content: "‹";
+    left: 0;
+    padding-left: 10px;
+    background: linear-gradient(270deg, rgba(11,16,38,0), rgba(11,16,38,0.96) 60%);
+  }
+  nav.topics.nav-end::after { opacity: 0; }
+  nav.topics.nav-start::before { opacity: 0; }
 
   .wrap {
     position: relative;
@@ -880,6 +911,17 @@
     rail.appendChild(a);
   });
 
+  // edge fades + chevrons signal that the rail scrolls
+  const navEl = document.querySelector('nav.topics');
+  function updateNavFades() {
+    navEl.classList.toggle('nav-start', rail.scrollLeft <= 4);
+    navEl.classList.toggle('nav-end', rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4);
+  }
+  rail.addEventListener('scroll', updateNavFades, { passive: true });
+  window.addEventListener('resize', updateNavFades);
+  window.addEventListener('load', updateNavFades);
+  updateNavFades();
+
   function route() {
     const raw = (location.hash || '#radius').slice(1);
     const audit = /^audit-\d{2}$/.test(raw) ? raw : null;
@@ -888,6 +930,9 @@
     const target = el && el.classList.contains('topic') ? id : 'radius';
     sections.forEach(s => s.classList.toggle('active', s.id === target));
     rail.querySelectorAll('a').forEach(a => a.classList.toggle('active', a.dataset.target === target));
+    const act = rail.querySelector('a.active');
+    if (act) act.scrollIntoView({ inline: 'center', block: 'nearest' });
+    updateNavFades();
     const card = audit && document.getElementById(audit);
     if (card) {
       card.open = true;

@@ -137,7 +137,7 @@
     position: relative;
   }
   .radius::before {
-    content: "DATING RADIUS \u00b7 2 s OF COSMIC MOTION";
+    content: "DATING RADIUS · 2 s OF COSMIC MOTION";
     position: absolute;
     top: -0.62em;
     left: 1.1rem;
@@ -199,6 +199,7 @@
   .chartbox svg { width: 100%; height: auto; display: block; }
 
   .audit {
+    scroll-margin-top: 70px;
     border: 1px solid var(--line);
     border-radius: 6px;
     background: var(--plate);
@@ -222,7 +223,9 @@
     color: var(--gold);
     letter-spacing: 0.1em;
     flex-shrink: 0;
+    text-decoration: none;
   }
+  .audit .no:hover { border-bottom: 1px dotted var(--gold); }
   .audit .q {
     font-family: 'Fraunces', serif;
     font-weight: 500;
@@ -552,15 +555,24 @@
   });
 
   function route() {
-    const id = (location.hash || '#radius').slice(1);
+    const raw = (location.hash || '#radius').slice(1);
+    const audit = /^audit-\d{2}$/.test(raw) ? raw : null;
+    const id = audit ? 'audits' : raw;
     const el = document.getElementById(id);
     const target = el && el.classList.contains('topic') ? id : 'radius';
     sections.forEach(s => s.classList.toggle('active', s.id === target));
     rail.querySelectorAll('a').forEach(a => a.classList.toggle('active', a.dataset.target === target));
-    window.scrollTo({ top: 0, behavior: 'auto' });
+    const card = audit && document.getElementById(audit);
+    if (card) {
+      card.open = true;
+      requestAnimationFrame(() => card.scrollIntoView({ block: 'start' }));
+    } else {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
   }
   window.addEventListener('hashchange', route);
-  route();
+  // initial route() runs after the ledger below is built,
+  // so #audit-NN deep links resolve on first load.
 
   // ============================================================
   // THE AUDIT LEDGER — append { title, claim, prompt } to extend.
@@ -760,10 +772,12 @@ Answer for a general reader and cite the learning-science sources you rely on.`
     const no = String(i + 1).padStart(2, '0');
     const d = document.createElement('details');
     d.className = 'audit';
+    d.id = 'audit-' + no;
     if (i === 0) d.open = true;
 
     const s = document.createElement('summary');
-    const noEl = document.createElement('span'); noEl.className = 'no'; noEl.textContent = 'AUDIT ' + no;
+    const noEl = document.createElement('a'); noEl.className = 'no'; noEl.textContent = 'AUDIT ' + no;
+    noEl.href = '#audit-' + no; noEl.title = 'Link to this audit';
     const qEl = document.createElement('span'); qEl.className = 'q'; qEl.textContent = a.title;
     const chev = document.createElement('span'); chev.className = 'chev'; chev.textContent = '\u203a';
     s.append(noEl, qEl, chev);
@@ -782,6 +796,7 @@ Answer for a general reader and cite the learning-science sources you rely on.`
     d.append(s, body);
     ledger.append(d);
   });
+  route();
 
   async function copyText(text, note) {
     let ok = false;

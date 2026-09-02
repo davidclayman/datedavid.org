@@ -26,6 +26,13 @@ JavaScript, no framework, no build step, and no dependency beyond Google Fonts.
 `404.html` is the only other page; it redirects `/family`-style paths to
 `/#family` and otherwise links home.
 
+**Two layers.** The first section, Start Here, is the profile: hook, photo,
+introduction, what dating him is like, what he's looking for, the essential
+filters, and a low-stakes invitation. Every other section is the laboratory
+behind it. Long arguments inside a section (the family-property math, the
+optimal-stopping models, the full Shelf) sit in collapsed cards so the page
+reads short first and deep on request.
+
 **Sections and navigation.** Each topic is a
 `<section class="topic" id="..." data-title="..." data-chapter="...">`. A hash
 router shows one section per `#id` and builds the nav rail from DOM order. The

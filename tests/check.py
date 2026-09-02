@@ -106,6 +106,9 @@ if os.path.exists(nf):
     check('404 is noindex', 'name="robots" content="noindex"' in n4)
     check('404 email never in source', 'david@' not in n4 and 'mailto:' not in n4)
 
+check('robots.txt allows crawling and names the sitemap', os.path.exists(os.path.join(ROOT, 'robots.txt')) and 'Sitemap: https://datedavid.org/sitemap.xml' in open(os.path.join(ROOT, 'robots.txt')).read())
+check('sitemap.xml lists the canonical URL', os.path.exists(os.path.join(ROOT, 'sitemap.xml')) and '<loc>https://datedavid.org/</loc>' in open(os.path.join(ROOT, 'sitemap.xml')).read())
+
 # --- metadata -------------------------------------------------------------
 for needle, name in [('property="og:image"', 'og:image'), ('property="og:title"', 'og:title'),
                      ('rel="canonical"', 'canonical'), ('name="description"', 'meta description'),

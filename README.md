@@ -11,6 +11,9 @@ the reader can paste into any AI assistant.
 
 - **One static file.** Everything is `index.html`: hand-written CSS, vanilla JS,
   no framework, no build step, no dependencies beyond Google Fonts.
+  `404.html` is the only other page; it redirects `/family`-style paths to
+  `/#family` and otherwise links home. A `<noscript>` block shows every
+  section as one long scroll when JavaScript is off.
 - **Sections and nav.** Each topic is a `<section class="topic" id="..."
   data-title="...">`. A small hash router builds the nav rail from DOM order and
   shows one section per `#id`; add a section and the nav updates itself.

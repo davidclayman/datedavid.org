@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Date David · Signal Lost</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b1026">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b1026'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23e8b44a' stroke-width='4' stroke-dasharray='6 5'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23eae6d8'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Space+Grotesk:wght@400&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #0b1026; --paper: #eae6d8; --faint: #8b93b8; --gold: #e8b44a; --line: rgba(234, 230, 216, 0.14); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Space Grotesk', system-ui, sans-serif; line-height: 1.6; min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 70% 20%, rgba(232,180,74,0.06), transparent 40%),
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 100% 100%, 96px 96px, 96px 96px;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 14vh 24px 12vh; }
+  .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); margin-bottom: 2rem; }
+  .eyebrow b { color: var(--gold); font-weight: 500; }
+  h1 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.12; margin-bottom: 2rem; }
+  h1 em { font-style: italic; font-weight: 500; color: var(--gold); }
+  p { color: #cfd3e6; max-width: 56ch; font-size: 1.08rem; }
+  p + p { margin-top: 1rem; }
+  .num { font-family: 'IBM Plex Mono', monospace; color: var(--paper); }
+  a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+  footer { margin-top: 5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.18em; color: var(--faint); text-transform: uppercase; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="eyebrow">STATUS: <b>404 · NO SIGNAL AT THESE COORDINATES</b></div>
+  <h1>That address is <em>outside the radius.</em></h1>
+  <p>Nothing lives at <span class="num" id="where">this path</span>. Either the page moved, the link was mistyped, or you tried to reach a section by its name; the site's sections live behind the hash, so <a href="/#family">/#family</a> works where <span class="num">/family</span> doesn't. If that's what happened, this page is already redirecting you.</p>
+  <p>Otherwise, everything is one hop away: <a href="/">the front page</a>, <a href="/#audits">the Audit Ledger</a>, or <a href="/#transmission">the contact page</a> if you think the link was mine to fix.</p>
+  <footer>N 41°31' · STILL MOVING TOWARD LEO–CRATER · 370 KM/S</footer>
+</main>
+<script>
+  // /family -> /#family: single lowercase path segment, otherwise stay here
+  (function () {
+    var seg = location.pathname.replace(/^\/+|\/+$/g, '');
+    var el = document.getElementById('where');
+    if (el) el.textContent = location.pathname;
+    if (/^[a-z]{2,24}$/.test(seg)) location.replace('/#' + seg);
+  })();
+</script>
+</body>
+</html>

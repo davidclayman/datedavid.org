@@ -406,6 +406,24 @@
     letter-spacing: 0.06em;
   }
 </style>
+<noscript>
+<style>
+  section.topic { display: block; margin-bottom: 5rem; padding-bottom: 3rem; border-bottom: 1px solid var(--line); }
+  nav.topics { display: none; }
+  .nojs {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 3rem;
+    line-height: 1.55;
+  }
+  .nojs a { color: var(--paper); }
+</style>
+</noscript>
 </head>
 <body>
 <div class="plate" aria-hidden="true"></div>
@@ -415,6 +433,7 @@
 </nav>
 
 <main class="wrap">
+  <noscript><p class="nojs">JAVASCRIPT IS OFF, so this page is showing every section at once instead of one at a time. The clocks are frozen at their defaults, the Audit Ledger's prompts and the contact address assemble themselves with JavaScript, and the prompts are readable in the page source if you'd rather stay dark. Everything else reads fine as one long scroll.</p></noscript>
 
   <!-- ============ THE RADIUS ============ -->
   <section class="topic" id="radius" data-title="The Radius">
@@ -436,7 +455,7 @@
       </div>
     </div>
 
-    <p class="crosslink">Skeptical? Healthy. <a href="#audits">The Audit Ledger</a> is there whenever you want it: the physics is Audits 01–04, and the life philosophy runs 05–16.</p>
+    <p class="crosslink">Skeptical? Healthy. <a href="#audits">The Audit Ledger</a> is there whenever you want it: the physics is Audits 01–04, and the life philosophy runs 05–21.</p>
     <p class="crosslink">In a hurry? <a href="#family">Family</a>, <a href="#dealbreakers">Dealbreakers</a>, and <a href="#offer">What You Get</a> carry the plot. Everything else is appendix.</p>
   </section>
 
@@ -451,7 +470,7 @@
       <p><strong>The fine print.</strong> Nonstops only, since a single connection detonates the whole budget, and the real constraint is now the route map: the clock is generous, but a city only qualifies if somebody actually flies there nonstop from South Florida. Airline schedules change quarterly, so the qualifying set breathes the way the original radius breathes with Earth's orbit. And the chart below is exactly that, a chart: dots on a projection, drawn to make a point.</p>
     </div>
     <div class="chartbox"><div id="remixMap"></div></div>
-    <p class="crosslink">The drive math, the overhead chain, and the block times: <a href="#audits">Audit 12</a>.</p>
+    <p class="crosslink">The drive math, the overhead chain, and the block times: <a href="#audit-12">Audit 12</a>.</p>
   </section>
 
   <!-- ============ THE OBSERVER ============ -->
@@ -544,7 +563,7 @@
       <p>"I evaluated the market honestly, found a stable match, and closed the search forever, on purpose, with my eyes open" is a far stronger vow than "the universe assigned you to me." That's why I find this romantic rather than cold. Fate takes no credit for effort. Choosing does.</p>
       <p>So this whole site is me showing you my preference ordering up front (the family plan, the wedding math, the ring policy, all of it) because stable matching only works when people reveal their true preferences early instead of discovering dealbreakers in year three.</p>
     </div>
-    <p class="crosslink">Check my math: <a href="#audits">Audit 05</a>.</p>
+    <p class="crosslink">Check my math: <a href="#audit-05">Audit 05</a>.</p>
   </section>
 
   <!-- ============ BUDGET ============ -->
@@ -558,7 +577,7 @@
       <p><strong>The inconvenient study.</strong> The same Emory study I cite on the Wedding page found that couples who dated three or more years before engagement divorced less than couples who dated under a year. I'm not hiding that; it's written into Audit 10. My answer: those averages describe couples who spend year one slowly discovering each other's dealbreakers. This site front-loads mine (family plan, money philosophy, ring policy) before the first coffee, so a year of dating me carries the information density of three years of dating someone who reveals himself one layer per anniversary. And the 12 months runs to a <em>proposal</em>, not a wedding: engagement is itself a further evaluation stage, and either of us can still walk.</p>
       <p><strong>The actuarial part.</strong> At our stage, with a family plan on the table, calendar time is the scarcest input we have. If we can't get to a confident yes inside twelve months and ten thousand dollars of undivided attention, that's the budget doing its job. It's information, and we'll both have paid a fair price for it.</p>
     </div>
-    <p class="crosslink">The courtship-length research, both sides: <a href="#audits">Audit 10</a>.</p>
+    <p class="crosslink">The courtship-length research, both sides: <a href="#audit-10">Audit 10</a>.</p>
   </section>
 
   <!-- ============ HOME ============ -->
@@ -567,13 +586,14 @@
     <p class="subhead">The nonstupid choice, the $205,000 landlord problem, and how privacy actually works.</p>
     <div class="prose">
       <p><strong>The choice.</strong> I live on family property. This saves roughly <span class="num">$2,500 a month</span> against South Florida market rent, and I consider it the nonstupid choice: a decision I'd defend in front of any spreadsheet.</p>
+      <p><strong>The second base.</strong> I also have family in Cleveland, and I co-own a condo there, so the map has two home bases with no rent on either. At the moment I'm rarely in Ohio: the pool of potential matches is smaller than South Florida's, and I go where the odds are. But the condo is why the Budget page measures driving distance from Cleveland as well as Boca, and why the footer's latitude reads Cleveland's rather than Florida's.</p>
       <p><strong>The compounding.</strong> One year of forgone rent is about <span class="num">$30,000</span>. Invested at 8% for the 25 years until my planned retirement, that single year grows to roughly <span class="num">$205,000</span>. From one year. Every additional year I don't pay a landlord is another six-figure future gift: inheritance for our kids, support for grandkids, or fuel for whatever we decide retirement means when we get there together. Handing that to a landlord unnecessarily feels to me like extreme waste, one of the largest voluntary wealth transfers most people never notice they're making.</p>
       <p><strong>The non-financial half.</strong> Living with family is also how most of the world lives, and how a growing share of America lives again. Shared meals, shared support, someone home when things go wrong, time with the people I'll one day want at every birthday our kids have. I keep my family time high and my cash burn low; I struggle to see the loss.</p>
       <p><strong>So how do we get privacy?</strong> Two cases. <em>If dating you means relocating</em>: I work remote, and I'm genuinely happy to be the one who moves if one of us has to: the radius is 740 km, but the willingness is unlimited. <em>If you're local</em>: first, only one of us needs a place of our own for privacy to work, and it doesn't have to be me. Second, hotels and Airbnbs are everywhere; unless we need privacy more than about four nights a month, booking a room whenever we feel like it costs a fraction of a lease. Third, the relationship research doesn't favor early cohabitation anyway: the general finding is that moving in together <em>before</em> a real marriage commitment (engagement) is associated with worse marital outcomes, so the evidence-aligned plan is hotels now, cohabitation at the ring.</p>
       <p><strong>The superpower.</strong> No lease holds me anywhere, and that converts into a genuine superpower for multicity dating: I can relocate almost instantly, to anywhere in the country, as an Airbnb first and then a furnished rental through FurnishedFinder as we get to know each other and the commitment ratchets up. Most people who date across cities pay double rent to run the experiment; my home base costs <span class="num">$0</span> the whole time I'm near you. I fully intend to spend this freedom on purpose, remote job in hand, serving as a mail-order boyfriend, then fiancé, then husband, for the right match.</p>
       <p><strong>The peacock tax.</strong> The strongest argument for me holding an apartment is as a signal: a $30,000-a-year proof that I'm a financially viable adult. But you can read this site; the finances are auditable without the feathers. Unless you want me to maximize my cash burn and my loneliness to prove a point, I'd rather keep building the premarital portfolio that later, at our discretion, pays for the things a long marriage actually wants: a few years living abroad, semi-retirement, early retirement, the kids' emergencies, the grandkids' tuition, or expensive new hobbies (I hear scuba calls to me).</p>
     </div>
-    <p class="crosslink">The math, the rent data, and the cohabitation research: <a href="#audits">Audit 11</a>.</p>
+    <p class="crosslink">The math, the rent data, and the cohabitation research: <a href="#audit-11">Audit 11</a>.</p>
   </section>
 
   <!-- ============ PROPOSALS ============ -->
@@ -658,7 +678,7 @@
       <p><strong>The engineering view.</strong> I build systems for a living, and every one of them improves in exactly one place: where a feedback loop closes. Dating as commonly practiced is an open-loop system, and open-loop systems drift. With clear feedback after date one or two, a person can course-correct in weeks; without it, they repeat the same fixable mistake for years and file it under bad luck. Dating should be one of the most adaptive systems in anyone's life. Let's make it adaptive together.</p>
       <p><strong>The standing offer.</strong> Accept me or reject me, either is a legitimate outcome. But if you send me two or three paragraphs of clear feedback on how I came across, I will be genuinely delighted, and I'll return the favor with the same care: specific things first, changeable things first, written the way I'd want to receive them.</p>
     </div>
-    <p class="crosslink">The learning science and the etiquette: <a href="#audits">Audit 13</a>.</p>
+    <p class="crosslink">The learning science and the etiquette: <a href="#audit-13">Audit 13</a>.</p>
   </section>
 
   <!-- ============ SAFEWORD ============ -->
@@ -671,7 +691,7 @@
       <p><strong>The honesty.</strong> No partner has run it with me yet; I built it after the patent and after the marriage, so whoever comes next is the first. I count that as a feature. We'd be figuring out the protocol together, which is what the protocol is for.</p>
       <p><strong>The future.</strong> Someday I'll probably build a dating app around Safeword. I don't think it succeeds without living directly inside one, so the hand-off to protected intimacy is as smooth as the first message. If that ships, you'll have watched the founding story from the inside.</p>
     </div>
-    <p class="crosslink">The rest of the safety stack: <a href="#verifyme">Verify Me</a>. The genetics it builds on: <a href="#family">Family</a>.</p>
+    <p class="crosslink">The rest of the safety stack: <a href="#verifyme">Verify Me</a>. The genetics it builds on: <a href="#family">Family</a>. The patent, the five-nines math, and the security claims: <a href="#audit-20">Audit 20</a>.</p>
   </section>
 
   <!-- ============ WEDDING ============ -->
@@ -683,7 +703,7 @@
       <p><strong>The data argument.</strong> The best-known economics study on this (out of Emory) found that higher spending on weddings and rings is associated with <em>higher</em> divorce rates — the couples who spent the least had the best survival curves. One wrinkle, which I'll flag before your AI does: the same study found that <em>more guests</em> is associated with <em>lower</em> divorce risk. So the wedding the evidence favors is <strong>cheap and crowded</strong>: a courthouse ceremony followed by the biggest, warmest, least expensive party we can throw. Everyone we love, nobody's life savings.</p>
       <p>Correlation isn't causation and the audit prompt says so explicitly. But when the correlational evidence and the time-arithmetic both point at the same answer, and the answer also happens to cost less, I'm comfortable calling it.</p>
     </div>
-    <p class="crosslink">The study itself, if you want the details: <a href="#audits">Audit 07</a>.</p>
+    <p class="crosslink">The study itself, if you want the details: <a href="#audit-07">Audit 07</a>.</p>
   </section>
 
   <!-- ============ THE RING ============ -->
@@ -696,7 +716,7 @@
       <p><strong>The counter-offer.</strong> If a ring matters to you, here's my proposal: I write you a check for the last reported median price of a diamond engagement ring in whatever state we live in. Call it the dowry check. It's yours, unconditionally. Keep it all as a wedding gift, spend part of it on exactly the ring you want chosen by you rather than guessed at by me, or put it toward the house, the kids' fund, anything. Same money, but you hold the allocation decision.</p>
       <p><strong>The real filter.</strong> The woman I'm looking for reads this and wants to <em>minimize</em> the ring spend, not max out the check. There's a strange accounting illusion where ring money feels like it comes from some external budget: the man's problem, someone else's wallet. But there is no external budget. Every dollar comes out of the one joint family budget that has to carry our home, our kids, and our grandkids for the next fifty years. A partner who sees the ring and the 529 as line items in the same ledger is worth more to me than any stone.</p>
     </div>
-    <p class="crosslink">The De Beers history and the numbers: <a href="#audits">Audit 08</a>.</p>
+    <p class="crosslink">The De Beers history and the numbers: <a href="#audit-08">Audit 08</a>.</p>
   </section>
 
   <!-- ============ MONEY ============ -->
@@ -717,10 +737,11 @@
     <p class="subhead">The preference everything else on this site depends on, stated without hedging.</p>
     <div class="prose">
       <p>I want a family size of two or three children, and I'm at an age where the fair way to say that is with arithmetic. That means I'm looking for one of two women:</p>
-      <p><strong>Path one: you already have a kid or two.</strong> This is a path I'd choose on purpose, not one I'd settle into. I want to be a real stepparent, the kind who shows up, and a blended family gets us there with more birthdays already on the calendar and fewer biological coin-flips ahead of us.</p>
+      <p><strong>Path one: you already have a kid or two.</strong> This is a path I'd choose on purpose, not one I'd settle into. I want to be a real stepparent, the kind who shows up, and a blended family gets us there with more birthdays already on the calendar and fewer biological coin-flips ahead of us. Widows and single mothers get priority here, for reasons <a href="#agerange">the Age Range page</a> spells out.</p>
       <p><strong>Path two: you're ready to pull out all the stops with me.</strong> Two or three children from scratch is still a project you commit to like a mission, not something you drift into. And if you're over 35, the fertility math makes the IVF conversation a <strong>first-few-months topic</strong>. Ovarian reserve testing, egg or embryo freezing, per-cycle success rates by age: I'd rather we look at the actual numbers together on date five than discover them in a clinic at 39. I mean that as respect for the project, not pessimism about your body.</p>
       <p>The underlying logic is the same one behind skipping the big wedding: I'm optimizing for <strong>total years</strong>: years married, years parenting, years as grandparents, overlapping years all the kids know each other. Every year of delay comes off the end of the best part.</p>
-      <p><strong>The genetic homework.</strong> I've already done JScreen carrier screening, and my results are available in seconds on request. The summary: I'm a carrier for CYP21A2-related Congenital Adrenal Hyperplasia (reproductive risk about 1 in 250), Biotinidase Deficiency (about 1 in 1,700), and a mild condition, HFE-associated Hereditary Hemochromatosis. If you want me to father kids with you, it's important to me that you complete carrier screening too, early, before we're too deep to back out cleanly if the results surprise us: a match on any of my conditions, or anything autosomal dominant with poor quality of life, Huntington's being the textbook case, changes the plan, and we'd want to know while it's still a plan.</p>
+      <p><strong>The clock is mine too.</strong> None of this arithmetic is aimed only at you. Sperm keeps dividing for life, so every year I wait adds about two new mutations to any child I father, and the population studies tie paternal age to autism, schizophrenia, and a list of rarer disorders. Waiting is an equally shared problem, and the prompt in <a href="#audit-06">Audit 06</a> copies with my exact age at that second so your AI can price my side of the delay, not just yours.</p>
+      <p><strong>The genetic homework.</strong> I've already done JScreen carrier screening, and my results are available in seconds on request. The summary: I'm a carrier for CYP21A2-related Congenital Adrenal Hyperplasia, specifically the V281L variant, which is the nonclassic, late-onset form: a child of mine can't inherit classic CAH from my allele, since even paired with a classic variant the milder allele sets the outcome. My report quotes a reproductive risk of about 1 in 250, which matches the arithmetic for a partner carrying a classic variant; because nonclassic carriers are common, roughly 1 in 10 generally and about 1 in 3 among Ashkenazi Jews, the chance of a child with the mild nonclassic form is higher than that, and Audit 06 asks your AI to price it. I'm also a carrier for Biotinidase Deficiency, the mild D444H variant (about 1 in 1,700): it can't produce the profound form, and paired with a severe allele it yields partial deficiency, which newborn screening catches and a daily biotin tablet treats. And I carry H63D, the minor variant for HFE-associated Hereditary Hemochromatosis, which on its own causes no iron overload and even paired with a partner's C282Y rarely amounts to more than an adult-onset, blood-donation-treatable condition. If you want me to father kids with you, it's important to me that you complete carrier screening too, early, before we're too deep to back out cleanly if the results surprise us: a match on any of my conditions, or anything autosomal dominant with poor quality of life, Huntington's being the textbook case, changes the plan, and we'd want to know while it's still a plan.</p>
       <p><strong>The mortality clock.</strong> Our lifespans are finite, fixed by our choices and by fate, and every month we delay getting married and having children is a month taken from watching our kids and grandkids grow up. I'm already <span class="num"><span id="proseAge">40.42</span></span> years old. If our first child were born today, married at 30, and had their own two or three kids by 35, our grandkids would graduate high school when I'm about <span class="num">93</span>, college near <span class="num">97</span>, graduate school past <span class="num">99</span>. And realistically, with a courtship, a wedding, and a pregnancy in between, the earliest our first child can arrive is about a year and a half out, which is where the clock's slider starts. A typical American man my age makes it to about <span class="num">78</span>. Will we both be alive to see our grandkids graduate high school? College? Graduate school? Hesitation answers that question for us, one stolen month at a time. The clock below is adjustable: drag the assumptions and watch the overlap move.</p>
     </div>
 
@@ -741,7 +762,7 @@
         Every month we delay moves every number here one month against us. Surviving to meet the grandkids buys some overlap back; <a href="#audit-16">Audit 16</a> runs the honest conditional math.
       </div>
     </div>
-    <p class="crosslink">The fertility numbers are checkable: <a href="#audit-06">Audit 06</a>. The life tables behind the clock: <a href="#audit-16">Audit 16</a>.</p>
+    <p class="crosslink">The fertility numbers are checkable: <a href="#audit-06">Audit 06</a>. The life tables behind the clock: <a href="#audit-16">Audit 16</a>. The age range the two paths imply: <a href="#agerange">Age Range</a>.</p>
   </section>
 
   <!-- ============ MAINTENANCE ============ -->
@@ -754,7 +775,7 @@
       <p><strong>The poisons.</strong> I don't smoke. I don't drink alcohol, which I consider exactly what it is: poison. And if you ask me to buy you a drink, don't be surprised if I say no. It's a terrible health choice, and I'd rather be honest about that on a website than awkward about it at a bar.</p>
       <p><strong>The screenings.</strong> I'm superconsistent about screenings and health appointments. The mortality clock only bends one way on its own; checkups are how you argue with it. I want to stay alive and healthy as long as the effort and the math allow.</p>
     </div>
-    <p class="crosslink">The clock all this maintains: <a href="#family">the Family page</a>. How much behavior can buy back: <a href="#audit-16">Audit 16</a>.</p>
+    <p class="crosslink">The clock all this maintains: <a href="#family">the Family page</a>. How much behavior can buy back: <a href="#audit-16">Audit 16</a>. The evidence for each habit, alcohol included: <a href="#audit-18">Audit 18</a>.</p>
   </section>
 
   <!-- ============ PARTNERSHIP ============ -->
@@ -768,7 +789,7 @@
       <p><strong>The domestic split.</strong> I intend to split the labor at home with you religiously: half of everything domestic. You will not be doing all the cooking or all the cleaning; I'll be doing half of each, and half of the categories nobody lists.</p>
       <p><strong>Childcare.</strong> Grandparents, nanny, daycare, a parent at home, or a mix: that's a decision we make together, driven by our joint and separate income patterns at the time, and by nobody's defaults.</p>
     </div>
-    <p class="crosslink">The stay-at-home math belongs in the same open spreadsheet as <a href="#geography">the city choice</a>.</p>
+    <p class="crosslink">The stay-at-home math belongs in the same open spreadsheet as <a href="#geography">the city choice</a>. The housework research and the career-penalty numbers: <a href="#audit-21">Audit 21</a>.</p>
   </section>
 
   <!-- ============ THE WORK ============ -->
@@ -791,7 +812,7 @@
     <div class="prose">
       <p><strong>The principle.</strong> Kids should grow up near their grandparents. Grandparent involvement is one of the few free multipliers a family gets: childcare from someone who loves the child, culture passed down first-hand, and a longevity effect that some research puts as high as three extra years. I'll flag the honest question before your AI does: whose extra years, and how solid the number is, are exactly what <a href="#audit-14">Audit 14</a> exists to check.</p>
       <p><strong>Option one: near your parents.</strong> If your parents are alive and want to be close, I'd be happy to move to them and live near my in-laws. Grandparents on your side count just as much as grandparents on mine.</p>
-      <p><strong>Option two: near mine.</strong> My parents would be thrilled if we chose anywhere within driving distance of Boca. South Florida comes with sun, family, and the economics you've already read on <a href="#home">the Home page</a>.</p>
+      <p><strong>Option two: near mine.</strong> My parents would be thrilled if we chose anywhere within driving distance of Boca. South Florida comes with sun, family, and the economics you've already read on <a href="#home">the Home page</a>. Cleveland, where the rest of my family and a co-owned condo sit, is the quieter version of the same option.</p>
       <p><strong>Option three: the spreadsheet city.</strong> If neither set of grandparents anchors us, or the tradeoffs don't clear, we pick a city the way this site picks everything: cost of living, employment prospects, schools, and community, weighed in the open.</p>
       <p><strong>The method.</strong> I'm genuinely flexible on the destination as long as we handle the tradeoffs together, rationally, with the weights on the table. You bring your criteria, I bring mine, and the decision matrix determines where the kids' grandparents live relative to their bedrooms.</p>
     </div>
@@ -822,7 +843,7 @@
       <p><strong>The school question.</strong> My default preference is a competitive, high-performing public school for most of their years. I'm happy to send them to a Jewish day school for some or all of elementary if we agree it will deepen Jewish values, ethics, and culture in ways we can't replicate at home. But the price is real: <span class="num">$15,000–30,000</span> per child per year, a small fortune once you compound it across two or three kids, so both the wanting and the needing have to survive the spreadsheet.</p>
       <p><strong>Partner veto, explicitly reserved.</strong> To be clear: this is a preference, not a dealbreaker. The function is a proposal, the parameters are negotiable, and you hold a full veto. But I'll admit the selection effect: I'd love to be married to someone whose reaction to "let's write down our parental aid policy as an equation tied to an objective index" is that it's responsible and kind of cool, rather than cold. It's the least subjective, least favoritism-prone way I know to be generous to two or three different kids.</p>
     </div>
-    <p class="crosslink">529 mechanics and the ROI-by-major data: <a href="#audits">Audit 09</a>.</p>
+    <p class="crosslink">529 mechanics and the ROI-by-major data: <a href="#audit-09">Audit 09</a>.</p>
   </section>
 
   <!-- ============ SELECTION EFFECTS ============ -->
@@ -851,6 +872,24 @@
         <span class="v">Anyone can be pleasant at apoapsis. I care how you treat waitstaff, lost tourists, and people who are wrong on the internet.</span>
       </li>
     </ul>
+  </section>
+
+  <!-- ============ AGE RANGE ============ -->
+  <section class="topic" id="agerange" data-title="Age Range">
+    <h2 class="head">The Age Range</h2>
+    <p class="subhead">Not a preference. A function of the family plan, and the least fun arithmetic on the site.</p>
+    <div class="prose">
+      <p><strong>If lifespans were the only variable.</strong> I'd date from about three years younger than me to about five years older, and I'd bias toward marrying a slightly older woman. American women outlive American men by roughly five years, so an older wife is the closest thing to a matched pair of lifespans: fewer years of either of us alone at the end. That is the range I'd publish if pregnancy weren't part of the plan.</p>
+      <p><strong>The ceiling.</strong> The one absolute bound on every path is five years older than me, which today is <span class="num"><span id="agerangeCeil">45.42</span></span>. Above that I don't think we'd be a stable match: different life stages, and experiences too different to co-adapt around. The ceiling ticks upward with me, one second at a time.</p>
+      <p><strong>Path one: children in hand, or adoption in heart.</strong> If you already have two or more children, or you're genuinely excited to adopt, your marital history is beside the point (divorced, widowed, never married) and the range is wide: roughly 30 up to the ceiling below. The family plan is already feasible, so biology stops setting the lower bound. The Dealbreakers page asks only that you be flexible on adoption; that's the floor. Excitement about it is what widens the age range.</p>
+      <p><strong>Priority, stated plainly.</strong> Within path one, widows have top-tier priority, widows with children most of all, and single mothers are right there with them. Your kids, and all kids, deserve a father figure as soon as one can be found, and you deserve a coparent to share the load with as soon as possible. That is no demotion of single or divorced women without children; nobody here is second-tier. It's that children who don't yet have four eyes watching them and helping them, all the time, obligate me to try even harder to make a match with their mother work.</p>
+      <p><strong>Path two: building from scratch.</strong> If you don't have children, aren't excited about adopting, and didn't freeze eggs when you were younger, my honest estimate is that two or three biological kids stops being realistic past about 36 or 37, even on the fastest marriage track this site can offer. I hate that sentence. But the Family page already makes the IVF conversation a first-few-months topic at 35 and up, and this is the same arithmetic run against a calendar: a courtship, a wedding, and two or three pregnancies take years the fertility curve doesn't give back. <a href="#audit-17">Audit 17</a> has the curve, and I'd rather you check it than take my word.</p>
+      <p><strong>The pattern I keep meeting.</strong> Many of the women I meet in their late 30s and early 40s want children of their own, sincerely. What I see less often is the plan catching up with the biology: immediate IVF, adoption, fostering, or surrogacy (which I'll admit costs a fortune) instead of another year of hoping the ordinary route holds. The same women are often still filtering hard, and I completely understand every filter: for a matching party jersey, for the Goldilocks zone of exactly religious enough, against my mostly vegetarian plate (I was vegetarian for years and still lean that way), against my refusal to negotiate on pediatric vaccines, for a higher income, or for a man who's funnier. Each of those is a legitimate preference. The clock doesn't care, though: every month spent applying them comes off the same overlap the Family page counts, for the mother, and for the grandmother she hopes to be.</p>
+      <p><strong>The genetics, both directions.</strong> I built a site for this too: <a href="https://fiveninesfertility.org">Five Nines Fertility</a>, and its Birth Pacing &amp; Mutagenesis tab runs the numbers on what waiting into the mid-30s and 40s does to a child's genome. The uncomfortable summary for you: obstetrics files any birth at 35 or older under advanced maternal age, and on this site's fastest track a woman past about 32 will be carrying at least one of our children on that side of the line. The uncomfortable summary for me: I am <span class="num"><span id="agerangeAge">40.42</span></span> years old, sperm accumulates about two new mutations for every year a man waits, and the population studies put autism risk for children of fathers my age at roughly <span class="num">1.7×</span> that of a 25-year-old father, climbing every year. The absolute risk is still low single digits, and <a href="#audit-17">Audit 17</a> has both numbers. But I consider it irresponsible to let mine keep growing, and I'd be a hypocrite to run a clock on your biology without publishing my own.</p>
+      <p><strong>Where I stand on pickiness.</strong> I'm trying hard to be the opposite of picky: to satisfice, in Herbert Simon's word, with any reasonable, non-chaotic match, and to stop dating as soon as is responsible. I'm racing to become a father and a grandfather, not holding out for a Ms. Right who doesn't exist. My working theory is that two people courting for marriage co-adapt: dates two through five and beyond change both people toward each other, and you can't see that process from date one. Apps train us to grade a first coffee against a mirage of infinite choice, and the usual result is years of drift and indecision. I'm told the honest version of this costs me: that women need to believe a man is selective before they take him seriously as a suitor. Fair enough. The Dealbreakers page is my selectivity, kept short on purpose, and everything outside it is a yes.</p>
+      <p><strong>The ask.</strong> None of this is a requirement, and none of it should disqualify me; it's arithmetic offered to whoever is doing the same math. If you're over about 32 and reading this, think hard about whether you truly need more than six months of dating your future husband before getting engaged, or more than three months to plan and hold a small wedding. The Budget page hopes for a decision inside six months and the Wedding page books a courthouse date in weeks, so the sum lands around <span class="num"><span id="chuppahDate">nine months from today</span></span>, nine months from the day you first read this. Every month added to the dating, the engagement, or a complicated wedding is a month subtracted from the time you spend with your grandchildren. Gestating a marriage shouldn't take longer than gestating a baby.</p>
+    </div>
+    <p class="crosslink">The fertility curve, the lifespan gap, the paternal-age genetics, and the satisficing argument: <a href="#audit-17">Audit 17</a>. The two paths this range is built on: <a href="#family">Family</a>.</p>
   </section>
 
   <!-- ============ DEALBREAKERS ============ -->
@@ -920,7 +959,7 @@
         <span class="v">I can't change the fact that my marriage ended. I was supercommitted to staying married; my ex-spouse wasn't. How it failed was complex, mostly idiosyncratic to who my ex-wife was, and unlikely to recur, and I'm going to do everything I can to make my next marriage my last one, happy to the end. I know you'll be curious, but please don't press for deep details on our first few dates. Some parts I can't discuss until we know each other better, and some parts not at all. A first-date explanation is a sandtrap: stop short and you'll suspect I'm hiding the story; go long and you'll suspect I think too much about my ex. I also won't say anything that reflects poorly on her: I keep fond memories and a residual duty of protection from our marriage pact. So the fact itself you get up front, right here, and the full chapter comes once we trust each other. Weigh it fairly, too: a divorce deserves no deeper doubt than an unhappy marriage that's merely still standing, or a string of long-term breakups across someone's 20s and 30s that were divorces in everything but paperwork.</span>
       </li>
     </ul>
-    <p class="crosslink">Think one of these is wrong? <a href="#feedback">The Feedback Clause</a> applies: tell me why.</p>
+    <p class="crosslink">Think one of these is wrong? <a href="#feedback">The Feedback Clause</a> applies: tell me why. The prayer arithmetic and the inconvenient studies against it: <a href="#audit-19">Audit 19</a>.</p>
   </section>
 
   <!-- ============ FAQ ============ -->
@@ -985,7 +1024,7 @@
   <!-- ============ AUDIT LEDGER ============ -->
   <section class="topic" id="audits" data-title="Audit Ledger">
     <h2 class="head">The Audit Ledger</h2>
-    <p class="subhead">Every claim on this site, numbered and checkable, for whenever curiosity strikes; none of it is required reading. Expand one, copy its prompt, hand it to any AI assistant. Audit 00 covers the whole site at once. Audits 01–04 cover the physics, 05–11 the life philosophy, 12 the airline remix, 13 the feedback clause, 14 the grandparent effect, 15 the money merger, and 16 the mortality clock.</p>
+    <p class="subhead">Every claim on this site, numbered and checkable, for whenever curiosity strikes; none of it is required reading. Expand one, copy its prompt, hand it to any AI assistant. Audit 00 covers the whole site at once. Audits 01–04 cover the physics, 05–11 the life philosophy, 12 the airline remix, 13 the feedback clause, 14 the grandparent effect, 15 the money merger, 16 the mortality clock, 17 the age range, 18 the maintenance schedule, 19 the prayer arithmetic, 20 Safeword, and 21 the domestic split.</p>
     <details class="audit" id="audit-00">
       <summary><span class="no">AUDIT 00</span><span class="q">The meta-audit: run the whole site past your AI</span><span class="chev">›</span></summary>
       <div class="body">
@@ -1013,7 +1052,7 @@
   <!-- ============ QUESTIONS FOR YOU ============ -->
   <section class="topic" id="questions" data-title="Questions for You">
     <h2 class="head">Questions for You</h2>
-    <p class="subhead">Twenty-five sections about me is a monologue. This is the interview I'm hoping for.</p>
+    <p class="subhead">Thirty-one sections about me is a monologue. This is the interview I'm hoping for.</p>
     <ul class="items">
       <li>
         <span class="tag">Question 01</span>
@@ -1196,17 +1235,18 @@ Explain for a non-physicist, keep the real numbers.`
 Explain for a non-mathematician, but keep the actual structure of the arguments.`
     },
     {
-      title: "The family plan: two or three kids, and the IVF conversation at 35+",
-      claim: "Targeting a two-or-three-child family means either a partner who already has kids, or immediate, numbers-first fertility planning, including the IVF conversation up front if she's over 35.",
-      prompt: `CONTEXT: A dating page states the author wants a family size of two or three children, via either a partner who already has a kid or two (blended family, enthusiastically) or a partner committed to building the family together, and that if she is over 35, the IVF/fertility conversation should happen within the first few months, not "someday." Audit whether the biology and the reasoning support this urgency.
+      title: "The family plan: two or three kids, the IVF conversation at 35+, and the father's own clock",
+      claim: "Targeting a two-or-three-child family means either a partner who already has kids, or immediate, numbers-first fertility planning, including the IVF conversation up front if she's over 35. And the age problem is shared: every year the author waits, his sperm carries more new mutations into any child he fathers, so the urgency is his as much as hers.",
+      prompt: `CONTEXT: A dating page states the author wants a family size of two or three children, via either a partner who already has a kid or two (blended family, enthusiastically) or a partner committed to building the family together, and that if she is over 35, the IVF/fertility conversation should happen within the first few months, not "someday." The author is a man aged exactly {{AGE}} years at the moment this prompt was copied, and he insists the age problem is shared: the longer he waits to father genetic children, the more new mutations his sperm carries into them, so the urgency belongs to him as much as to her. Audit whether the biology and the reasoning support this urgency, on both sides.
 
 1. THE FERTILITY TIMELINE. Summarize what reproductive medicine actually says about female fertility by age: how per-cycle natural conception probability changes through the 30s and after 35; how miscarriage and aneuploidy rates change; what "advanced maternal age" means clinically. Use real numbers from mainstream sources (e.g., ASRM/ACOG guidance, CDC/SART data).
 2. THE IVF NUMBERS. Report IVF live-birth rates per cycle by maternal age bracket (under 35, 35\u201337, 38\u201340, over 40) using recent national data, and explain how egg freezing and embryo banking change the math \u2014 and what they cost in time, money, and cycles.
 3. THE FAMILY-SIZE ARITHMETIC. If a couple wants TWO OR THREE children and the woman is 35+, work the timeline backward: inter-pregnancy intervals, cumulative success probabilities, realistic completion ages. Does the math support the page's claim that this is a first-few-months conversation rather than a year-three conversation?
 4. THE BLENDED-FAMILY PATH. Assess the page's alternative: marrying a partner who already has children, with the author as committed stepparent. What does research say about stepfamily formation and outcomes, and is presenting this path as equally valued (not a fallback) reasonable?
-5. THE CARRIER SCREENING. The author discloses JScreen results: carrier for CYP21A2-related Congenital Adrenal Hyperplasia (stated reproductive risk about 1 in 250), Biotinidase Deficiency (about 1 in 1,700), and mild HFE-associated Hereditary Hemochromatosis. He asks prospective partners to complete carrier screening early, with autosomal dominant conditions such as Huntington's disease also in scope. Explain what carrier status means when only one parent carries, what the quoted reproductive-risk figures imply, and whether early mutual screening, plus options like IVF with PGT-M if both partners match, is sound and considerate family planning or premature medicalization of courtship.
-6. TONE CHECK. The page insists this framing is "respect for the project," not pressure. Evaluate honestly: where is the line between admirable transparency about family goals and putting undue pressure on a prospective partner's body and choices? Give the author feedback.
-7. VERDICT. Is the urgency numerically justified? Is the two-path structure coherent? What should a woman reading this page ask the author in return?
+5. THE FATHER'S CLOCK. The author is {{AGE}} years old. Audit paternal-age mutagenesis with the same rigor as the maternal numbers above. (a) De novo mutations: spermatogonia divide continuously, so a father passes on roughly two additional new mutations for every year of his age (Kong et al., Nature 2012; confirm the rate and the maternal-to-paternal ratio, about 4 to 1). How many de novo mutations does a child of a {{AGE}}-year-old father carry versus a child of a 25-year-old, and how many more at 42, 44, and 46 if he keeps waiting? (b) Outcomes: report the population-cohort evidence linking advanced paternal age to autism spectrum disorder (Reichenberg 2006, Hultman 2011, Sandin 2016; the site models RR = e^(0.035 x (paternal age - 25))), schizophrenia (Malaspina 2001 and the meta-analyses), bipolar disorder, childhood leukemia, achondroplasia and the other paternal-age-effect disorders driven by selfish spermatogonial selection (Apert, Crouzon, Pfeiffer, MEN2, Noonan), congenital heart defects, stillbirth, and preterm birth. Give relative and absolute risks at 25, 35, {{AGE}}, 45, and 50. (c) Fertility: does male fecundity itself decline with age (time to pregnancy, miscarriage risk attributable to the father, semen parameters)? (d) Mitigation: does sperm freezing now, at {{AGE}}, meaningfully cap the mutational load for children conceived later? Does IVF with preimplantation genetic testing catch de novo point mutations, or only aneuploidy and known familial variants? (e) The equal-share claim: the author says waiting is "an equally shared problem." Is that fair, an understatement, or an overstatement compared with the maternal curve? State plainly what one more year of delay costs each of them.
+6. THE CARRIER SCREENING. The author discloses JScreen results: heterozygous carrier of CYP21A2 c.844G>T (V282L, historically V281L), the common nonclassic Congenital Adrenal Hyperplasia variant, with a report-stated reproductive risk of about 1 in 250; heterozygous carrier of BTD c.1330G>C (D444H), with a report-stated reproductive risk of about 1 in 1,700; and heterozygous carrier of HFE c.187C>G (H63D). On the biotinidase result: confirm that D444H is the mild allele (about 50% residual activity in homozygotes, no clinical deficiency), that D444H in trans with a severe BTD allele produces partial rather than profound deficiency, and that partial deficiency is detected by universal newborn screening and treated with oral biotin; state the population frequency of D444H and of severe BTD alleles and check the 1-in-1,700 figure. On the hemochromatosis result: confirm that H63D heterozygotes do not develop iron overload, report the penetrance of C282Y/H63D compound heterozygosity and of H63D homozygosity, note the C282Y carrier frequency in Northern European and in Ashkenazi Jewish populations, and say whether H63D belongs on a reproductive carrier report at all or is mostly noise. On the CAH result: explain classic versus nonclassic 21-hydroxylase deficiency (salt-wasting and simple-virilizing versus late-onset), confirm that V281L is nonclassic, and confirm the compound-heterozygote rule that a V281L allele paired with a classic allele still yields the nonclassic phenotype, so his children cannot inherit classic CAH from his side. Then check the 1-in-250 figure: it matches a partner carrying a classic variant (carrier frequency about 1 in 60), but nonclassic carrier frequency is roughly 1 in 10 in the general population and about 1 in 3 among Ashkenazi Jews, so compute the actual chance of a child with nonclassic CAH for a random partner and for an Ashkenazi partner, and describe what nonclassic CAH means clinically for a daughter and for a son. He asks prospective partners to complete carrier screening early, with autosomal dominant conditions such as Huntington's disease also in scope. Explain what carrier status means when only one parent carries, what the quoted reproductive-risk figures imply, and whether early mutual screening, plus options like IVF with PGT-M if both partners match, is sound and considerate family planning or premature medicalization of courtship.
+7. TONE CHECK. The page insists this framing is "respect for the project," not pressure. Evaluate honestly: where is the line between admirable transparency about family goals and putting undue pressure on a prospective partner's body and choices? Give the author feedback.
+8. VERDICT. Is the urgency numerically justified, and is it symmetric? Is the two-path structure coherent? What should a woman reading this page ask the author in return, and what should she hold him to on his own side of the clock?
 
 Use real published numbers, cite sources where you can, and don't soften the statistics in either direction.`
     },
@@ -1354,8 +1394,91 @@ Use the real studies and real law; where states differ, say so rather than avera
 6. VERDICT. Grade the clock for actuarial honesty and emotional fairness, and state the single most defensible sentence a reader should take from it.
 
 Use real tables with citations and show every calculation.`
+    },
+    {
+      title: "The age range: fertility sets the ceiling, lifespans set the preference",
+      claim: "Absent fertility, the author would date about three years younger to five years older, biasing older to match lifespans. With the family plan on the table, a partner starting from scratch is realistic only to about 36 or 37, while a partner with two or more children or a real appetite for adoption can be anywhere from about 30 up to an absolute ceiling of five years older than the author. Past 32, a woman on the fastest track still delivers at least once at advanced maternal age, and the author, in his early 40s, carries roughly 1.7 times a 25-year-old father's autism risk for his children.",
+      prompt: `CONTEXT: A dating page written by a man born March 31, 1986, who wants two or three children, states his partner age range as a function of family feasibility rather than taste. Two paths: a woman who already has two or more children, or is genuinely excited to adopt, can be roughly 30 up to an absolute ceiling of five years older than him, on the theory that beyond that the two would be at different life stages; a woman with no children, no appetite for adoption, and no frozen eggs is "realistic only to about 36 or 37, even on the fastest marriage track." He adds that absent fertility he would prefer about three years younger to five years older, biased older "to match lifespans," and that he is deliberately satisficing rather than searching for a perfect match. He also publishes two genetic claims: that a woman past about 32 will, on his fastest track, deliver at least one child at 35 or older (advanced maternal age), and that as a father in his early 40s he carries "roughly 1.7 times" a 25-year-old father's autism risk for his children, driven by about two new de novo mutations per year of paternal age. Finally, he suggests that a woman over 32 should question needing more than six months of dating before engagement or more than three months to plan a small wedding. Audit all of it.
+
+1. THE LIFESPAN GAP. Using current SSA or CDC life tables, what is the female-minus-male life expectancy gap in the United States, at birth and at age 40? For a man born in 1986, roughly what age gap toward an older wife minimizes the expected years one spouse spends widowed? Is "about five years older" a defensible target or an overshoot?
+2. THE FERTILITY CURVE. Lay out natural monthly fecundability, cumulative conception rates, and miscarriage rates by maternal age (30, 33, 35, 37, 39, 41, 43). Then the assisted numbers: SART or CDC ART live-birth rates per egg retrieval and per transfer by age band (under 35, 35–37, 38–40, 41–42, 43+).
+3. THE CALENDAR. Assume a six-to-twelve-month courtship, a wedding within weeks of engagement, and two or three pregnancies spaced 18 to 24 months apart. Working backward, what is the latest realistic starting age for two biological children? For three? Grade "36 or 37" as fair, harsh, or generous, and state your own number.
+4. THE ALTERNATIVES. For a woman of 38 to 42 who wants two or three children: typical timelines and costs for IVF, domestic and international adoption, foster-to-adopt, and gestational surrogacy. Is "immediate IVF, adoption, fostering, or surrogacy" a fair description of the realistic menu, and is the page fair in saying these options are pursued less often than the biology warrants?
+5. THE PSYCHOLOGY. Evaluate three claims: (a) satisficing (Herbert Simon) beats maximizing in mate search; (b) online dating's abundance of choice produces drift and indecision (paradox-of-choice and choice-overload research applied to dating); (c) a man who openly says he is not picky is taken less seriously as a suitor (research on perceived selectivity, mate value, and "playing hard to get"). Which are well supported, which are folk wisdom?
+6. THE GENETICS. (a) Maternal side: what actually changes at 35 (aneuploidy rates, miscarriage, gestational diabetes, preeclampsia, stillbirth), and is "advanced maternal age" a clinically meaningful threshold or an administrative one? Check the calendar claim: does a 32-year-old on a six-month courtship, a wedding within weeks, and two or three births spaced 18 to 24 months apart really deliver at 35 or older at least once? (b) Paternal side: evaluate the de novo mutation rate per year of paternal age (Kong et al. 2012), and the autism relative-risk curve from the large population cohorts (Reichenberg 2006, Hultman 2011, Sandin 2016; the page's formula is RR = e^(0.035 × (paternal age − 25))). Is 1.7× right for a father of about 40 to 42? Convert relative risk to absolute risk for a general-population baseline and say plainly how big the number is. Does the page's "low single digits" framing hold?
+7. THE NINE MONTHS. The page suggests a woman over 32 question needing more than six months of dating before engagement or more than three months to plan a small wedding, while stressing this is not a requirement. Against the courtship-length research (including the Emory finding the site's Budget page concedes), is that nudge defensible, and how many months of grandparent overlap does a typical two-year engagement-plus-wedding runway actually cost?
+8. FAIRNESS. Read the section as a protective best friend. Does it state arithmetic or moralize about women in their late 30s? Quote the specific sentences that cross the line, if any, and rewrite one of them fairly.
+9. VERDICT. Is the two-path age range coherent with the rest of the site (the Family page's IVF-at-35 rule, the Budget page's twelve-month proposal cap, the Wedding page's courthouse timeline)? State the single most defensible sentence a reader should take from it.
+
+Show the tables you rely on and cite them.`
+    },
+    {
+      title: "Maintenance: daily exercise, fixed sleep, zero alcohol, and every screening",
+      claim: "Exercising every day, sleeping on a fixed schedule, treating alcohol as a poison rather than a moderate pleasure, and keeping every screening appointment are the highest-evidence ways to bend the mortality clock.",
+      prompt: `CONTEXT: A dating page whose central variable is the author's lifespan publishes a "maintenance schedule": he exercises every day (enforced by an app that locks his screens until he has), sleeps at nearly the same time every day of the year, does not smoke, does not drink alcohol and calls it "exactly what it is: poison," and is "superconsistent" about screenings and checkups. He claims these are the behaviors with the best evidence for extending life. Audit each.
+
+1. EXERCISE. Summarize the dose-response evidence between physical activity and all-cause mortality (large cohorts and meta-analyses; the WHO and US guidelines). Is daily exercise better than the guideline 150 to 300 minutes a week spread over fewer days? Where do the returns flatten? Roughly how many years of life expectancy does the gap between sedentary and very active represent for a man in his early 40s?
+2. SLEEP REGULARITY. Evaluate the recent finding that sleep regularity predicts mortality at least as well as sleep duration (the UK Biobank accelerometer work, Windred and colleagues, 2023 to 2024). Does a fixed schedule with few alarms earn its place next to exercise, or is the evidence younger and weaker?
+3. ALCOHOL. This is where an auditor is likeliest to disagree with the author. Lay out the J-curve literature that found light drinking protective, the critiques of it (sick-quitter bias, abstainer misclassification), the Mendelian randomization studies (including the China Kadoorie Biobank work), the 2018 Global Burden of Disease "no safe level" paper and its 2022 revision that found small tolerable amounts for adults over 40, and the 2023 WHO statement. Is "poison" scientifically defensible, rhetorically overstated, or both? State the expected life-expectancy difference between zero and one drink a day for a healthy 40-year-old man.
+4. SCREENINGS. Which screenings for a man in his early 40s have strong evidence of extending life (blood pressure, lipids, colorectal from 45, diabetes), which are contested (PSA, whole-body scans, executive physicals), and can over-screening do harm? Does "superconsistent about screenings" need a qualifier?
+5. THE RANKING. The page says exercise is the thing he is "most religious about." Rank the four behaviors by expected life-years for this man, and say whether anything with comparable evidence is missing (weight, diet quality, social connection, not driving drunk-adjacent hours, sun protection).
+6. THE FILTER. The author says he may decline to buy a partner a drink. Is a zero-alcohol household a reasonable health position, a social liability, or a values test in disguise? How should a partner who drinks moderately read it?
+7. VERDICT. Grade the maintenance schedule for evidence quality, and name the one addition or deletion that would improve it most.
+
+Cite the studies you rely on and give effect sizes, not adjectives.`
+    },
+    {
+      title: "The prayer arithmetic: 15 minutes a day is 11 workdays a year",
+      claim: "Thrice-daily liturgy costs over 90 hours a year at 15 minutes a day, exercise extends life with better evidence than prayer does, and a recorded service replayed at each of the three times is the author's counter-offer.",
+      prompt: `CONTEXT: A dating page lists "needing me to pray three times a day" as a dealbreaker. The author, who is Jewish, argues that rote daily liturgy is a poor use of hours next to learning, building, and exercise, "which extends lifespan with far better evidence than repeating several thousand words ritualistically 365 times 3 times a year." He computes that any one-minute daily habit costs over 6 hours a year and that 15 minutes a day costs over 90 hours, "more than 11 workdays." His counter-offer: record each daily service once and have a computer replay it at Shacharit, Minchah, and Maariv. Audit the arithmetic, the evidence claim, and the religious logic.
+
+1. THE ARITHMETIC. Check: 1 minute a day for 365 days; 15 minutes a day; convert 90-plus hours to 8-hour workdays. Then estimate the real duration of the three weekday services for an observant man praying alone versus with a minyan, and the word count of the daily liturgy. Is "several thousand words" and "15 minutes" a fair lower bound, an underestimate, or an overestimate?
+2. THE INCONVENIENT LITERATURE. The author claims exercise beats prayer on lifespan evidence. Report the research on religious service attendance and mortality (including the Nurses' Health Study analyses by VanderWeele and colleagues, and the broader meta-analyses on religiosity and longevity). What effect sizes are reported, how much is confounded by social connection and health behaviors, and how does it compare with the exercise literature? Does the evidence distinguish communal attendance from private rote prayer?
+3. THE OPPORTUNITY COST. Is comparing prayer to exercise hour-for-hour a fair frame, or a category error (one is a health intervention, the other a religious obligation with community, meaning, and identity payoffs)? What would a fair cost-benefit account include on both sides?
+4. THE COUNTER-OFFER. Under Jewish law, does a recorded service replayed on schedule discharge any obligation, and how would Orthodox, Conservative, and Reform authorities each treat it? Is it a serious proposal, a joke, or a signal about where he sits religiously? Is the joke fair to a partner for whom the obligation is real?
+5. CONSISTENCY. The same page says his flavor of Judaism is not a filter unless the partner is ultra-Orthodox, that he is happy to match anywhere from Reform to Modern Orthodox, and that a Jewish day school is on the table. Is "no thrice-daily prayer" compatible with a Modern Orthodox household, or does it quietly narrow the stated range?
+6. VERDICT. Is this dealbreaker arithmetic, theology, or taste dressed as arithmetic? Say which, and name the single sentence a religious partner should read before deciding whether it applies to her.
+
+Show your calculations and cite the studies.`
+    },
+    {
+      title: "Safeword: a patented consent app and five-nines birth control",
+      claim: "The author holds a granted US patent on a consent-management system, built a mobile app on it that covers birth control to 99.999 percent reliability, STI testing, genetic-result sharing, ground rules, and literal safewords with end-to-end encryption and safeword-listening, and no partner has yet run it with him.",
+      prompt: `CONTEXT: A dating page describes an app the author built called Safeword, citing US patent 12,347,301, described as "consent technology" that walks two people through birth control "at the five-nines level (99.999% preventative)," STI testing and result sharing, carrier-screening result sharing, personalized ground rules, and literal safewords, with check-ins, end-to-end encryption, and "a listening feature that honors a safeword the moment it's spoken." He offers to run it with a partner after a first kiss and before further intimacy. Audit the claims.
+
+1. THE PATENT. Look up US 12,347,301 (Google Patents or USPTO). Confirm the title, inventor, grant date, and assignee. Summarize the independent claims in plain language. Does the patent describe what the page says the app does, and does a patent grant say anything about whether the product works or exists?
+2. FIVE NINES. Evaluate the arithmetic of stacking contraceptive methods to reach 99.999% per year. List typical-use and perfect-use failure rates for the common methods (LARC, pill, condoms, emergency contraception as a backstop, vasectomy). Are failures of stacked methods independent enough for the failure rates to multiply? What combination, if any, plausibly reaches five nines, and what does that combination cost a couple in convenience and side effects?
+3. STI AND GENETIC SHARING. What does current guidance say about pre-intimacy STI panels (which tests, what windows, how often), and how sensitive is genetic carrier data under US privacy law (HIPAA does not cover most consumer apps; GINA covers employment and health insurance only)? What should a partner ask before uploading either into a two-person app?
+4. THE SECURITY CLAIMS. What does "end-to-end encryption" have to mean for a two-party app to be true, and how could a user verify it? What are the failure modes of a "listening feature" that detects a spoken safeword (always-on microphone, false negatives during the exact moments it matters, data retention)? Is that feature a safety gain or a privacy risk, or both?
+5. THE CONSENT MODEL. Does structuring consent as an app-mediated protocol help (clarity, explicit ground rules, a record) or hurt (formalism, pressure to proceed once the checklist is done, consent treated as a one-time event rather than continuous)? What does the research and advocacy literature on affirmative consent say about tools like this?
+6. THE HONESTY. The author says no partner has run it with him yet and calls that a feature. Is that disclosure a green flag, a yellow flag, or both? What does building this app after a divorce suggest, favorably and unfavorably?
+7. VERDICT. Is the Safeword offer a serious safety and health upgrade over how most couples handle the same conversation, or an engineer's over-formalization of it? Name the one question a partner should ask before agreeing to run it.
+
+Cite the patent record, the contraceptive-efficacy tables, and the guidance documents you rely on.`
+    },
+    {
+      title: "Dual careers and the dishes: half of everything domestic, by reason rather than convention",
+      claim: "A dual-career default, a stay-at-home decision made on the numbers rather than on sex, and a religiously even split of domestic labor produce a better and more durable marriage than the traditional defaults.",
+      prompt: `CONTEXT: A dating page commits to a dual-career household by default; says that if a phase of the kids' lives calls for a stay-at-home parent the couple should decide on the numbers rather than on sex, and that outside the nursing years the father may be the better candidate; promises "half of everything domestic," including "the categories nobody lists"; and treats childcare (grandparents, nanny, daycare, a parent at home) as a joint decision driven by both incomes. Audit the claims.
+
+1. THE HOUSEWORK EVIDENCE. What does the research say about the division of housework and relationship satisfaction, stability, and sexual frequency? Distinguish equal hours from perceived fairness, and report the findings on the "mental load" and on whose standards set the work. Does "half of everything" predict better outcomes, or does perceived fairness do the work?
+2. THE MEASUREMENT PROBLEM. Time-use data (the American Time Use Survey and comparable studies) consistently show couples overestimate their own shares. How would a couple actually know they are at half? What tools or routines make an even split real rather than aspirational?
+3. THE STAY-AT-HOME MATH. Build the decision as the page proposes: compare a second income after taxes, childcare costs by city, commuting, and the long-run career penalty for the parent who steps out (the motherhood penalty literature, and what is known about fathers who step out). Under what income patterns does the father staying home beat the mother, and how large is the career penalty either way?
+4. DUAL-CAREER OUTCOMES. Do dual-earner couples divorce more or less than single-earner couples once income and education are controlled? What do the studies of egalitarian versus traditional couples find on satisfaction, and do the findings differ by cohort?
+5. CHILDCARE. Compare grandparent care, nanny, daycare, and a parent at home on child outcomes and on cost. Does the evidence favor one, and does it interact with the grandparent-proximity thesis elsewhere on the site?
+6. THE PROMISES. "Half of everything" and "by reason rather than convention" are easy to say before children arrive. What does the research on the transition to parenthood show about couples who intended equality and what happened to them? What commitment devices help?
+7. VERDICT. Is the partnership design evidence-aligned and realistic, or aspirational? Name the one mechanism the author should add to make the promise verifiable a year into parenthood.
+
+Cite the studies and data sources you rely on.`
     }
   ];
+
+  // {{AGE}} in a prompt becomes the author's live fractional age from the Who I Am ticker
+  function fillAge(text) {
+    const el = document.getElementById('age');
+    const age = el && /^\d/.test(el.textContent) ? el.textContent : '40-something';
+    return text.split('{{AGE}}').join(age);
+  }
 
   const ledger = document.getElementById('ledger');
   AUDITS.forEach((a, i) => {
@@ -1379,7 +1502,7 @@ Use real tables with citations and show every calculation.`
     btn.className = 'copy'; btn.type = 'button';
     btn.textContent = 'Copy audit prompt ' + no;
     const note = document.createElement('span'); note.className = 'copied-note';
-    btn.addEventListener('click', () => copyText(a.prompt, note));
+    btn.addEventListener('click', () => copyText(fillAge(a.prompt), note));
     row.append(btn, note);
     body.append(claim, row);
 
@@ -1561,7 +1684,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
   // the grandparent clock: overlap with grandkids, declining live,
   // with adjustable assumptions (delay to first child; age kids finish having kids)
   (function () {
-    const ids = ['proseAge','clkKidsOverlap','clkOverlap','clkAge','clkFirst','clkMeet','clkHs','clkCol','clkGrad','sldDelay','sldKids','valDelay','valKids'];
+    const ids = ['proseAge','agerangeAge','agerangeCeil','clkKidsOverlap','clkOverlap','clkAge','clkFirst','clkMeet','clkHs','clkCol','clkGrad','sldDelay','sldKids','valDelay','valKids'];
     const el = Object.fromEntries(ids.map(i => [i, document.getElementById(i)]));
     if (ids.some(i => !el[i])) return;
     const born = Date.UTC(1986, 2, 31, 5, 0, 0);
@@ -1574,6 +1697,8 @@ Be honest rather than kind. The author wrote this prompt himself and published i
       el.valDelay.textContent = delay.toFixed(2);
       el.valKids.textContent = kidsDone;
       el.proseAge.textContent = age.toFixed(6);
+      el.agerangeAge.textContent = age.toFixed(6);
+      el.agerangeCeil.textContent = (age + 5).toFixed(6);
       el.clkKidsOverlap.textContent = (LE - age - delay).toFixed(7);
       el.clkOverlap.textContent = (LE - age - delay - kidsDone).toFixed(7);
       el.clkAge.textContent = age.toFixed(4);
@@ -1590,6 +1715,17 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     } else {
       (function loop() { tick(); requestAnimationFrame(loop); })();
     }
+  })();
+
+  // the chuppah date: nine months from the day the page is read, day clamped
+  (function () {
+    const el = document.getElementById('chuppahDate');
+    if (!el) return;
+    const now = new Date();
+    const t = new Date(now.getFullYear(), now.getMonth() + 9, 1);
+    const last = new Date(t.getFullYear(), t.getMonth() + 1, 0).getDate();
+    t.setDate(Math.min(now.getDate(), last));
+    el.textContent = t.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   })();
 
   // freshness stamp from the deploy's Last-Modified header

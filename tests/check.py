@@ -42,6 +42,19 @@ check('radius crosslink names the last audit', m and int(m.group(1)) == n_audits
 
 WORDS = {'eight': 8, 'nine': 9, 'ten': 10, 'eleven': 11, 'twelve': 12,
          'thirteen': 13, 'fourteen': 14, 'fifteen': 15, 'sixteen': 16}
+TENS = {'twenty': 20, 'thirty': 30, 'forty': 40}
+ONES = {'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}
+def word_to_int(w):
+    w = w.lower()
+    if w in WORDS: return WORDS[w]
+    if w in TENS: return TENS[w]
+    a, _, b = w.partition('-')
+    return TENS.get(a, 0) + ONES.get(b, 0) if a in TENS and b in ONES else None
+
+# "Thirty-one sections about me" counts every section except Questions for You itself
+m = re.search(r'([A-Z][a-z]+(?:-[a-z]+)?) sections about me is a monologue', s)
+check('questions subhead counts the other sections', m and word_to_int(m.group(1)) == len(ids) - 1,
+      f'subhead says {m.group(1) if m else "?"}, sections minus itself = {len(ids) - 1}')
 db_sec = re.search(r'<section class="topic" id="dealbreakers".*?</section>', s, re.S).group(0)
 db_main = db_sec.split('<h3', 1)[0]
 n_db = db_main.count('<span class="k">')
@@ -79,6 +92,16 @@ check('image files exist', not missing, str(missing))
 for sld in ('sldDelay', 'sldKids'):
     tag = re.search(r'<input[^>]*id="%s"[^>]*>' % sld, s)
     check(f'{sld} has aria-label', tag and 'aria-label' in tag.group(0))
+
+# --- no-JS fallback and 404 ----------------------------------------------
+check('noscript fallback shows sections', '<noscript>' in s and 'section.topic { display: block' in s)
+nf = os.path.join(ROOT, '404.html')
+check('404 page exists', os.path.exists(nf))
+if os.path.exists(nf):
+    n4 = open(nf, encoding='utf-8').read()
+    check('404 links home', 'href="/"' in n4)
+    check('404 is noindex', 'name="robots" content="noindex"' in n4)
+    check('404 email never in source', 'david@' not in n4 and 'mailto:' not in n4)
 
 # --- metadata -------------------------------------------------------------
 for needle, name in [('property="og:image"', 'og:image'), ('property="og:title"', 'og:title'),

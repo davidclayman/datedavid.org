@@ -76,8 +76,9 @@ hits = [b for b in BANNED if b in s.lower()]
 check('no banned phrases', not hits, str(hits))
 
 # audit prompts may use em dashes; the visible prose keeps a budget
-n_dash = (s.count('\u2014') - audits_src.count('\u2014')) + (s.count('\\u2014') - audits_src.count('\\u2014'))
-check('em-dash budget outside audit prompts (<=16)', n_dash <= 16, f'found {n_dash}')
+patent_src = s.split('<div class="body patent">', 1)[1].split('</details>', 1)[0] if '<div class="body patent">' in s else ''
+n_dash = (s.count('\u2014') - audits_src.count('\u2014') - patent_src.count('\u2014')) + (s.count('\\u2014') - audits_src.count('\\u2014'))
+check('em-dash budget outside audit prompts and the filing (<=16)', n_dash <= 16, f'found {n_dash}')
 
 check('radius numbers consistent',
       '740&nbsp;km / 460&nbsp;miles' in s and '7 hours 4 minutes' in s

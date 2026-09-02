@@ -22,6 +22,8 @@ sections = re.findall(r'<section class="topic" id="([a-z]+)" data-title="([^"]*)
 ids = [i for i, _ in sections]
 check('section ids unique', len(ids) == len(set(ids)))
 check('every section has a title', all(t.strip() for _, t in sections))
+chaptered = re.findall(r'<section class="topic" id="([a-z]+)" data-title="[^"]*" data-chapter="[^"]+"', s)
+check('every section has a chapter', set(chaptered) == set(ids), f'missing: {sorted(set(ids) - set(chaptered))}')
 
 audits_src = s.split('const AUDITS = [', 1)[1].split('\n  ];', 1)[0]
 n_audits = len(re.findall(r'\n      title:', audits_src))

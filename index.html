@@ -364,6 +364,22 @@
     margin-bottom: 0.3rem;
   }
 
+  .toc { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.6rem 2rem; margin-bottom: 2rem; }
+  .toc h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .toc ol { list-style: none; counter-reset: toc; }
+  .toc li { counter-increment: toc; padding: 0.28rem 0; border-bottom: 1px solid var(--line); }
+  .toc li::before { content: counter(toc, decimal-leading-zero) "  "; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--faint); }
+  .toc a { color: #cfd3e6; text-decoration: none; }
+  .toc a:hover { color: var(--paper); }
+  .toc a.here { color: var(--gold); }
   h3.head-sm {
     font-family: 'Fraunces', serif;
     font-weight: 500;
@@ -436,7 +452,7 @@
   <noscript><p class="nojs">JAVASCRIPT IS OFF, so this page is showing every section at once instead of one at a time. The clocks are frozen at their defaults, the Audit Ledger's prompts and the contact address assemble themselves with JavaScript, and the prompts are readable in the page source if you'd rather stay dark. Everything else reads fine as one long scroll.</p></noscript>
 
   <!-- ============ THE RADIUS ============ -->
-  <section class="topic" id="radius" data-title="The Radius">
+  <section class="topic" id="radius" data-title="The Radius" data-chapter="Start here">
     <div class="eyebrow">FRAME OF REFERENCE: <b>THE COSMIC MICROWAVE BACKGROUND</b></div>
 
     <h1>I'll travel exactly <em>two astronomical seconds</em> to meet you.</h1>
@@ -456,11 +472,19 @@
     </div>
 
     <p class="crosslink">Skeptical? Healthy. <a href="#audits">The Audit Ledger</a> is there whenever you want it: the physics is Audits 01–04, and the life philosophy runs 05–21.</p>
-    <p class="crosslink">In a hurry? <a href="#family">Family</a>, <a href="#dealbreakers">Dealbreakers</a>, and <a href="#offer">What You Get</a> carry the plot. Everything else is appendix.</p>
+    <p class="crosslink">In a hurry? <a href="#family">Family</a>, <a href="#dealbreakers">Dealbreakers</a>, and <a href="#offer">What You Get</a> carry the plot. Everything else is appendix, and <a href="#contents">the Contents page</a> maps it by chapter.</p>
+  </section>
+
+  <!-- ============ CONTENTS ============ -->
+  <section class="topic" id="contents" data-title="Contents" data-chapter="Start here">
+    <h2 class="head">Contents</h2>
+    <p class="subhead">Thirty-odd sections is a lot of rail to scroll. Here they are in chapters, in reading order.</p>
+    <div id="toc" class="toc"></div>
+    <p class="crosslink">In a hurry? <a href="#family">Family</a>, <a href="#dealbreakers">Dealbreakers</a>, and <a href="#offer">What You Get</a> carry the plot. The rest is appendix, and it keeps.</p>
   </section>
 
   <!-- ============ THE REMIX ============ -->
-  <section class="topic" id="remix" data-title="The Remix">
+  <section class="topic" id="remix" data-title="The Remix" data-chapter="Start here">
     <h2 class="head">The Airline Remix</h2>
     <p class="subhead">The radius was always a time budget in a distance costume. Time budgets transfer between vehicles.</p>
     <div class="prose">
@@ -474,7 +498,7 @@
   </section>
 
   <!-- ============ THE OBSERVER ============ -->
-  <section class="topic" id="observer" data-title="Who I Am">
+  <section class="topic" id="observer" data-title="Who I Am" data-chapter="Start here">
     <h2 class="head">Who I Am</h2>
     <p class="subhead">Basic characterization data. Spectral analysis ongoing.</p>
     <div class="prose">
@@ -496,7 +520,7 @@
   </section>
 
   <!-- ============ WHAT YOU GET ============ -->
-  <section class="topic" id="offer" data-title="What You Get">
+  <section class="topic" id="offer" data-title="What You Get" data-chapter="Start here">
     <h2 class="head">What You Get</h2>
     <p class="subhead">The other side of the ledger: what being loved by me is actually like.</p>
     <div class="prose">
@@ -510,7 +534,7 @@
   </section>
 
   <!-- ============ THE SHELF ============ -->
-  <section class="topic" id="shelf" data-title="The Shelf">
+  <section class="topic" id="shelf" data-title="The Shelf" data-chapter="Start here">
     <h2 class="head">The Shelf</h2>
     <p class="subhead">The Dealbreakers page says reader; this is where the evidence goes. Six shelves stocked, and the catalog stays open.</p>
     <ul class="items">
@@ -569,7 +593,7 @@
   </section>
 
   <!-- ============ MATCHING ============ -->
-  <section class="topic" id="matching" data-title="Matching">
+  <section class="topic" id="matching" data-title="Matching" data-chapter="The strategy">
     <h2 class="head">Stable Matching, Not Mr. Right</h2>
     <p class="subhead">Why I'll jump at a great match instead of holding out for a perfect one, and why that's the more romantic position.</p>
     <div class="prose">
@@ -592,7 +616,7 @@
   </section>
 
   <!-- ============ BUDGET ============ -->
-  <section class="topic" id="budget" data-title="Budget">
+  <section class="topic" id="budget" data-title="Budget" data-chapter="The strategy">
     <h2 class="head">The Dating Budget</h2>
     <p class="subhead">$10,000 or 12 months to a proposal, whichever comes first. Six months strongly preferred.</p>
     <div class="prose">
@@ -606,7 +630,7 @@
   </section>
 
   <!-- ============ HOME ============ -->
-  <section class="topic" id="home" data-title="Home">
+  <section class="topic" id="home" data-title="Home" data-chapter="The strategy">
     <h2 class="head">Why I Live With Family</h2>
     <p class="subhead">The nonstupid choice, the $205,000 landlord problem, and how privacy actually works.</p>
     <div class="prose">
@@ -622,7 +646,7 @@
   </section>
 
   <!-- ============ PROPOSALS ============ -->
-  <section class="topic" id="proposals" data-title="Proposals">
+  <section class="topic" id="proposals" data-title="Proposals" data-chapter="The strategy">
     <h2 class="head">Date Proposals</h2>
     <p class="subhead">Candidate first dates, all well within the radius, none requiring a telescope.</p>
     <ul class="items">
@@ -665,7 +689,7 @@
   </section>
 
   <!-- ============ FIRST WEEKEND ============ -->
-  <section class="topic" id="weekend" data-title="First Weekend">
+  <section class="topic" id="weekend" data-title="First Weekend" data-chapter="The strategy">
     <h2 class="head">A First Weekend, Concretely</h2>
     <p class="subhead">Multicity dating sounds abstract until you see the itinerary. Here's what a first visit to your city actually looks like.</p>
     <ul class="items">
@@ -694,7 +718,7 @@
   </section>
 
   <!-- ============ FEEDBACK ============ -->
-  <section class="topic" id="feedback" data-title="Feedback">
+  <section class="topic" id="feedback" data-title="Feedback" data-chapter="The strategy">
     <h2 class="head">The Feedback Clause</h2>
     <p class="subhead">Why the string of bad dates keeps happening, and a standing offer to break the loop.</p>
     <div class="prose">
@@ -707,7 +731,7 @@
   </section>
 
   <!-- ============ SAFEWORD ============ -->
-  <section class="topic" id="safeword" data-title="Safeword">
+  <section class="topic" id="safeword" data-title="Safeword" data-chapter="The strategy">
     <h2 class="head">Safeword</h2>
     <p class="subhead">The intimacy chapter, and the app I built for it: everything after a first kiss and before anything more.</p>
     <div class="prose">
@@ -720,7 +744,7 @@
   </section>
 
   <!-- ============ WEDDING ============ -->
-  <section class="topic" id="wedding" data-title="Wedding">
+  <section class="topic" id="wedding" data-title="Wedding" data-chapter="The plan">
     <h2 class="head">Skip the Big Wedding (Keep the Big Party)</h2>
     <p class="subhead">Two independent arguments, one about time and one about data, point the same direction.</p>
     <div class="prose">
@@ -732,7 +756,7 @@
   </section>
 
   <!-- ============ THE RING ============ -->
-  <section class="topic" id="ring" data-title="The Ring">
+  <section class="topic" id="ring" data-title="The Ring" data-chapter="The plan">
     <h2 class="head">The Ring Policy</h2>
     <p class="subhead">I don't want to buy a diamond. Here's the reasoning, and here's the counter-offer.</p>
     <div class="prose">
@@ -745,7 +769,7 @@
   </section>
 
   <!-- ============ MONEY ============ -->
-  <section class="topic" id="money" data-title="Money">
+  <section class="topic" id="money" data-title="Money" data-chapter="The plan">
     <h2 class="head">The Money Merger</h2>
     <p class="subhead">One narrow prenup, one largely shared pot, and evidence for the arrangement.</p>
     <div class="prose">
@@ -757,7 +781,7 @@
   </section>
 
   <!-- ============ FAMILY ============ -->
-  <section class="topic" id="family" data-title="Family">
+  <section class="topic" id="family" data-title="Family" data-chapter="The plan">
     <h2 class="head">The Family Plan: Two or Three</h2>
     <p class="subhead">The preference everything else on this site depends on, stated without hedging.</p>
     <div class="prose">
@@ -767,23 +791,23 @@
       <p>The underlying logic is the same one behind skipping the big wedding: I'm optimizing for <strong>total years</strong>: years married, years parenting, years as grandparents, overlapping years all the kids know each other. Every year of delay comes off the end of the best part.</p>
       <p><strong>The clock is mine too.</strong> None of this arithmetic is aimed only at you. Sperm keeps dividing for life, so every year I wait adds about two new mutations to any child I father, and the population studies tie paternal age to autism, schizophrenia, and a list of rarer disorders. Waiting is an equally shared problem, and the prompt in <a href="#audit-06">Audit 06</a> copies with my exact age at that second so your AI can price my side of the delay, not just yours.</p>
       <p><strong>The genetic homework.</strong> I've already done JScreen carrier screening, and my results are available in seconds on request. The summary: I'm a carrier for CYP21A2-related Congenital Adrenal Hyperplasia, specifically the V281L variant, which is the nonclassic, late-onset form: a child of mine can't inherit classic CAH from my allele, since even paired with a classic variant the milder allele sets the outcome. My report quotes a reproductive risk of about 1 in 250, which matches the arithmetic for a partner carrying a classic variant; because nonclassic carriers are common, roughly 1 in 10 generally and about 1 in 3 among Ashkenazi Jews, the chance of a child with the mild nonclassic form is higher than that, and Audit 06 asks your AI to price it. I'm also a carrier for Biotinidase Deficiency, the mild D444H variant (about 1 in 1,700): it can't produce the profound form, and paired with a severe allele it yields partial deficiency, which newborn screening catches and a daily biotin tablet treats. And I carry H63D, the minor variant for HFE-associated Hereditary Hemochromatosis, which on its own causes no iron overload and even paired with a partner's C282Y rarely amounts to more than an adult-onset, blood-donation-treatable condition. If you want me to father kids with you, it's important to me that you complete carrier screening too, early, before we're too deep to back out cleanly if the results surprise us: a match on any of my conditions, or anything autosomal dominant with poor quality of life, Huntington's being the textbook case, changes the plan, and we'd want to know while it's still a plan.</p>
-      <p><strong>The mortality clock.</strong> Our lifespans are finite, fixed by our choices and by fate, and every month we delay getting married and having children is a month taken from watching our kids and grandkids grow up. I'm already <span class="num"><span id="proseAge">40.42</span></span> years old. If our first child were born today, married at 30, and had their own two or three kids by 35, our grandkids would graduate high school when I'm about <span class="num">93</span>, college near <span class="num">97</span>, graduate school past <span class="num">99</span>. And realistically, with a courtship, a wedding, and a pregnancy in between, the earliest our first child can arrive is about a year and a half out, which is where the clock's slider starts. A typical American man my age makes it to about <span class="num">78</span>. Will we both be alive to see our grandkids graduate high school? College? Graduate school? Hesitation answers that question for us, one stolen month at a time. The clock below is adjustable: drag the assumptions and watch the overlap move.</p>
+      <p><strong>The mortality clock.</strong> Our lifespans are finite, fixed by our choices and by fate, and every month we delay getting married and having children is a month taken from watching our kids and grandkids grow up. I'm already <span class="num"><span id="proseAge">40.42</span></span> years old. If our first child were born today, married at 30, and had their own two or three kids by 32, our grandkids would graduate high school when I'm about <span class="num">90</span>, college near <span class="num">94</span>, graduate school past <span class="num">96</span>. And realistically, with a courtship, a wedding, and a pregnancy in between, the earliest our first child can arrive is about a year and a half out, which is where the clock's slider starts. A typical American man my age makes it to about <span class="num">78</span>. Will we both be alive to see our grandkids graduate high school? College? Graduate school? Hesitation answers that question for us, one stolen month at a time. The clock below is adjustable: drag the assumptions and watch the overlap move.</p>
     </div>
 
     <div class="radius clockbox">
       <div class="big"><span id="clkKidsOverlap">36.1</span> <span>yrs with our children</span></div>
-      <div class="big"><span id="clkOverlap">1.1</span> <span>yrs with our grandkids</span></div>
+      <div class="big"><span id="clkOverlap">4.1</span> <span>yrs with our grandkids</span></div>
       <div class="sub">expected overlaps under typical US male life expectancy (~78), given the assumptions below</div>
       <div class="ctl">
         <label>DELAY UNTIL OUR FIRST CHILD ARRIVES: <strong><span id="valDelay">1.50</span> YRS FROM TODAY</strong>
           <input type="range" id="sldDelay" min="1.5" max="4" step="0.25" value="1.5" aria-label="Years from today until our first child arrives">
         </label>
-        <label>OUR KIDS FINISH HAVING THEIR OWN KIDS AT AGE: <strong id="valKids">35</strong>
-          <input type="range" id="sldKids" min="22" max="45" step="1" value="35" aria-label="Age at which our children finish having their own children">
+        <label>OUR KIDS FINISH HAVING THEIR OWN KIDS AT AGE: <strong id="valKids">32</strong>
+          <input type="range" id="sldKids" min="22" max="45" step="1" value="32" aria-label="Age at which our children finish having their own children">
         </label>
       </div>
       <div class="odometer">
-        MY AGE <strong id="clkAge">40.4</strong> · FIRST CHILD ≈ <strong id="clkFirst">40.4</strong> · LAST GRANDKID ≈ <strong id="clkMeet">75.4</strong> · THEIR HS GRADUATION ≈ <strong id="clkHs">93.4</strong> · COLLEGE ≈ <strong id="clkCol">97.4</strong> · GRAD SCHOOL ≈ <strong id="clkGrad">99.4</strong><br>
+        MY AGE <strong id="clkAge">40.4</strong> · FIRST CHILD ≈ <strong id="clkFirst">40.4</strong> · LAST GRANDKID ≈ <strong id="clkMeet">72.4</strong> · THEIR HS GRADUATION ≈ <strong id="clkHs">90.4</strong> · COLLEGE ≈ <strong id="clkCol">94.4</strong> · GRAD SCHOOL ≈ <strong id="clkGrad">96.4</strong><br>
         Every month we delay moves every number here one month against us. Surviving to meet the grandkids buys some overlap back; <a href="#audit-16">Audit 16</a> runs the honest conditional math.
       </div>
     </div>
@@ -791,7 +815,7 @@
   </section>
 
   <!-- ============ MAINTENANCE ============ -->
-  <section class="topic" id="maintenance" data-title="Maintenance">
+  <section class="topic" id="maintenance" data-title="Maintenance" data-chapter="The plan">
     <h2 class="head">Maintenance</h2>
     <p class="subhead">The Grandparent Clock makes my lifespan this site's central variable. Here is the maintenance schedule.</p>
     <div class="prose">
@@ -804,7 +828,7 @@
   </section>
 
   <!-- ============ PARTNERSHIP ============ -->
-  <section class="topic" id="partnership" data-title="Partnership">
+  <section class="topic" id="partnership" data-title="Partnership" data-chapter="The plan">
     <h2 class="head">Dual Careers and the Dishes</h2>
     <p class="subhead">Dual-career by default, stay-at-home by reason rather than convention, and half of everything domestic. Religiously.</p>
     <div class="prose">
@@ -818,7 +842,7 @@
   </section>
 
   <!-- ============ THE WORK ============ -->
-  <section class="topic" id="work" data-title="The Work">
+  <section class="topic" id="work" data-title="The Work" data-chapter="The plan">
     <h2 class="head">The Work</h2>
     <p class="subhead">Semi-retirement math, chosen labor, and a just-ask policy on the numbers.</p>
     <div class="prose">
@@ -831,7 +855,7 @@
   </section>
 
   <!-- ============ GEOGRAPHY ============ -->
-  <section class="topic" id="geography" data-title="Geography">
+  <section class="topic" id="geography" data-title="Geography" data-chapter="The plan">
     <h2 class="head">Where We'd Settle</h2>
     <p class="subhead">The multicity phase ends somewhere. Three candidate answers, one principle, and a method for choosing.</p>
     <div class="prose">
@@ -845,7 +869,7 @@
   </section>
 
   <!-- ============ TRAVEL ============ -->
-  <section class="topic" id="travel" data-title="Travel">
+  <section class="topic" id="travel" data-title="Travel" data-chapter="The plan">
     <h2 class="head">Travel</h2>
     <p class="subhead">Three passports, one bucket list, and a stamp collection four continents deep.</p>
     <div class="prose">
@@ -858,7 +882,7 @@
   </section>
 
   <!-- ============ EDUCATION ============ -->
-  <section class="topic" id="education" data-title="Education">
+  <section class="topic" id="education" data-title="Education" data-chapter="The plan">
     <h2 class="head">The Education Fund</h2>
     <p class="subhead">Already funded, already growing, plus a proposal for how it pays out.</p>
     <div class="prose">
@@ -872,7 +896,7 @@
   </section>
 
   <!-- ============ SELECTION EFFECTS ============ -->
-  <section class="topic" id="selection" data-title="Selection Effects">
+  <section class="topic" id="selection" data-title="Selection Effects" data-chapter="The filters">
     <h2 class="head">Selection Effects</h2>
     <p class="subhead">Every survey has biases. Here are mine, declared up front like an honest methods section.</p>
     <ul class="items">
@@ -900,14 +924,14 @@
   </section>
 
   <!-- ============ AGE RANGE ============ -->
-  <section class="topic" id="agerange" data-title="Age Range">
+  <section class="topic" id="agerange" data-title="Age Range" data-chapter="The plan">
     <h2 class="head">The Age Range</h2>
     <p class="subhead">Not a preference. A function of the family plan, and the least fun arithmetic on the site.</p>
     <div class="prose">
       <p><strong>If lifespans were the only variable.</strong> I'd date from about three years younger than me to about five years older, and I'd bias toward marrying a slightly older woman. American women outlive American men by roughly five years, so an older wife is the closest thing to a matched pair of lifespans: fewer years of either of us alone at the end. That is the range I'd publish if pregnancy weren't part of the plan.</p>
       <p><strong>The ceiling.</strong> The one absolute bound on every path is five years older than me, which today is <span class="num"><span id="agerangeCeil">45.42</span></span>. Above that I don't think we'd be a stable match: different life stages, and experiences too different to co-adapt around. The ceiling ticks upward with me, one second at a time.</p>
       <p><strong>Path one: children in hand, or adoption in heart.</strong> If you already have two or more children, or you're genuinely excited to adopt, your marital history is beside the point (divorced, widowed, never married) and the range is wide: roughly 30 up to the ceiling below. The family plan is already feasible, so biology stops setting the lower bound. The Dealbreakers page asks only that you be flexible on adoption; that's the floor. Excitement about it is what widens the age range.</p>
-      <p><strong>Priority, stated plainly.</strong> Within path one, widows have top-tier priority, widows with children most of all, and single mothers are right there with them. Your kids, and all kids, deserve a father figure as soon as one can be found, and you deserve a coparent to share the load with as soon as possible. That is no demotion of single or divorced women without children; nobody here is second-tier. It's that children who don't yet have four eyes watching them and helping them, all the time, obligate me to try even harder to make a match with their mother work.</p>
+      <p><strong>Priority, stated plainly.</strong> Within path one, widows have top-tier priority, widows with children most of all, and single mothers are right there with them. Your kids, and all kids, deserve a father figure as soon as one can be found, and you deserve a coparent to share the load with as soon as possible. That is no demotion of single or divorced women without children; nobody here is second-tier. It's that children who don't yet have four eyes watching them and helping them, all the time, obligate me to try even harder to make a match with their mother work. And if your case sits between the paths, one child and no adoption plans, for instance, don't rule yourself out; <a href="#transmission">get in touch</a> and let's talk it through.</p>
       <p><strong>Path two: building from scratch.</strong> If you don't have children, aren't excited about adopting, and didn't freeze eggs when you were younger, my honest estimate is that two or three biological kids stops being realistic past about 36 or 37, even on the fastest marriage track this site can offer. I hate that sentence. But the Family page already makes the IVF conversation a first-few-months topic at 35 and up, and this is the same arithmetic run against a calendar: a courtship, a wedding, and two or three pregnancies take years the fertility curve doesn't give back. <a href="#audit-17">Audit 17</a> has the curve, and I'd rather you check it than take my word.</p>
       <p><strong>The pattern I keep meeting.</strong> Many of the women I meet in their late 30s and early 40s want children of their own, sincerely. What I see less often is the plan catching up with the biology: immediate IVF, adoption, fostering, or surrogacy (which I'll admit costs a fortune) instead of another year of hoping the ordinary route holds. The same women are often still filtering hard, and I completely understand every filter: for a matching party jersey, for the Goldilocks zone of exactly religious enough, against my mostly vegetarian plate (I was vegetarian for years and still lean that way), against my refusal to negotiate on pediatric vaccines, for a higher income, or for a man who's funnier. Each of those is a legitimate preference. The clock doesn't care, though: every month spent applying them comes off the same overlap the Family page counts, for the mother, and for the grandmother she hopes to be.</p>
       <p><strong>The genetics, both directions.</strong> I built a site for this too: <a href="https://fiveninesfertility.org">Five Nines Fertility</a>, and its Birth Pacing &amp; Mutagenesis tab runs the numbers on what waiting into the mid-30s and 40s does to a child's genome. The uncomfortable summary for you: obstetrics files any birth at 35 or older under advanced maternal age, and on this site's fastest track a woman past about 32 will be carrying at least one of our children on that side of the line. The uncomfortable summary for me: I am <span class="num"><span id="agerangeAge">40.42</span></span> years old, sperm accumulates about two new mutations for every year a man waits, and the population studies put autism risk for children of fathers my age at roughly <span class="num">1.7×</span> that of a 25-year-old father, climbing every year. The absolute risk is still low single digits, and <a href="#audit-17">Audit 17</a> has both numbers. But I consider it irresponsible to let mine keep growing, and I'd be a hypocrite to run a clock on your biology without publishing my own.</p>
@@ -918,7 +942,7 @@
   </section>
 
   <!-- ============ DEALBREAKERS ============ -->
-  <section class="topic" id="dealbreakers" data-title="Dealbreakers">
+  <section class="topic" id="dealbreakers" data-title="Dealbreakers" data-chapter="The filters">
     <h2 class="head">Dealbreakers</h2>
     <p class="subhead">Everything else on this site is a preference with a veto. These eleven are structural, and the list is kept short on purpose.</p>
     <ul class="items">
@@ -988,7 +1012,7 @@
   </section>
 
   <!-- ============ FAQ ============ -->
-  <section class="topic" id="faq" data-title="FAQ">
+  <section class="topic" id="faq" data-title="FAQ" data-chapter="The filters">
     <h2 class="head">Anticipated Objections</h2>
     <p class="subhead">Frequently asked questions, answered the way the rest of this site would answer them.</p>
     <details class="audit" open>
@@ -1022,12 +1046,12 @@
   </section>
 
   <!-- ============ VERIFY ME ============ -->
-  <section class="topic" id="verifyme" data-title="Verify Me">
+  <section class="topic" id="verifyme" data-title="Verify Me" data-chapter="Trust, but verify">
     <h2 class="head">Verify Me</h2>
     <p class="subhead">Safety logistics, stated up front, because you shouldn't have to ask.</p>
     <div class="prose">
       <p><strong>The premise.</strong> Meeting a stranger from the internet is an asymmetric risk, and you carry more of it than I do. I'd rather engineer that risk down than ask you to accept charm as evidence, so the following is standing policy, no negotiation required.</p>
-      <p><strong>Before we meet.</strong> As many video calls as you want. My full legal name early enough to be useful: search it, look up the professional footprint, run a background check if it would put you at ease. I'll consider that diligence rather than distrust.</p>
+      <p><strong>Before we meet.</strong> As many video calls as you want, and you can <a href="#transmission" class="bookcall">book the first one</a> right now. My name is David Clayman; search it, look up the professional footprint, run a background check if it would put you at ease. I'll consider that diligence rather than distrust.</p>
       <p><strong>When we meet.</strong> First dates in public places, your pick of venue and time, daytime welcome. Tell a friend where you are, share my details, share your live location with someone who loves you, schedule a check-in call. I will never be offended by safety logistics, and my feelings would be beside the point anyway, because the logistics aren't for me.</p>
       <p><strong>The asymmetry runs one way.</strong> I don't need your address, your workplace, or even your last name until you feel like volunteering them. I go first everywhere else on this site, and I go first here. Nothing about meeting me should require more than the ordinary courage dating already takes.</p>
     </div>
@@ -1035,7 +1059,7 @@
   </section>
 
   <!-- ============ REFERENCES ============ -->
-  <section class="topic" id="references" data-title="References">
+  <section class="topic" id="references" data-title="References" data-chapter="Trust, but verify">
     <h2 class="head">References</h2>
     <p class="subhead">Social proof, available if you want it, invisible if you don't.</p>
     <div class="prose">
@@ -1047,7 +1071,7 @@
   </section>
 
   <!-- ============ AUDIT LEDGER ============ -->
-  <section class="topic" id="audits" data-title="Audit Ledger">
+  <section class="topic" id="audits" data-title="Audit Ledger" data-chapter="Trust, but verify">
     <h2 class="head">The Audit Ledger</h2>
     <p class="subhead">Every claim on this site, numbered and checkable, for whenever curiosity strikes; none of it is required reading. Expand one, copy its prompt, hand it to any AI assistant. Audit 00 covers the whole site at once. Audits 01–04 cover the physics, 05–11 the life philosophy, 12 the airline remix, 13 the feedback clause, 14 the grandparent effect, 15 the money merger, 16 the mortality clock, 17 the age range, 18 the maintenance schedule, 19 the prayer arithmetic, 20 Safeword, and 21 the domestic split.</p>
     <details class="audit" id="audit-00">
@@ -1062,7 +1086,7 @@
   </section>
 
   <!-- ============ YEAR TEN ============ -->
-  <section class="topic" id="yearten" data-title="Year Ten">
+  <section class="topic" id="yearten" data-title="Year Ten" data-chapter="Trust, but verify">
     <h2 class="head">The Year-Ten Forecast</h2>
     <p class="subhead">Every model needs a target state. This is the one I'm steering toward, published now so you can hold me to it.</p>
     <div class="prose">
@@ -1075,9 +1099,9 @@
   </section>
 
   <!-- ============ QUESTIONS FOR YOU ============ -->
-  <section class="topic" id="questions" data-title="Questions for You">
+  <section class="topic" id="questions" data-title="Questions for You" data-chapter="Your turn">
     <h2 class="head">Questions for You</h2>
-    <p class="subhead">Thirty-one sections about me is a monologue. This is the interview I'm hoping for.</p>
+    <p class="subhead">Thirty-two sections about me is a monologue. This is the interview I'm hoping for.</p>
     <ul class="items">
       <li>
         <span class="tag">Question 01</span>
@@ -1124,12 +1148,14 @@
   </section>
 
   <!-- ============ TRANSMISSION ============ -->
-  <section class="topic" id="transmission" data-title="Transmission">
+  <section class="topic" id="transmission" data-title="Transmission" data-chapter="Your turn">
     <h2 class="head">Send a Transmission</h2>
     <p class="subhead">Signal acquisition is active. Response latency: much better than Proxima Centauri's 4.2 years.</p>
     <div class="prose">
       <p>If something here resonated, reach out. Include whatever you like: a favorite line, your strongest objection, or a counterproposal for any of the functions. Bonus points if your AI disagreed with me and you took its side. If meeting an internet stranger calls for de-risking first, <a href="#verifyme">Verify Me</a> is the standing protocol. And <a href="#feedback">the Feedback Clause</a> applies from the first message: two or three paragraphs of honest first impressions, whichever way you decide, and you’ll get the same care back.</p>
       <p class="num" style="font-family:'IBM Plex Mono',monospace;"><a id="contactLink" href="#transmission" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">[ decoding transmission address… ]</a></p>
+      <p><strong>Book a video call.</strong> Verify Me offers as many as you want, so here is the shortest path to the first: <a id="bookLink" href="#transmission" class="bookcall" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">send three times that work for you</a> and I'll confirm one. Any platform you like; I default to whichever you name.</p>
+      <p><strong>If you don't fit a category.</strong> This site draws a lot of lines: two paths on the Family page, an age range, eleven dealbreakers. If your situation lands between them, one child and no adoption plans, say, or any other condition that reads as a maybe, don't self-reject. Get in touch and let's talk. The lines are there to save us both time, not to make the decision for me.</p>
     </div>
   </section>
 
@@ -1151,6 +1177,36 @@
     a.dataset.target = sec.id;
     rail.appendChild(a);
   });
+
+  // the Contents page: chapters from data-chapter, in DOM order
+  (function () {
+    const toc = document.getElementById('toc');
+    if (!toc) return;
+    const groups = new Map();
+    sections.forEach(sec => {
+      if (sec.id === 'contents') return;
+      const ch = sec.dataset.chapter || 'Other';
+      if (!groups.has(ch)) groups.set(ch, []);
+      groups.get(ch).push(sec);
+    });
+    let n = 0;
+    groups.forEach((secs, ch) => {
+      const box = document.createElement('div');
+      const h = document.createElement('h3'); h.textContent = ch;
+      const ol = document.createElement('ol');
+      ol.style.counterReset = 'toc ' + n;
+      secs.forEach(sec => {
+        n++;
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#' + sec.id; a.textContent = sec.dataset.title;
+        const sub = sec.querySelector('h2.head');
+        if (sub && sub.textContent.trim() !== sec.dataset.title) a.title = sub.textContent.trim();
+        li.append(a); ol.append(li);
+      });
+      box.append(h, ol); toc.append(box);
+    });
+  })();
 
   // edge fades + chevrons signal that the rail scrolls
   const navEl = document.querySelector('nav.topics');
@@ -1411,12 +1467,12 @@ Use the real studies and real law; where states differ, say so rather than avera
     },
     {
       title: "The mortality clock: grandkid overlap under real life tables",
-      claim: "If the author's first child were born today, married at 30, and had kids by 35, the grandkids would finish high school when he is about 93; under typical US male life expectancy (~78) his expected overlap with grandkids is roughly two to three years and shrinks with every month of delay.",
-      prompt: `CONTEXT: A dating page displays a live "grandparent clock" for a man born March 31, 1986. The model: his first child is born today, marries at 30, and has two or three kids by 35, so grandkids arrive when he is about (age + 35), graduate high school at (age + 53), college at (age + 57), and graduate school around (age + 59). (The live clock exposes two of these assumptions as sliders: the delay from today until the first child arrives, 1.5 to 4 years, and the age at which the children finish having their own kids, 22 to 45, defaulting to 35.) Against a typical US male life expectancy of about 78, the page computes two live, declining overlaps: an "expected overlap with our children" (life expectancy minus his age at their birth) and an "expected overlap with grandkids" of roughly 78 − (age + 35) years, and argues each month of delayed marriage and childbearing steals a month of that overlap. Audit the actuarial honesty.
+      claim: "If the author's first child were born today, married at 30, and had kids by 32, the grandkids would finish high school when he is about 90; under typical US male life expectancy (~78) his expected overlap with grandkids is roughly four years once a realistic delay to the first birth is included, and shrinks with every month of delay.",
+      prompt: `CONTEXT: A dating page displays a live "grandparent clock" for a man born March 31, 1986. The model: his first child is born today, marries at 30, and has two or three kids by 32, so grandkids arrive when he is about (age + 32), graduate high school at (age + 50), college at (age + 54), and graduate school around (age + 56). (The live clock exposes two of these assumptions as sliders: the delay from today until the first child arrives, 1.5 to 4 years, and the age at which the children finish having their own kids, 22 to 45, defaulting to 32.) Against a typical US male life expectancy of about 78, the page computes two live, declining overlaps: an "expected overlap with our children" (life expectancy minus his age at their birth) and an "expected overlap with grandkids" of roughly 78 − (age + 32) years, and argues each month of delayed marriage and childbearing steals a month of that overlap. Audit the actuarial honesty.
 
 1. THE LIFE TABLE. Using current SSA period life tables and CDC data, what is remaining life expectancy for a US male in his early 40s? Is "about 78" fair? Explain period versus cohort tables and which is more honest for a man planning decades ahead.
-2. THE ARITHMETIC. Check the model's addition chain (grandkids at age + 35, high school at + 53, college at + 57, grad school at + 59) and the overlap formula. Are the embedded assumptions (kids married at 30, grandkids by 35) realistic against current US medians for age at first marriage and first birth?
-3. CONDITIONAL SURVIVAL. The naive overlap ignores survivorship: compute the probability a male in his early 40s reaches 76, and his expected remaining years IF he reaches 76 (SSA tables put e(76) near 10 years). Also estimate the probability he reaches 94 for the high school graduation, and about 97 for college. Report how much the "honest conditional math" improves on the naive two-to-three-year overlap, and what it still says about seeing graduations.
+2. THE ARITHMETIC. Check the model's addition chain (grandkids at age + 32, high school at + 50, college at + 54, grad school at + 56) and the overlap formula. Are the embedded assumptions (kids married at 30, grandkids by 32) realistic against current US medians for age at first marriage and first birth?
+3. CONDITIONAL SURVIVAL. The naive overlap ignores survivorship: compute the probability a male in his early 40s reaches 74, and his expected remaining years IF he reaches 74 (SSA tables put e(74) near 11 years). Also estimate the probability he reaches 92 for the high school graduation, and about 96 for college. Report how much the "honest conditional math" improves on the naive four-year overlap, and what it still says about seeing graduations.
 4. THE CONTROLLABLES. How much can behavior (exercise, not smoking, weight, socioeconomic status) shift these numbers? The page elsewhere prizes evidence-based lifespan extension: quantify the plausible upside.
 5. THE ARGUMENT. Is "every month of delay steals a month of grandkid overlap" fair arithmetic, an emotional lever, or both? Note what the model leaves out in both directions (kids may have children earlier or later; grandparent overlap depends on their timelines too).
 6. VERDICT. Grade the clock for actuarial honesty and emotional fairness, and state the single most defensible sentence a reader should take from it.
@@ -1693,6 +1749,11 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     const addr = ['david', String.fromCharCode(64), 'datedavid', String.fromCharCode(46), 'org'].join('');
     a.textContent = addr;
     a.href = 'mailto' + String.fromCharCode(58) + addr;
+    const subject = encodeURIComponent('Video call with David');
+    const body = encodeURIComponent('Hi David,\n\nThree times that work for me (with my time zone):\n1. \n2. \n3. \n\nPreferred platform: \n\nAnything you should know first: \n');
+    document.querySelectorAll('a.bookcall').forEach(b => {
+      b.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + subject + '&body=' + body;
+    });
   })();
 
   // live fractional age: born March 31, 1986

@@ -121,6 +121,45 @@
   nav.topics.nav-end::after { opacity: 0; }
   nav.topics.nav-start::before { opacity: 0; }
 
+  .ribbon {
+    position: fixed;
+    right: -70px;
+    bottom: 56px;
+    z-index: 11;
+    transform: rotate(-45deg);
+    width: 330px;
+    padding: 0.5rem 0;
+    text-align: center;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .ribbon:hover { transform: rotate(-45deg) translateY(-2px); }
+  .ribbon:focus-visible { outline: 2px solid var(--paper); outline-offset: 2px; }
+  .ribbon.hidden { opacity: 0; pointer-events: none; }
+  .ribbon small { display: block; font-size: 0.58rem; letter-spacing: 0.12em; font-weight: 400; opacity: 0.8; }
+  @media (max-width: 640px) {
+    .ribbon {
+      right: 14px;
+      bottom: 14px;
+      width: auto;
+      transform: none;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.6rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+    }
+    .ribbon:hover { transform: translateY(-2px); }
+    .ribbon small { display: none; }
+  }
+
   .sidenav { display: none; }
   @media (min-width: 1180px) {
     nav.topics { display: none; }
@@ -262,6 +301,34 @@
   }
   .odometer strong { color: var(--paper); font-weight: 500; font-variant-numeric: tabular-nums; }
   .clockbox::before { content: "THE PARENT AND GRANDPARENT CLOCK · DECLINING LIVE"; }
+  .prizebox::before { content: "THE MATCHMAKER PRIZE · IN PAYOUT-YEAR DOLLARS"; }
+  .prizebox .big b { font-weight: inherit; }
+  .prizebox .big b span, .prizebox .big span span { font-size: inherit; color: inherit; }
+  .pitch-text {
+    background: var(--plate);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 1.1rem 1.2rem;
+    font-size: 0.95rem;
+    color: #cfd3e6;
+    max-width: 58ch;
+    white-space: pre-line;
+  }
+  .row { margin-top: 1rem; display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; }
+  .fitcheck { list-style: none; max-width: 58ch; margin: 0 0 1rem; }
+  .fitcheck li { border-bottom: 1px solid var(--line); }
+  .fitcheck label { display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.7rem 0; cursor: pointer; color: #cfd3e6; font-size: 0.95rem; }
+  .fitcheck input { margin-top: 0.3rem; accent-color: var(--gold); width: 1.05rem; height: 1.05rem; flex: none; }
+  .fitcheck .num { color: var(--paper); }
+  .verdict {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+    border-left: 2px solid var(--gold);
+    padding: 0.4rem 0 0.4rem 0.9rem;
+    max-width: 58ch;
+  }
   .clockbox .big { font-size: clamp(1.9rem, 5.5vw, 2.9rem); }
   .clockbox .big + .big { margin-top: 0.35rem; }
   .clockbox .odometer a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
@@ -514,6 +581,7 @@
 </nav>
 
 <aside class="sidenav" id="sideNav" aria-label="Sections"></aside>
+<a class="ribbon" id="ribbon" href="#referrals" aria-label="Amateur Matchmaker Prize: $2,000 for the introduction that leads to a first child. Read the Referrals page.">Amateur Matchmaker Prize<small>$2,000 · Referrals ›</small></a>
 
 <main class="wrap">
   <noscript><p class="nojs">JAVASCRIPT IS OFF, so this page is showing every section at once instead of one at a time. The clocks are frozen at their defaults, the Audit Ledger's prompts and the contact address assemble themselves with JavaScript, and the prompts are readable in the page source if you'd rather stay dark. Everything else reads fine as one long scroll.</p></noscript>
@@ -615,7 +683,7 @@
         Builders and healers: <a href="https://www.amazon.com/Mountains-Beyond-Quest-Farmer-Would-ebook/dp/B000FBJAW8">Mountains Beyond Mountains</a>, <a href="https://www.amazon.com/dp/B009MYD9F8">The Snowball</a>, <a href="https://www.amazon.com/Illusions-Entrepreneurship-Costly-Entrepreneurs-Investors-ebook/dp/B0089EHLC4">The Illusions of Entrepreneurship</a>, <a href="https://www.amazon.com/Coders-Work-Reflections-Craft-Programming-ebook/dp/B00ACC2536">Coders at Work</a>, and <a href="https://www.paulgraham.com/articles.html">Paul Graham's essays</a>.<br>
         Older wisdom: <a href="https://www.amazon.com/Liberty-Other-Essays-John-Stuart-ebook/dp/B003TU1OY4">On Liberty</a> (Mill), <a href="https://www.amazon.com/Pirke-Avot-Sayings-Jewish-Fathers-ebook/dp/B00AQM9FWQ">Pirkei Avot</a>, <a href="https://www.amazon.com/Poem-Collection-Greatest-Poems-Illustrated-ebook/dp/B00BWYDQ36">1000+ Greatest Poems</a>, <a href="https://www.amazon.com/Our-Nations-Archive-History-Documents/dp/1579120679">Our Nation's Archive</a>, and the <a href="https://www.supremecourt.gov/opinions/opinions.aspx">innumerable opinions of the Supreme Court</a>.<br>
         The kitchen shelf: <a href="https://www.amazon.com/Cook-Everything-Completely-Revised-Twentieth-Anniversary-ebook/dp/B07LC8WHLN">How to Cook Everything</a> (plus the vegetarian edition) and <a href="https://www.amazon.com/Food-Rules-Eaters-Michael-Pollan/dp/014311638X">Food Rules</a> (Pollan).<br>
-        The anti-recommendation: Thoreau's <a href="https://www.gutenberg.org/ebooks/71">Civil Disobedience</a>. No book on this shelf has gotten me into more trouble. It romanticizes resistance to unjust laws in a way that leaves the protesters who follow him exposed to far harsher punishment than Thoreau ever faced. He had accomplices in conditioning my occasional civil-disobedience streak: <a href="https://en.wikipedia.org/wiki/Letter_from_Birmingham_Jail">King's Letter from Birmingham Jail</a>, <a href="https://en.wikipedia.org/wiki/Mahatma_Gandhi">Gandhi's life and writings</a>, <a href="https://en.wikipedia.org/wiki/Antigone_(Sophocles_play)">Antigone</a> burying the brother Creon had declared a traitor, and <a href="https://en.wikipedia.org/wiki/Lawrence_Kohlberg%27s_stages_of_moral_development">Kohlberg's theory of moral development</a>, which crowns postconventional, self-authored moral reasoning as the highest stage, all read through the Jewish lifesaving override of <a href="https://en.wikipedia.org/wiki/Pikuach_nefesh">pikuach nefesh</a> that so much American legal thought quietly implies. But Thoreau's stakes were low: six years of unpaid poll tax, about $350 in today's money, and one night in jail. And even at those stakes he picked the wrong courtroom: the principled move was to sue first, seeking a civil injunction defending his right to refuse the tax, where the worst outcome is losing, instead of breaking the law and forcing the government to prosecute him in criminal court, where the worst outcome is a cell. Raise the stakes to something like the right to defend yourself against excessive police force, and the cost-benefit of civil disobedience gets much harder to call noble or necessary, however sincere the person making the call. I still admire the book. I just wish someone had handed it to me with a note about the costs, and about the courthouse across the street, so consider this that note.<br>
+        The anti-recommendation: Thoreau's <a href="https://www.gutenberg.org/ebooks/71">Civil Disobedience</a>. No book on this shelf has gotten me into more trouble. It romanticizes resistance to unjust laws in a way that leaves the protesters who follow him exposed to far harsher punishment than Thoreau ever faced. He had accomplices in conditioning my occasional civil-disobedience streak: <a href="https://en.wikipedia.org/wiki/Letter_from_Birmingham_Jail">King's Letter from Birmingham Jail</a>, <a href="https://en.wikipedia.org/wiki/Mahatma_Gandhi">Gandhi's life and writings</a>, <a href="https://en.wikipedia.org/wiki/Antigone_(Sophocles_play)">Antigone</a> burying the brother Creon had declared a traitor, and <a href="https://en.wikipedia.org/wiki/Lawrence_Kohlberg%27s_stages_of_moral_development">Kohlberg's theory of moral development</a>, which crowns postconventional, self-initiated, selfless moral reasoning as the highest stage, all read through the Jewish lifesaving override of <a href="https://en.wikipedia.org/wiki/Pikuach_nefesh">pikuach nefesh</a> that so much American legal thought quietly implies. But Thoreau's stakes were low: six years of unpaid poll tax, about $350 in today's money, and one night in jail. And even at those stakes he picked the wrong courtroom: the principled move was to sue first, seeking a civil injunction defending his right to refuse the tax, where the worst outcome is losing, instead of breaking the law and forcing the government to prosecute him in criminal court, where the worst outcome is a cell. Raise the stakes to something like the right to defend yourself against excessive police force, and the cost-benefit of civil disobedience gets much harder to call noble or necessary, however sincere the person making the call. I still admire the book. I just wish someone had handed it to me with a note about the costs, and about the courthouse across the street, so consider this that note.<br>
         The standing rule still holds: bring three, one you loved, one that changed you, one you quit and why, and I'll match them.</span>
       </li>
       <li>
@@ -710,7 +778,7 @@
     <p class="subhead">The nonstupid choice, the $205,000 landlord problem, and how privacy actually works.</p>
     <div class="prose">
       <p><strong>The choice.</strong> I live on family property. This saves roughly <span class="num">$2,500 a month</span> against South Florida market rent, and I consider it the nonstupid choice: a decision I'd defend in front of any spreadsheet.</p>
-      <p><strong>The second base.</strong> I also have family in Cleveland, and I co-own a condo there, so the map has two home bases with no rent on either. At the moment I'm rarely in Ohio: the pool of potential matches is smaller than South Florida's, and I go where the odds are. But the condo is why the Budget page measures driving distance from Cleveland as well as Boca, and why the footer's latitude reads Cleveland's rather than Florida's.</p>
+      <p><strong>The second base.</strong> I also have family in Cleveland, and I co-own a condo there, so the map has two home bases with no rent on either. At the moment I'm rarely in Ohio: the pool of potential matches is smaller than South Florida's, and I go where the odds are. But the condo is why the Budget page measures driving distance from Cleveland as well as Boca, and why the footer carries two sets of coordinates, one for each base, rounded to a few kilometers.</p>
       <p><strong>The compounding.</strong> One year of forgone rent is about <span class="num">$30,000</span>. Invested at 8% for the 25 years until my planned retirement, that single year grows to roughly <span class="num">$205,000</span>. From one year. Every additional year I don't pay a landlord is another six-figure future gift: inheritance for our kids, support for grandkids, or fuel for whatever we decide retirement means when we get there together. Handing that to a landlord unnecessarily feels to me like extreme waste, one of the largest voluntary wealth transfers most people never notice they're making.</p>
       <p><strong>The non-financial half.</strong> Living with family is also how most of the world lives, and how a growing share of America lives again. Shared meals, shared support, someone home when things go wrong, time with the people I'll one day want at every birthday our kids have. I keep my family time high and my cash burn low; I struggle to see the loss.</p>
       <p><strong>So how do we get privacy?</strong> Two cases. <em>If dating you means relocating</em>: I work remote, and I'm genuinely happy to be the one who moves if one of us has to: the radius is 740 km, but the willingness is unlimited. <em>If you're local</em>: first, only one of us needs a place of our own for privacy to work, and it doesn't have to be me. Second, hotels and Airbnbs are everywhere; unless we need privacy more than about four nights a month, booking a room whenever we feel like it costs a fraction of a lease. Third, the relationship research doesn't favor early cohabitation anyway: the general finding is that moving in together <em>before</em> a real marriage commitment (engagement) is associated with worse marital outcomes, so the evidence-aligned plan is hotels now, cohabitation at the ring.</p>
@@ -1481,11 +1549,47 @@
     <h2 class="head">Referrals</h2>
     <p class="subhead">Most good marriages start with an introduction. If you know someone, this page is for you, and there's a prize.</p>
     <div class="prose">
-      <p><strong>The ask.</strong> If you have a friend, coworker, sister, or daughter you think I should meet, please reach out. Send her this site, or send me her name with her permission, or just tell me why you thought of her. The Matching page argues that the people who do best in a matching market are the ones who propose rather than wait; a referral is a proposal on someone else's behalf, and I'll treat it with the care that deserves.</p>
-      <p><strong>The matchmaker prize.</strong> I will pay <span class="num">$2,000 USD</span>, in 2026 dollars and adjusted for inflation by the consumer price index at the time of payout, to whoever connects me with my future spouse. The national index, to be clear, not the South Florida one; if I pegged it to Boca rents and HOA fees, the prize would be a down payment by the time the kid could walk. It pays out after we have or adopt our first child together, not at the wedding, because a child is the real test of whether the marriage is real. Weddings are easy to throw. If the introduction took two of you, it splits. If you're family, it still counts. And you don't have to be a professional matchmaker to collect: amateur yentes are very welcome.</p>
+      <p><strong>The ask.</strong> If you have a friend, coworker, sister, or daughter you think I should meet, please reach out. Send her this site, or, with her permission, send me her name and contact information, or just tell me why you thought of her. The Matching page argues that the people who do best in a matching market are the ones who propose rather than wait; a referral is a proposal on someone else's behalf, and I'll treat it with the care that deserves.</p>
+      <p><strong>The matchmaker prize.</strong> I will pay <span class="num">$2,000 USD</span>, in September 2026 dollars and adjusted for inflation by the consumer price index at the time of payout, to whoever connects me with my future spouse. The national index, to be clear, not the South Florida one; if I pegged it to Boca rents and HOA fees, the prize would be a down payment by the time the kid could walk. It pays out after we have or adopt our first child together, not at the wedding, because a child is the real test of whether the marriage is real. Weddings are easy to throw. If the introduction took two of you, it splits. If you're family, it still counts. And you don't have to be a professional matchmaker to collect: amateur yentes are very welcome.</p>
+      <p><strong>Please take it.</strong> I'll encourage you as strongly and as emphatically as I can to accept the prize; you'll have done the most valuable thing anyone ever did for our family. If you're close to my future spouse and keeping it feels awkward, let me pay it to you anyway, so the recognition is real and on the record. Then, if you truly wish and insist, and my bride doesn't refuse it, you can always turn it into a wedding gift to her personally. Or pay it forward: use it to seed a matchmaker prize of your own, for yourself if you're single, or for another single person you're connected to, so the introduction that found us goes on to find someone else. That's your call to make once it's yours. Mine is only to make sure it becomes yours.</p>
       <p><strong>Why the fee is a no-brainer.</strong> The Budget page caps the whole courtship at ten thousand dollars. A fifth of that, paid only on the outcome that the entire site exists for, and only after that outcome has survived a pregnancy or an adoption, is the best-structured expense I will ever make. Every other line in our family ledger will be a cost. This one is the reason the ledger exists.</p>
       <p><strong>How to refer.</strong> <a href="#transmission" class="refer" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">Send a referral</a>, or write to the address on the Transmission page with "Referral" in the subject. Tell me how you know her, what made you think of us, and whether she knows you're writing. She never has to; I'll wait for her to reach out herself if you'd rather stay in the background.</p>
     </div>
+
+    <h3 class="head-sm">Copy the pitch</h3>
+    <p class="subhead">The hardest part of a referral is finding the words. Here are some; edit freely.</p>
+    <div class="prose">
+      <p class="pitch-text" id="pitchText">Hi! I know someone I think you should meet. His name is David, he's in his early 40s, a former science teacher who now builds public-health software in South Florida, and he wrote the most unusual dating page I've ever read: https://datedavid.org
+
+He's clear about what he wants, which is to marry and raise two or three kids soon, and he'd fly to wherever you are on a week's notice. Read it and tell me if I'm wrong about you two. If you want, I'll make the introduction. If not, he never has to know I asked.</p>
+      <div class="row"><button class="copy" type="button" id="copyPitch">Copy the pitch</button><span class="copied-note" id="notePitch"></span></div>
+    </div>
+
+    <h3 class="head-sm">Is she a fit?</h3>
+    <p class="subhead">Five questions from the Age Range and Dealbreakers pages. There is no "no" at the bottom; there is only how much to let her decide.</p>
+    <ul class="fitcheck" id="fitcheck">
+      <li><label><input type="checkbox"> <span>She wants children, or already has them.</span></label></li>
+      <li><label><input type="checkbox"> <span>She's Jewish, or converted before she met David.</span></label></li>
+      <li><label><input type="checkbox"> <span>She's roughly 30 to <span class="num" id="fitCeil">45</span>, the live ceiling on the Age Range page.</span></label></li>
+      <li><label><input type="checkbox"> <span>She reads for pleasure: books, or long-form journalism.</span></label></li>
+      <li><label><input type="checkbox"> <span>She's fine with the standard pediatric vaccine schedule.</span></label></li>
+    </ul>
+    <p class="verdict" id="fitVerdict">Tick what you know. Anything you don't know counts as a question for her, not a mark against her.</p>
+
+    <div class="radius clockbox prizebox">
+      <div class="big"><b>$<span id="prizeOut">2,000</span></b> <span>in <span id="prizeYear">2028</span> dollars</span></div>
+      <div class="sub">$2,000 in September 2026 dollars, indexed to the consumer price index at payout; this is an illustration at an assumed rate</div>
+      <div class="ctl">
+        <label>YEARS UNTIL OUR FIRST CHILD ARRIVES: <strong><span id="valPrizeYears">2.5</span> YRS</strong>
+          <input type="range" id="sldPrizeYears" min="1.5" max="10" step="0.5" value="2.5" aria-label="Years until the first child arrives">
+        </label>
+        <label>ASSUMED ANNUAL INFLATION: <strong><span id="valPrizeInfl">3.0</span>%</strong>
+          <input type="range" id="sldPrizeInfl" min="0" max="8" step="0.5" value="3" aria-label="Assumed annual inflation rate">
+        </label>
+      </div>
+      <div class="odometer">The real figure uses the national index on the day it pays out, whatever it says. Move the sliders to see why indexing matters over a wait this long.</div>
+    </div>
+
     <p class="crosslink">The other way in: <a href="#transmission">Send a Transmission</a>. What the prize helps fund, eventually: <a href="#family">Family</a>.</p>
   </section>
 
@@ -1501,7 +1605,7 @@
     </div>
   </section>
 
-  <footer>N 41°31' · MOVING TOWARD LEO–CRATER · VERIFY AT YOUR LEISURE<span id="lastmod"></span></footer>
+  <footer>N 26°21' W 80°10' · N 41°29' W 81°32' · MOVING TOWARD LEO–CRATER · VERIFY AT YOUR LEISURE<span id="lastmod"></span></footer>
 </main>
 
 <script>
@@ -1590,6 +1694,7 @@
     sections.forEach(s => s.classList.toggle('active', s.id === target));
     rail.querySelectorAll('a').forEach(a => a.classList.toggle('active', a.dataset.target === target));
     if (side) side.querySelectorAll('a').forEach(a => a.classList.toggle('active', a.dataset.target === target));
+    if (ribbon) ribbon.classList.toggle('hidden', target === 'referrals' || ribbonDone());
     const act = rail.querySelector('a.active');
     if (act) act.scrollIntoView({ inline: 'center', block: 'nearest' });
     updateNavFades();
@@ -1601,6 +1706,12 @@
       window.scrollTo({ top: 0, behavior: 'auto' });
     }
   }
+  // the prize ribbon: shown on every page load until it's clicked once, then gone for that visit
+  const ribbon = document.getElementById('ribbon');
+  let ribbonClicked = false;
+  function ribbonDone() { return ribbonClicked; }
+  if (ribbon) ribbon.addEventListener('click', () => { ribbonClicked = true; ribbon.classList.add('hidden'); });
+
   window.addEventListener('hashchange', route);
   // initial route() runs after the ledger below is built,
   // so #audit-NN deep links resolve on first load.
@@ -1984,7 +2095,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
       try { ok = document.execCommand('copy'); } catch (_) { ok = false; }
       document.body.removeChild(ta);
     }
-    note.textContent = ok ? '\u2713 copied \u2014 paste into any AI' : 'Copy failed \u2014 try again';
+    note.textContent = ok ? (note.dataset.done || '\u2713 copied \u2014 paste into any AI') : 'Copy failed \u2014 try again';
     note.classList.add('show');
     setTimeout(() => note.classList.remove('show'), 2600);
   }
@@ -2172,6 +2283,46 @@ Be honest rather than kind. The author wrote this prompt himself and published i
       tick(); setInterval(tick, 1000);
     } else {
       (function loop() { tick(); requestAnimationFrame(loop); })();
+    }
+  })();
+
+  // Referrals: the pitch, the fit check, and the prize calculator
+  (function () {
+    const btn = document.getElementById('copyPitch'), txt = document.getElementById('pitchText'), note = document.getElementById('notePitch');
+    if (btn && txt && note) {
+      note.dataset.done = '\u2713 copied \u2014 paste it into a text or an email';
+      btn.addEventListener('click', () => copyText(txt.textContent.trim(), note));
+    }
+    const fit = document.getElementById('fitcheck'), verdict = document.getElementById('fitVerdict');
+    if (fit && verdict) {
+      const boxes = Array.from(fit.querySelectorAll('input'));
+      const say = () => {
+        const n = boxes.filter(b => b.checked).length;
+        if (n === 0) verdict.textContent = 'Tick what you know. Anything you don\'t know counts as a question for her, not a mark against her.';
+        else if (n === 5) verdict.textContent = 'Refer her. Every line on this site says yes, and the rest is chemistry, which no checklist measures.';
+        else if (n >= 3) verdict.textContent = `${n} of 5. Refer her, and let her decide; the lines are hers to weigh, and the site has a page for anyone who lands between them.`;
+        else verdict.textContent = `${n} of 5. Probably not a fit on paper, but paper has been wrong before. Let her decide, and tell her which lines gave you pause.`;
+      };
+      boxes.forEach(b => b.addEventListener('change', say));
+    }
+    const ceil = document.getElementById('agerangeCeil'), fitCeil = document.getElementById('fitCeil');
+    if (ceil && fitCeil) {
+      const sync = () => { fitCeil.textContent = String(Math.floor(parseFloat(ceil.textContent) || 45)); };
+      sync(); setInterval(sync, 60000);
+    }
+    const y = document.getElementById('sldPrizeYears'), r = document.getElementById('sldPrizeInfl');
+    const out = document.getElementById('prizeOut'), yr = document.getElementById('prizeYear');
+    const vy = document.getElementById('valPrizeYears'), vr = document.getElementById('valPrizeInfl');
+    if (y && r && out && yr && vy && vr) {
+      const calc = () => {
+        const years = parseFloat(y.value), rate = parseFloat(r.value) / 100;
+        const from2026 = (Date.now() - Date.UTC(2026, 8, 1)) / 31556952000;
+        const total = Math.max(0, from2026 + years);
+        out.textContent = Math.round(2000 * Math.pow(1 + rate, total)).toLocaleString('en-US');
+        yr.textContent = String(new Date(Date.now() + years * 31556952000).getFullYear());
+        vy.textContent = years.toFixed(1); vr.textContent = (rate * 100).toFixed(1);
+      };
+      y.addEventListener('input', calc); r.addEventListener('input', calc); calc();
     }
   })();
 

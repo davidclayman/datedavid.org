@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Date David · My Dating Radius</title>
-<meta name="description" content="I'll travel exactly two astronomical seconds to meet you: 740 km, or any US city on the same wall clock. A radically transparent dating page where every claim comes with an audit prompt you can paste into the AI of your choice.">
+<meta name="description" content="I'll travel exactly two astronomical seconds anywhere to meet you: 740 km, or any US city on the same wall clock. A radically transparent dating page where every claim comes with an audit prompt you can paste into the AI of your choice.">
 <link rel="canonical" href="https://datedavid.org/">
 <meta name="theme-color" content="#0b1026">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://datedavid.org/">
 <meta property="og:site_name" content="Date David">
 <meta property="og:title" content="Date David · My Dating Radius">
-<meta property="og:description" content="I'll travel exactly two astronomical seconds to meet you: 740 km, or any US city on the same wall clock. A radically transparent dating page where every claim comes with an audit prompt you can paste into the AI of your choice.">
+<meta property="og:description" content="I'll travel exactly two astronomical seconds anywhere to meet you: 740 km, or any US city on the same wall clock. A radically transparent dating page where every claim comes with an audit prompt you can paste into the AI of your choice.">
 <meta property="og:image" content="https://datedavid.org/photos/david-3.jpg">
 <meta property="og:image:width" content="1999">
 <meta property="og:image:height" content="1124">
@@ -120,6 +120,47 @@
   }
   nav.topics.nav-end::after { opacity: 0; }
   nav.topics.nav-start::before { opacity: 0; }
+
+  .sidenav { display: none; }
+  @media (min-width: 1180px) {
+    nav.topics { display: none; }
+    .sidenav {
+      display: block;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: max(16px, calc(50% - 340px - 264px));
+      width: 224px;
+      padding: 5.5vh 0 4vh;
+      overflow-y: auto;
+      scrollbar-width: none;
+      z-index: 10;
+    }
+    .sidenav::-webkit-scrollbar { display: none; }
+    .sidenav h3 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin: 1.3rem 0 0.35rem;
+    }
+    .sidenav h3:first-child { margin-top: 0; }
+    .sidenav a {
+      display: block;
+      font-size: 0.86rem;
+      color: var(--faint);
+      text-decoration: none;
+      padding: 0.2rem 0 0.2rem 0.75rem;
+      border-left: 2px solid transparent;
+      line-height: 1.4;
+      transition: color 0.15s;
+    }
+    .sidenav a:hover { color: var(--paper); }
+    .sidenav a.active { color: var(--gold); border-left-color: var(--gold); }
+    .sidenav a:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+  }
 
   .wrap {
     position: relative;
@@ -448,6 +489,8 @@
   <div class="rail" id="navRail"></div>
 </nav>
 
+<aside class="sidenav" id="sideNav" aria-label="Sections"></aside>
+
 <main class="wrap">
   <noscript><p class="nojs">JAVASCRIPT IS OFF, so this page is showing every section at once instead of one at a time. The clocks are frozen at their defaults, the Audit Ledger's prompts and the contact address assemble themselves with JavaScript, and the prompts are readable in the page source if you'd rather stay dark. Everything else reads fine as one long scroll.</p></noscript>
 
@@ -455,7 +498,7 @@
   <section class="topic" id="radius" data-title="The Radius" data-chapter="Start here">
     <div class="eyebrow">FRAME OF REFERENCE: <b>THE COSMIC MICROWAVE BACKGROUND</b></div>
 
-    <h1>I'll travel exactly <em>two astronomical seconds</em> to meet you.</h1>
+    <h1>I'll travel exactly <em>two astronomical seconds</em> anywhere to meet you.</h1>
 
     <div class="pitch">
       <p>Relative to the universe's own rest frame, you and I are already hurtling through the cosmos together at about <span class="num">370&nbsp;km/s</span>, so my dating radius is simply two seconds of that motion: <span class="num">≈740&nbsp;km / 460&nbsp;miles</span>, and the physics is settled. The mileage, though, is negotiable by aircraft: any US city I can reach on the same wall clock also qualifies, and <a href="#remix">The Remix</a> has the rule and the map. None of it asks to be taken on faith, either: every claim on this site comes with a prompt you can hand to the AI of your choice, whenever curiosity strikes. Or never; they'll keep.</p>
@@ -806,7 +849,7 @@
       <p><strong>What it is.</strong> I built a mobile app called <a href="https://safeword.org">Safeword</a> (patented, US 12,347,301): consent technology for the conversation most couples improvise or skip. It walks two people through everything worth covering after a first kiss and before more intimacy: birth control at the five-nines level (99.999% preventative), STI testing and sharing the results, the genetic-results share you've already seen on <a href="#family">the Family page</a>, personalized ground rules, and literal safewords, backed by check-ins, end-to-end encryption, and a listening feature that honors a safeword the moment it's spoken.</p>
       <p><strong>The offer.</strong> If we kiss, I'll share the app with you, and we run through it together before we get any further than first base. Think of it as the Feedback Clause's more intimate sibling: the conversation happens early, on purpose, with structure, instead of awkwardly or never.</p>
       <p><strong>No timeline on the rest.</strong> To be clear about what "early" means: the setup comes soon after a first kiss, and that is the only clock here. There is none on going further. Six dates, six months, engagement, or marriage before anything past first base are all fine with me, honestly and without a preference. I'm not in a rush. The principle is that couples should get their ducks in a row before they go high-voltage, not that they should hurry to it: ground rules, genetic screening, and STI results are the steps most couples skip, and running them right after the first kiss means they're never the thing standing between us, whenever we decide the rest.</p>
-      <p><strong>The honesty.</strong> No partner has run it with me yet; I built it after the patent and after the marriage, so whoever comes next is the first. I count that as a feature. We'd be figuring out the protocol together, which is what the protocol is for.</p>
+      <p><strong>The honesty.</strong> No partner has run it with me yet; I built it after the patent and after the marriage, so whoever comes next is the first. I count that as a feature. We'd be figuring out the protocol together, which is what the protocol is for. Why I think a script is needed at all, with the two conversations that went wrong without one, is on <a href="#caseagainst">The Case Against Me</a>.</p>
       <p><strong>The future.</strong> Someday I'll probably build a dating app around Safeword. I don't think it succeeds without living directly inside one, so the hand-off to protected intimacy is as smooth as the first message. If that ships, you'll have watched the founding story from the inside.</p>
     </div>
     <p class="crosslink">The rest of the safety stack: <a href="#verifyme">Verify Me</a>. The genetics it builds on: <a href="#family">Family</a>. The patent, the five-nines math, and the security claims: <a href="#audit-20">Audit 20</a>.</p>
@@ -956,7 +999,7 @@
     <p class="subhead">Already funded, already growing, plus a proposal for how it pays out.</p>
     <div class="prose">
       <p><strong>The fund exists today.</strong> I've already super-funded a Florida 529 educational savings account, front-loading five years of gift-tax-free contributions at once so it compounds for the maximum runway. It's currently held in my niece's name, and 529 rules allow the beneficiary to be switched to family members: our future children, or children I come to stepparent. The goal is simple and non-negotiable: <strong>our kids graduate debt-free</strong>, whether college, grad school, or trade school.</p>
-      <p><strong>The payout proposal — a parental financial aid function.</strong> Debt-free doesn't have to mean unconditional. I'd like our family aid to scale with the expected return of the path chosen: majors and trades with strong odds of repaying the years invested get full support; majors with reliably poor financial outcomes get a minimal family floor, with the student covering the rest through loans, aid, or scholarships. That's the same price signal the rest of the world will send them, just delivered earlier and with love.</p>
+      <p><strong>The payout proposal — a parental financial aid function.</strong> A proposal, with your full veto attached and every parameter negotiable; the last paragraph says so at length. Debt-free doesn't have to mean unconditional. I'd like our family aid to scale with the expected return of the path chosen: majors and trades with strong odds of repaying the years invested get full support; majors with reliably poor financial outcomes get a minimal family floor, with the student covering the rest through loans, aid, or scholarships. That's the same price signal the rest of the world will send them, just delivered earlier and with love.</p>
       <p><strong>Objectivity over parental taste.</strong> The crucial design feature: the function is tied to a <em>published, regularly updated index</em> of median earnings by field of study, with no term in it for what mom and dad happen to respect. If the data someday says welding out-earns computer science, the function pays for welding school and I update my priors in public. This is a gain function, not a taste function.</p>
       <p><strong>The school question.</strong> My default preference is a competitive, high-performing public school for most of their years. I'm happy to send them to a Jewish day school for some or all of elementary if we agree it will deepen Jewish values, ethics, and culture in ways we can't replicate at home. But the price is real: <span class="num">$15,000–30,000</span> per child per year, a small fortune once you compound it across two or three kids, so both the wanting and the needing have to survive the spreadsheet.</p>
       <p><strong>Partner veto, explicitly reserved.</strong> To be clear: this is a preference, not a dealbreaker. The function is a proposal, the parameters are negotiable, and you hold a full veto. But I'll admit the selection effect: I'd love to be married to someone whose reaction to "let's write down our parental aid policy as an equation tied to an objective index" is that it's responsible and kind of cool, rather than cold. It's the least subjective, least favoritism-prone way I know to be generous to two or three different kids.</p>
@@ -1115,8 +1158,49 @@
     </details>
     <details class="audit">
       <summary><span class="no">FAQ 07</span><span class="q">Has this site changed over time?</span><span class="chev">›</span></summary>
-      <div class="body"><p class="claim">Constantly, and in public. The source and its full revision history are open at <a href="https://github.com/davidclayman/datedavid.org" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">github.com/davidclayman/datedavid.org</a>: every edit, every position I revised, timestamped. Year Ten promises I'll update in public when I'm proven wrong. The commit log is the receipts, running since before we met.</p></div>
+      <div class="body"><p class="claim">Constantly, and in public. The source and its full revision history are open at <a href="https://github.com/davidclayman/datedavid.org" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">github.com/davidclayman/datedavid.org</a>: every edit, every position I revised, timestamped. Year Ten promises I'll update in public when I'm proven wrong. The commit log is the receipts, running since before we met, and <a href="#revisions" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">Revisions</a> keeps the readable version.</p></div>
     </details>
+  </section>
+
+  <!-- ============ THE CASE AGAINST ME ============ -->
+  <section class="topic" id="caseagainst" data-title="The Case Against" data-chapter="The filters">
+    <h2 class="head">The Case Against Me</h2>
+    <p class="subhead">The FAQ rebuts objections. This page concedes them. A fair critic would say most of the following, and most of it is true.</p>
+    <ul class="items">
+      <li>
+        <span class="k">He's forty and divorced</span>
+        <span class="v">Both facts, and I can't reverse time on either. What I can say about the second: as far as I know I'm no more divorce-prone than anyone else. Nobody in my family line divorces. My parents and all four of my grandparents stayed married for life, and lifelong commitment to marriage is the thing I most want to inherit from them. Divorce is not in my bloodline or my character. It happened once, to a marriage I fought to keep, and the Dealbreakers page explains how and when the rest of that story gets told.</span>
+      </li>
+      <li>
+        <span class="k">He lives at home</span>
+        <span class="v">True, and worth explaining rather than defending. I live on family property, in the multigenerational arrangement most of the world considers normal and Americans considered normal until about 1950. It's a choice I made with a spreadsheet open: no rent, so the money that would have gone to a landlord compounds toward the family this site is about, and no lease, so I can move to wherever you are on a week's notice. It also means shared meals and people close by, which I'd want at any age. <a href="#home">Home</a> lays out the numbers and the privacy plan. The fair question a critic gets to ask is what this looks like at 45 if the plan stalls, and the honest answer is that the arrangement is built to end the moment there's an us.</span>
+      </li>
+      <li>
+        <span class="k">The clock is pressure dressed as arithmetic</span>
+        <span class="v">The arithmetic is right and the pressure is real. A woman reading <a href="#family">Family</a> is asked to feel a deadline that is mostly mine. I've tried to keep the numbers honest and the tone fair, and Audit 16 exists to check both, but a page that counts months does apply pressure by existing.</span>
+      </li>
+      <li>
+        <span class="k">He says he isn't picky, then publishes eleven dealbreakers and an age ceiling</span>
+        <span class="v">Fair. The honest version is narrower than the slogan: flexible about nearly everything inside the lines, absolute about the lines. Whether that counts as picky depends on where you stand relative to them, which is exactly why they're published.</span>
+      </li>
+      <li>
+        <span class="k">A consent app and an audit ledger are intimacy over-engineered</span>
+        <span class="v">Possibly. The tools exist because the improvised versions failed, and the failures were specific. Exactly one person I've ever dated asked me for STI results, and she asked at the right time, early. I got tested. Then the telling was so awkward and unfamiliar that I never followed through, because announcing that everything came back negative felt like it would land as pressure. And with someone I was committed to, reproductive carrier screening, which should have been a shared errand with an obvious next step, became a long fight in which her identity and worth seemed to be on the table instead of two lab reports. Neither failure was about consent. Both were about two people having no script for a conversation everyone agrees should happen. Safeword is the script, so that the health checks and the ground rules get done early, mutually, and without anyone feeling accused. A partner who'd rather talk than run a protocol still has a point, and the Safeword page says the protocol has no timeline attached to anything past it.</span>
+      </li>
+      <li>
+        <span class="k">Thirty-odd sections about himself</span>
+        <span class="v">Guilty. <a href="#questions">Questions for You</a> and the blank half of the welcome packet are the corrections, and they are much shorter than the rest. The imbalance is the cost of going first; it is still an imbalance.</span>
+      </li>
+      <li>
+        <span class="k">Twelve months to a proposal is fast, and the data says slow is safer</span>
+        <span class="v">The Emory finding is real and <a href="#budget">Budget</a> concedes it before answering. The answer, that front-loaded disclosure makes a year count for three, is a hypothesis, and the critic might be right.</span>
+      </li>
+      <li>
+        <span class="k">Every word here was written by the person it flatters</span>
+        <span class="v">Yes, including this page. <a href="#audits">Audit 00</a> and <a href="#references">References</a> are the outside views on offer, and neither replaces a few dinners. The site can only lower the cost of finding out; it can't do the finding out for you.</span>
+      </li>
+    </ul>
+    <p class="crosslink">Anything missing from the case? <a href="#feedback">The Feedback Clause</a> pays for additions.</p>
   </section>
 
   <!-- ============ VERIFY ME ============ -->
@@ -1172,10 +1256,59 @@
     </div>
   </section>
 
+  <!-- ============ REVISIONS ============ -->
+  <section class="topic" id="revisions" data-title="Revisions" data-chapter="Trust, but verify">
+    <h2 class="head">Revisions</h2>
+    <p class="subhead">Year Ten promises I'll update in public when I'm wrong. This is the ledger of doing it, positions only; the full history is in the commit log.</p>
+    <ul class="items">
+      <li>
+        <span class="tag">2026-08-29</span>
+        <span class="k">Four kids became two or three</span>
+        <span class="v">The first draft wanted four. The arithmetic on the Family page and the fertility numbers in Audit 06 didn't support it at my age without asking too much of anyone, so the plan shrank to what the math can carry.</span>
+      </li>
+      <li>
+        <span class="tag">2026-08-29</span>
+        <span class="k">The radius doubled</span>
+        <span class="v">One astronomical second (370 km) became two, and the Airline Remix converted the distance into a time budget. The physics didn't change. My willingness did.</span>
+      </li>
+      <li>
+        <span class="tag">2026-09-01</span>
+        <span class="k">Six months preferred, twelve months capped</span>
+        <span class="v">The budget originally ran to twelve months flat. It now states the stronger preference for deciding on engagement within six, with the second six as contingency.</span>
+      </li>
+      <li>
+        <span class="tag">2026-09-01</span>
+        <span class="k">Divorce moved to the list of things that shouldn't disqualify</span>
+        <span class="v">Stated as a fact up front, with the policy on when the rest of the story gets told, instead of left for a reader to discover.</span>
+      </li>
+      <li>
+        <span class="tag">2026-09-01</span>
+        <span class="k">The audits became optional, explicitly</span>
+        <span class="v">Early drafts read as if running the prompts were the price of admission. Every page now says they're there for whenever curiosity strikes, or never.</span>
+      </li>
+      <li>
+        <span class="tag">2026-09-01</span>
+        <span class="k">The age range went public</span>
+        <span class="v">Partner age stated as a function of family feasibility, with a live ceiling, instead of left implied by the fertility arithmetic.</span>
+      </li>
+      <li>
+        <span class="tag">2026-09-02</span>
+        <span class="k">The grandparent clock's default moved from 35 to 32</span>
+        <span class="v">The age at which our kids finish having their own kids now defaults to 32. Every dependent number on the Family page and in Audit 16 moved with it.</span>
+      </li>
+      <li>
+        <span class="tag">2026-09-02</span>
+        <span class="k">Lines that cost more than they bought</span>
+        <span class="v">Refusing to buy a drink became buying it under soft protest. A joke about pets, the word "audition," the phrase "bride price," and "stolen" months all came out. The prayer dealbreaker's counter-offer went from a recorded service to one prayed together.</span>
+      </li>
+    </ul>
+    <p class="crosslink">The receipts, edit by edit: <a href="https://github.com/davidclayman/datedavid.org/commits/main">the commit log</a>. The promise this keeps: <a href="#yearten">Year Ten</a>.</p>
+  </section>
+
   <!-- ============ QUESTIONS FOR YOU ============ -->
   <section class="topic" id="questions" data-title="Questions for You" data-chapter="Your turn">
     <h2 class="head">Questions for You</h2>
-    <p class="subhead">Thirty-two sections about me is a monologue. This is the interview I'm hoping for.</p>
+    <p class="subhead">Thirty-five sections about me is a monologue. This is the interview I'm hoping for.</p>
     <ul class="items">
       <li>
         <span class="tag">Question 01</span>
@@ -1221,6 +1354,19 @@
     <p class="crosslink">Answers, in any order, at any length: <a href="#transmission">Send a Transmission</a>. The Feedback Clause pays interest on all of them.</p>
   </section>
 
+  <!-- ============ REFERRALS ============ -->
+  <section class="topic" id="referrals" data-title="Referrals" data-chapter="Your turn">
+    <h2 class="head">Referrals</h2>
+    <p class="subhead">Most good marriages start with an introduction. If you know someone, this page is for you, and there's a prize.</p>
+    <div class="prose">
+      <p><strong>The ask.</strong> If you have a friend, coworker, sister, or daughter you think I should meet, please reach out. Send her this site, or send me her name with her permission, or just tell me why you thought of her. The Matching page argues that the people who do best in a matching market are the ones who propose rather than wait; a referral is a proposal on someone else's behalf, and I'll treat it with the care that deserves.</p>
+      <p><strong>The matchmaker prize.</strong> I will pay <span class="num">$2,000 USD</span>, in 2026 dollars and adjusted for inflation by the consumer price index at the time of payout, to whoever connects me with my future spouse. The national index, to be clear, not the South Florida one; if I pegged it to Boca rents and HOA fees, the prize would be a down payment by the time the kid could walk. It pays out after we have or adopt our first child together, not at the wedding, because a child is the real test of whether the marriage is real. Weddings are easy to throw. If the introduction took two of you, it splits. If you're family, it still counts. And you don't have to be a professional matchmaker to collect: amateur yentes are very welcome.</p>
+      <p><strong>Why the fee is a no-brainer.</strong> The Budget page caps the whole courtship at ten thousand dollars. A fifth of that, paid only on the outcome that the entire site exists for, and only after that outcome has survived a pregnancy or an adoption, is the best-structured expense I will ever make. Every other line in our family ledger will be a cost. This one is the reason the ledger exists.</p>
+      <p><strong>How to refer.</strong> <a href="#transmission" class="refer" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">Send a referral</a>, or write to the address on the Transmission page with "Referral" in the subject. Tell me how you know her, what made you think of us, and whether she knows you're writing. She never has to; I'll wait for her to reach out herself if you'd rather stay in the background.</p>
+    </div>
+    <p class="crosslink">The other way in: <a href="#transmission">Send a Transmission</a>. What the prize helps fund, eventually: <a href="#family">Family</a>.</p>
+  </section>
+
   <!-- ============ TRANSMISSION ============ -->
   <section class="topic" id="transmission" data-title="Transmission" data-chapter="Your turn">
     <h2 class="head">Send a Transmission</h2>
@@ -1251,6 +1397,26 @@
     a.dataset.target = sec.id;
     rail.appendChild(a);
   });
+
+  // the left sidebar (wide screens): the same chapters as the Contents page
+  const side = document.getElementById('sideNav');
+  (function () {
+    if (!side) return;
+    const groups = new Map();
+    sections.forEach(sec => {
+      const ch = sec.dataset.chapter || 'Other';
+      if (!groups.has(ch)) groups.set(ch, []);
+      groups.get(ch).push(sec);
+    });
+    groups.forEach((secs, ch) => {
+      const h = document.createElement('h3'); h.textContent = ch; side.append(h);
+      secs.forEach(sec => {
+        const a = document.createElement('a');
+        a.href = '#' + sec.id; a.textContent = sec.dataset.title; a.dataset.target = sec.id;
+        side.append(a);
+      });
+    });
+  })();
 
   // the Contents page: chapters from data-chapter, in DOM order
   (function () {
@@ -1301,6 +1467,7 @@
     const target = el && el.classList.contains('topic') ? id : 'radius';
     sections.forEach(s => s.classList.toggle('active', s.id === target));
     rail.querySelectorAll('a').forEach(a => a.classList.toggle('active', a.dataset.target === target));
+    if (side) side.querySelectorAll('a').forEach(a => a.classList.toggle('active', a.dataset.target === target));
     const act = rail.querySelector('a.active');
     if (act) act.scrollIntoView({ inline: 'center', block: 'nearest' });
     updateNavFades();
@@ -1428,7 +1595,7 @@ Use the study's real numbers where available and explain for a non-economist.`
 
 1. THE MARKETING HISTORY. Verify: the "A Diamond is Forever" campaign (N.W. Ayer for De Beers, late 1930s onward), the invention and later inflation of the "months of salary" guideline, and the extent to which diamond engagement rings were NOT a widespread norm before this campaign. How much of the modern norm is traceable to advertising?
 2. THE ECONOMICS. Report typical retail-to-resale value loss on mined diamonds, the price collapse of lab-grown diamonds over the past decade and what it implies about scarcity, and the current median/average US engagement ring spend. If findable, note how ring price medians vary by state.
-3. THE KETUBAH. Explain the ketubah's mohar/marriage settlement \u2014 the traditional 200 zuz obligation for a first marriage \u2014 its rough historical purchasing-power interpretations, and its status as a serious contractual obligation roughly two millennia older than De Beers. Is "I'm already paying a traditional bride price; a diamond would be paying twice" a coherent framing?
+3. THE KETUBAH. Explain the ketubah's mohar/marriage settlement \u2014 the traditional 200 zuz obligation for a first marriage \u2014 its rough historical purchasing-power interpretations, and its status as a serious contractual obligation roughly two millennia older than De Beers. Is "I'm already paying a traditional settlement obligation; a diamond would be paying twice" a coherent framing?
 4. THE COUNTER-OFFER. Evaluate the dowry-check design: a check for the state's median ring price, with full allocation control transferred to the bride. As mechanism design, does this dominate the standard arrangement (same expected outlay, strictly more choice for the recipient)? What does it lose symbolically, and does the symbolic loss have real value?
 5. THE BUDGET PSYCHOLOGY. The page claims many people mentally treat ring money as coming from an external budget rather than the joint family budget that must fund a home, children, and grandchildren across decades. Is this a documented mental-accounting phenomenon (cf. Thaler's mental accounting)? Assess the page's stated preference for a partner inclined to minimize rather than maximize ring spend.
 6. VERDICT. Is the ring policy internally consistent, historically accurate, and fair to a future partner? What's the strongest case FOR a traditional ring that the author should hear?
@@ -1828,6 +1995,11 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     const body = encodeURIComponent('Hi David,\n\nThree times that work for me (with my time zone):\n1. \n2. \n3. \n\nPreferred platform: \n\nAnything you should know first: \n');
     document.querySelectorAll('a.bookcall').forEach(b => {
       b.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + subject + '&body=' + body;
+    });
+    const rSubject = encodeURIComponent('Referral');
+    const rBody = encodeURIComponent('Hi David,\n\nI know someone you should meet.\n\nHow I know her: \nWhat made me think of you two: \nDoes she know I am writing? \nHow to reach her, or me: \n');
+    document.querySelectorAll('a.refer').forEach(b => {
+      b.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + rSubject + '&body=' + rBody;
     });
   })();
 

@@ -22,10 +22,17 @@
 <meta name="twitter:description" content="Two astronomical seconds of travel willingness, one audit ledger, zero unstated preferences.">
 <meta name="twitter:image" content="https://datedavid.org/photos/david-3.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b1026'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23e8b44a' stroke-width='4' stroke-dasharray='6 5'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23eae6d8'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Space+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Google Analytics (G-GD340Z2HSF) loads only after consent; see the Privacy page -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+</script>
 <style>
+  @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('fonts/Fraunces.woff2') format('woff2'); }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/SpaceGrotesk-normal-400.woff2') format('woff2'); }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/SpaceGrotesk-normal-500.woff2') format('woff2'); }
+  @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/IBMPlexMono-normal-400.woff2') format('woff2'); }
+  @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/IBMPlexMono-normal-500.woff2') format('woff2'); }
   :root {
     --ink: #0b1026;
     --plate: #0f1633;
@@ -159,6 +166,73 @@
     .ribbon:hover { transform: translateY(-2px); }
     .ribbon small { display: none; }
   }
+
+  .nudge {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translate(-50%, 12px);
+    z-index: 12;
+    width: min(560px, calc(100vw - 32px));
+    background: var(--plate);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 1.1rem 1.2rem 1rem;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.55);
+    color: #cfd3e6;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .nudge.show { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
+  .nudge .tag { display: block; margin-bottom: 0.4rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.2em; color: var(--gold); }
+  .nudge strong { color: var(--paper); font-weight: 500; }
+  .nudge .addr { font-family: 'IBM Plex Mono', monospace; color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+  .nudge .row { margin-top: 0.8rem; gap: 0.7rem; }
+  .nudge .copy { padding: 0.5rem 0.85rem; }
+  .nudge .close {
+    position: absolute; top: 0.45rem; right: 0.6rem;
+    background: none; border: 0; color: var(--faint); font-size: 1.2rem; line-height: 1; cursor: pointer; padding: 0.2rem 0.4rem;
+  }
+  .nudge .close:hover { color: var(--paper); }
+  .nudge .close:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { .nudge { transition: none; } }
+  @media (max-width: 640px) { .nudge { bottom: 64px; padding: 1rem 1rem 0.9rem; font-size: 0.9rem; } }
+
+  .consent {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 13;
+    width: min(440px, calc(100vw - 32px));
+    background: var(--plate);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1rem 1.1rem 0.9rem;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.55);
+    color: #cfd3e6;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .consent .tag { display: block; margin-bottom: 0.35rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.64rem; letter-spacing: 0.2em; color: var(--gold); }
+  .consent strong { color: var(--paper); font-weight: 500; }
+  .consent a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+  .consent .row { margin-top: 0.7rem; gap: 0.6rem; }
+  .consent .copy { padding: 0.45rem 0.8rem; }
+  @media (max-width: 640px) { .consent { left: 12px; right: 12px; width: auto; bottom: 64px; font-size: 0.86rem; } }
+  .callform { max-width: 58ch; display: grid; gap: 0.7rem; margin: 1rem 0 0.4rem; }
+  .callform label { display: grid; gap: 0.3rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+  .callform input, .callform select, .callform textarea {
+    font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.98rem; color: var(--paper);
+    background: var(--plate); border: 1px solid var(--line); border-radius: 6px; padding: 0.6rem 0.7rem; width: 100%;
+  }
+  .callform input:focus, .callform select:focus, .callform textarea:focus { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold); }
+  .callform textarea { min-height: 4.5rem; resize: vertical; }
+  .callform .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  @media (max-width: 480px) { .callform .two { grid-template-columns: 1fr; } }
+  .callform .fine { font-size: 0.82rem; color: var(--faint); }
 
   .sidenav { display: none; }
   @media (min-width: 1180px) {
@@ -586,6 +660,17 @@
 
 <aside class="sidenav" id="sideNav" aria-label="Sections"></aside>
 <a class="ribbon" id="ribbon" href="#referrals" aria-label="Amateur Matchmaker Prize: $2,000 for the introduction that leads to a first child. Read the Referrals page.">Amateur Matchmaker Prize<small>$2,000 · Referrals ›</small></a>
+<div class="nudge" id="nudge" role="dialog" aria-label="A reminder to reach out" aria-hidden="true">
+  <button class="close" type="button" id="nudgeClose" aria-label="Dismiss">×</button>
+  <span class="tag" id="nudgeTag">1 MINUTE IN</span>
+  <strong>Thanks for spending <span id="nudgeMins">a minute</span> with me.</strong> That's usually a sign you care enough to keep reading, so one reminder before you do: you can just write. Nothing here needs to be finished first. One line to <a class="addr" id="nudgeAddr" href="#transmission">the address</a> is a perfectly good first message, and a video call is one click.
+  <div class="row"><a class="copy bookcall" href="#transmission">Book a video call</a><a class="copy" id="nudgeWrite" href="#transmission">Send a transmission</a></div>
+</div>
+<div class="consent" id="consent" role="region" aria-label="Analytics consent" hidden>
+  <span class="tag">ONE QUESTION FIRST</span>
+  <strong>May I count your visit?</strong> This site uses Google Analytics to see which sections get read and which buttons get clicked, in aggregate. No names, no messages, no advertising profile. Nothing loads until you answer, and either answer is remembered. Details on <a href="#privacy">the Privacy page</a>.
+  <div class="row"><button class="copy" type="button" id="consentYes">Yes, count me</button><button class="copy" type="button" id="consentNo">No, thanks</button></div>
+</div>
 
 <main class="wrap">
 
@@ -616,7 +701,7 @@
 
     <div class="prose">
       <p><strong>Who this is.</strong> David Clayman, in my early 40s, a former science teacher who now builds public-health software at the company I founded, based in South Florida with a second base in Cleveland. I work remotely, hold three passports, and can move to wherever you are on a week's notice. I read for pleasure, dance salsa when the chance comes, don't drink, and I'm divorced, which the site explains when the time is right. I want to marry and raise two or three children, soon, whether they arrive with you or after you. Everything below this line is me going first.</p>
-      <p><strong>What Tuesdays with me look like.</strong> Coffee handled, my half of everything domestic done without being asked, a walk after dinner, two people reading in the same room and interrupting each other with the good parts. When you're sick, I run the household. When you win, I brag about you in rooms you're not in. And you will be danced with, in the kitchen, while dinner cooks. The long version is <a href="#offer">What You Get</a>. This site is the demo.</p>
+      <p><strong>What Tuesdays with me look like.</strong> Coffee handled, my half of everything domestic done without being asked, a walk after dinner, two people reading in the same room and interrupting each other with the good parts. When you're sick, I carry your half of the house on top of mine. When you win, I brag about you in rooms you're not in. When there are kids, yours or ours, I'm an active, heavily engaged coparent, not a helper. And you will be danced with, in the kitchen, while dinner cooks. The long version is <a href="#offer">What You Get</a>. This site is the demo.</p>
       <p><strong>What I'm looking for.</strong> Someone who wants a family, whether she's bringing children or building them with me. Someone curious enough to say "huh, I wonder why that is," and kind under pressure, to waitstaff and lost tourists especially. Someone who would rather choose each other on purpose than wait for the universe to assign us.</p>
     </div>
 
@@ -684,8 +769,9 @@
     <p class="subhead">The other side of the ledger: what being loved by me is actually like.</p>
     <div class="prose">
       <p><strong>The Tuesday test.</strong> Grand gestures are cheap to promise and rarely needed. A marriage is mostly Tuesdays, so judge me on the Tuesday forecast: coffee handled, my half of everything domestic done without being asked, a walk after dinner, two people reading in the same room and interrupting each other with the good parts. I explain things for fun and I listen the same way; you will never finish telling me about your day to a man scrolling his phone.</p>
-      <p><strong>When it's hard.</strong> I build software for emergencies; calm under pressure is literally my trade. When you're sick, I run the household solo and cancel what needs canceling. When you're grieving, I don't vanish into fix-it mode unless you ask for fixes. When we disagree, you've read the Dealbreakers page: negotiating table, never a battlefield, and the Feedback Clause means complaints get repaired instead of archived.</p>
+      <p><strong>When it's hard.</strong> I build software for emergencies; calm under pressure is literally my trade. When you're sick, I carry both halves of the household and cancel what needs canceling. When you're grieving, I don't vanish into fix-it mode unless you ask for fixes. When we disagree, you've read the Dealbreakers page: negotiating table, never a battlefield, and the Feedback Clause means complaints get repaired instead of archived.</p>
       <p><strong>When it's good.</strong> Teacher instinct: I brag about the people I love and I'm not discreet about it. Your wins get celebrated at full volume, your name gets defended in rooms you're not in, and the salsa offer stands for life: you will be danced with.</p>
+      <p><strong>The coparent.</strong> Whether the children are yours already or ours together, expect an active, involved, heavily engaged coparent: the one at the pediatrician, the school pickup, the 3 a.m. feeding, and the homework table, not the one who "helps out." The Partnership page promises half of everything domestic; parenting is the half I care about most.</p>
       <p><strong>The warmth.</strong> I'm an affectionate partner: hands held in public, a real hug at the airport, dancing in the kitchen while dinner cooks. The engineering brain runs the spreadsheets. It does not run the marriage.</p>
       <p><strong>The attention.</strong> The honest pitch is right in front of you. You've seen the attention I paid to a website about finding you; point that same attention at loving you for fifty years and you have the actual offer. This site is the demo.</p>
     </div>
@@ -1449,6 +1535,21 @@
     <p class="crosslink">Anything missing from the case? <a href="#feedback">The Feedback Clause</a> pays for additions.</p>
   </section>
 
+  <!-- ============ LIFE DIDN'T GO AS PLANNED ============ -->
+  <section class="topic" id="unplanned" data-title="Not As Planned" data-chapter="The filters">
+    <h2 class="head">Life Didn't Go As Planned</h2>
+    <p class="subhead">The site reads like a plan because it is one. Here is what happened to the last plan, and why this one is written down.</p>
+    <div class="prose">
+      <p><strong>The first spreadsheet.</strong> On August 31, 2019, I built a spreadsheet for a wedding, down to a line-item budget. It modeled the wedding I dreamed about: small, at one of North America's two natural wonders, Niagara Falls (like The Office) or the Grand Canyon. That was <span class="num"><span id="sincePlan">seven years</span></span> ago, and the counter is live because the point is the length. The spreadsheet did get used, just not by me: it prepared me to help plan and coordinate a friend's wedding, one I later officiated. It took another four years before I got into the weeds of wedding planning for myself, and the wedding the spreadsheet planned never happened.</p>
+      <p><strong>The marriage that did.</strong> I married in the late summer of 2023. It didn't last more than a year. The Dealbreakers page explains what I will and won't say about that, and when; the fact belongs here because it's the plainest evidence on the site that plans are not outcomes. I would have preferred to be married since 2019, to the same person, with the kids already in school. I'm not.</p>
+      <p><strong>The dozens of ways.</strong> In between, I've watched two people eliminate each other in more ways than I could have invented. Some were hers: she was against vaccines, or carried a Las Vegas gambling habit, or needed a man who'd watch tackle football with her, which I won't, because I can't unsee what it does to brains. Some were mine, from her side of the table: I like animals but don't fall head over heels for them, I don't drink, and I say all of this out loud on a first date. Each of those is a legitimate reason. Together they're a long list of good people who were right for someone and not for each other, discovered one dinner at a time.</p>
+      <p><strong>The honest part.</strong> It's painful to keep going through it. Not the individual no, which is fair, but the cumulative arithmetic: every elimination costs weeks, and the Family page counts what weeks cost. I'm not writing that to be pitied. I'm writing it because a site this thorough can look like confidence, and some of it is the opposite. It's what a person builds after learning, expensively, that the dealbreakers show up eventually no matter what, so they might as well show up first.</p>
+      <p><strong>The wedding is one example.</strong> A lot of things in my life didn't go as planned, and the wedding is only the one with a spreadsheet. The rest has more twists and turns than I can share in one sitting. I've tried; it can't be done with any precision or accuracy in a single evening, and attempting it is exhausting for both people at the table. So the story comes out slowly, over a couple of months, one chapter at a time, in roughly the order it happened and at whatever pace trust allows. That isn't evasion, and it isn't a test. It's the only way I know to tell it accurately, and you deserve the accurate version.</p>
+      <p><strong>Why this plan is public.</strong> That's the whole design. Every way two people could eliminate each other in month eight is on a page you can read in an hour, so the elimination costs a coffee instead of a season, and the match, if it's there, has nothing left to trip on. The spreadsheet from 2019 is still in a folder. I'd like to finally use it, and I'd like the line items to be ours.</p>
+    </div>
+    <p class="crosslink">What I changed my mind about since: <a href="#revisions">Revisions</a>. What a critic would say about all this: <a href="#caseagainst">The Case Against Me</a>.</p>
+  </section>
+
   <!-- ============ VERIFY ME ============ -->
   <section class="topic" id="verifyme" data-title="Verify Me" data-chapter="Trust, but verify">
     <h2 class="head">Verify Me</h2>
@@ -1547,6 +1648,26 @@
         <span class="k">Lines that cost more than they bought</span>
         <span class="v">Refusing to buy a drink became buying it under soft protest. A joke about pets, the word "audition," the phrase "bride price," and "stolen" months all came out. The prayer dealbreaker's counter-offer went from a recorded service to one prayed together.</span>
       </li>
+      <li>
+        <span class="tag">2026-09-02</span>
+        <span class="k">A profile in front of the laboratory</span>
+        <span class="v">The site used to open on physics and reach me four tabs later. It now opens on Start Here: photo, introduction, Tuesdays, what I'm looking for, three filters, and a first message priced at an hour of curiosity. The long arguments on Home, Matching, and the Shelf moved one click down. Nothing was deleted.</span>
+      </li>
+      <li>
+        <span class="tag">2026-09-02</span>
+        <span class="k">The budget leads with the promise, not the number</span>
+        <span class="v">"$10,000 or 12 months" became "I won't waste your time," with the dollar cap demoted to a second paragraph. Matching now opens on my own imperfection rather than on anyone's declining options.</span>
+      </li>
+      <li>
+        <span class="tag">2026-09-02</span>
+        <span class="k">Reading, redefined</span>
+        <span class="v">The reader dealbreaker no longer means books. It means deep thought and relentless curiosity about the world, fed on purpose, in whatever form that takes.</span>
+      </li>
+      <li>
+        <span class="tag">2026-09-02</span>
+        <span class="k">Counting visits, with permission</span>
+        <span class="v">Google Analytics was added and then gated behind a consent banner the same day; nothing loads until you say yes. The fonts moved off Google's servers onto this site, and a Privacy page now says exactly what is and isn't collected.</span>
+      </li>
     </ul>
     <p class="crosslink">The receipts, edit by edit: <a href="https://github.com/davidclayman/datedavid.org/commits/main">the commit log</a>. The promise this keeps: <a href="#yearten">Year Ten</a>.</p>
   </section>
@@ -1564,10 +1685,26 @@
     <p class="crosslink">The claims themselves: <a href="#audits">the Audit Ledger</a>. The revisions the editor helped make: <a href="#revisions">Revisions</a>.</p>
   </section>
 
+  <!-- ============ PRIVACY ============ -->
+  <section class="topic" id="privacy" data-title="Privacy" data-chapter="Trust, but verify">
+    <h2 class="head">Privacy</h2>
+    <p class="subhead">What this site collects, which is very little, and your rights over it, which are complete.</p>
+    <div class="prose">
+      <p><strong>Who is responsible.</strong> David Clayman, the author of this site, is the data controller. Contact for anything on this page: the address on <a href="#transmission">the Transmission page</a>.</p>
+      <p><strong>What the site collects, and why.</strong> Three things, and nothing else. First, if you agree, Google Analytics counts which sections are read and which buttons are clicked, in aggregate, so I can tell whether the site works. This runs only after you say yes on the banner, is remembered either way in your browser, honors the Global Privacy Control signal as a no, uses IP anonymization, and has advertising features switched off. The legal basis is your consent, and you can withdraw it below. Second, anything you choose to email me, including a request that I call you, goes to my inbox so that I can reply; the legal basis is that you asked me to. Third, the host records ordinary server logs, as every website's host does. The site sets no cookies of its own. The fonts are served from this site, not from Google.</p>
+      <p><strong>Who else touches it.</strong> Google LLC processes the analytics data on my behalf under its standard terms, and GitHub, Inc. hosts the site and its server logs. Both are in the United States and operate under the EU-US Data Privacy Framework. Nobody else. Nothing is sold, and nothing is used for advertising.</p>
+      <p><strong>How long.</strong> Analytics data is kept for fourteen months and then deleted by Google. Emails and call requests are kept as long as our conversation lasts and deleted the moment you ask. Your consent choice lives in your own browser until you clear it.</p>
+      <p><strong>Your rights.</strong> Under the GDPR and equivalent laws you can ask what I hold about you, have it corrected or deleted, restrict or object to its use, take a copy with you, and withdraw consent at any time without affecting anything that happened before. Email me and I'll do it within a month, usually the same day. If you're in the EU or UK and think I've handled your data badly, you can complain to your national supervisory authority. The site makes no automated decisions about anyone.</p>
+      <p><strong>US readers.</strong> California's CCPA and CPRA, and the similar laws in Virginia, Colorado, Connecticut, Texas, Florida, and a growing list of states, apply to businesses above revenue or data-volume thresholds that a one-person dating page doesn't approach, so none of them technically reaches this site. I follow their core rules anyway: you can ask what I have, have it deleted, and opt out of any sale or sharing, of which there is none, and the site honors the Global Privacy Control signal that California treats as a legal opt-out. Two federal points do apply. This site is for adults; it isn't directed at anyone under 18, and I don't knowingly collect anything from a minor. And if you use the call-me form, the call comes from me personally, by hand, at the time you asked for; there are no autodialed calls, no marketing texts, and a "please stop" ends it, which is what the Telephone Consumer Protection Act requires and what courtesy requires anyway.</p>
+      <p><strong>Change your answer.</strong> <button class="copy" type="button" id="consentReset">Reset my analytics choice</button> <span class="copied-note" id="consentNote"></span></p>
+    </div>
+    <p class="crosslink">The safety side of the same promise: <a href="#verifyme">Verify Me</a>.</p>
+  </section>
+
   <!-- ============ QUESTIONS FOR YOU ============ -->
   <section class="topic" id="questions" data-title="Questions for You" data-chapter="Your turn">
     <h2 class="head">Questions for You</h2>
-    <p class="subhead">Thirty-seven sections about me is a monologue. This is the interview I'm hoping for.</p>
+    <p class="subhead">Thirty-nine sections about me is a monologue. This is the interview I'm hoping for.</p>
     <ul class="items">
       <li>
         <span class="tag">Question 01</span>
@@ -1670,13 +1807,24 @@ He's clear about what he wants, which is to marry and raise two or three kids so
       <p><strong>The price of a first message is an hour of curiosity.</strong> You don't need to know whether you'd marry me, agree with me, or finish this site. You only need to wonder whether we'd enjoy a coffee. One line is a fine first message. So is a guarded one.</p>
       <p>If something here resonated, reach out. Include whatever you like: a favorite line, your strongest objection, or a counterproposal for any of the functions. Bonus points if your AI disagreed with me and you took its side. If meeting an internet stranger calls for de-risking first, <a href="#verifyme">Verify Me</a> is the standing protocol. And <a href="#feedback">the Feedback Clause</a> applies from the first message: two or three paragraphs of honest first impressions, whichever way you decide, and you’ll get the same care back.</p>
       <p class="num" style="font-family:'IBM Plex Mono',monospace;"><a id="contactLink" href="#transmission" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">[ decoding transmission address… ]</a></p>
-      <p><strong>What happens next.</strong> I read every message myself, and I reply to every one, usually within two days and never later than a week. Whatever you send goes to my inbox and nowhere else: it isn't stored by any service of mine, shared with anyone, or used for anything but replying to you, and I'll delete it the moment you ask.</p>
+      <p><strong>What happens next.</strong> I read every message myself, and I reply to every one, usually within two days and never later than a week. Whatever you send goes to my inbox and nowhere else: it isn't stored by any service of mine, shared with anyone, or used for anything but replying to you, and I'll delete it the moment you ask. The one thing the site itself records, and only if you said yes to the banner, is Google Analytics: which sections get read and which buttons get clicked, in aggregate, with no names, no messages, and no advertising profile attached. <a href="#privacy">The Privacy page</a> has the rest.</p>
       <p><strong>Book a video call.</strong> Verify Me offers as many as you want, so here is the shortest path to the first: <a id="bookLink" href="#transmission" class="bookcall" style="color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);">send three times that work for you</a> and I'll confirm one. Any platform you like; I default to whichever you name.</p>
+      <p><strong>Or ask me to call you.</strong> If a phone call is easier than writing, leave a name, a number, and a good time. Submitting opens an email to me from your own mail app with those details in it; the site itself stores nothing.</p>
+      <form class="callform" id="callForm" autocomplete="on">
+        <div class="two">
+          <label>Name <input type="text" id="cfName" name="name" autocomplete="name" required maxlength="80"></label>
+          <label>Phone <input type="tel" id="cfPhone" name="tel" autocomplete="tel" required maxlength="40"></label>
+        </div>
+        <label>Best time to call, and your time zone <input type="text" id="cfWhen" name="when" maxlength="120" placeholder="Weekday evenings, Eastern"></label>
+        <label>Anything you'd like me to know first <textarea id="cfNote" name="note" maxlength="1000"></textarea></label>
+        <div class="row"><button class="copy" type="submit">Ask David to call</button><span class="copied-note show" id="cfNote2" style="opacity:1"></span></div>
+        <p class="fine">By sending, you're emailing me your name and number so I can call you back. I keep them only for that, share them with nobody, and delete them the moment you ask.</p>
+      </form>
       <p><strong>If you don't fit a category.</strong> This site draws a lot of lines: two paths on the Family page, an age range, eleven dealbreakers. If your situation lands between them, one child and no adoption plans, say, or any other condition that reads as a maybe, don't self-reject. Get in touch and let's talk. The lines are there to save us both time, not to make the decision for me.</p>
     </div>
   </section>
 
-  <footer>N 26°21' W 80°10' · N 41°29' W 81°32' · MOVING TOWARD LEO–CRATER · VERIFY AT YOUR LEISURE<span id="lastmod"></span></footer>
+  <footer>N 26°21' W 80°10' · N 41°29' W 81°32' · MOVING TOWARD LEO–CRATER · VERIFY AT YOUR LEISURE · <a href="#privacy" style="color:inherit;text-decoration:none;border-bottom:1px dotted currentColor">PRIVACY</a><span id="lastmod"></span></footer>
   <noscript><p class="nojs">JAVASCRIPT IS OFF, so this page showed every section at once instead of one at a time. The clocks are frozen at their defaults, the Audit Ledger's prompts and the contact address assemble themselves with JavaScript, and the prompts are readable in the page source if you'd rather stay dark. Everything else reads fine as one long scroll.</p></noscript>
 </main>
 
@@ -1686,6 +1834,31 @@ He's clear about what he wants, which is to marry and raise two or three kids so
   // Add a <section class="topic" id="..." data-title="...">;
   // the nav builds itself.
   // ============================================================
+  // analytics: sections as page views, calls to action as events, and nothing at all without consent
+  const GA_ID = 'G-GD340Z2HSF';
+  function consentState() {
+    try {
+      if (navigator.globalPrivacyControl) return 'denied';
+      return localStorage.getItem('consent');
+    } catch (e) { return null; }
+  }
+  let analyticsLoaded = false;
+  function loadAnalytics() {
+    if (analyticsLoaded) return;
+    analyticsLoaded = true;
+    const sc = document.createElement('script');
+    sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(sc);
+    gtag('js', new Date());
+    gtag('config', GA_ID, { send_page_view: false, anonymize_ip: true, allow_google_signals: false, allow_ad_personalization_signals: false });
+  }
+  function track(name, params) {
+    if (consentState() !== 'granted') return;
+    loadAnalytics();
+    try { gtag('event', name, params || {}); } catch (e) {}
+  }
+  if (consentState() === 'granted') loadAnalytics();
+
   const sections = Array.from(document.querySelectorAll('section.topic'));
   const rail = document.getElementById('navRail');
   sections.forEach(sec => {
@@ -1770,6 +1943,8 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     const act = rail.querySelector('a.active');
     if (act) act.scrollIntoView({ inline: 'center', block: 'nearest' });
     updateNavFades();
+    const activeSec = document.getElementById(target);
+    track('page_view', { page_title: (activeSec && activeSec.dataset.title) || target, page_location: location.origin + location.pathname + '#' + target, page_path: '/#' + target });
     const card = audit && document.getElementById(audit);
     if (card) {
       card.open = true;
@@ -1782,7 +1957,7 @@ He's clear about what he wants, which is to marry and raise two or three kids so
   const ribbon = document.getElementById('ribbon');
   let ribbonClicked = false;
   function ribbonDone() { return ribbonClicked; }
-  if (ribbon) ribbon.addEventListener('click', () => { ribbonClicked = true; ribbon.classList.add('hidden'); });
+  if (ribbon) ribbon.addEventListener('click', () => { ribbonClicked = true; ribbon.classList.add('hidden'); track('ribbon_click'); });
 
   window.addEventListener('hashchange', route);
   // initial route() runs after the ledger below is built,
@@ -2133,7 +2308,7 @@ Cite the studies and data sources you rely on.`
     btn.className = 'copy'; btn.type = 'button';
     btn.textContent = 'Copy audit prompt ' + no;
     const note = document.createElement('span'); note.className = 'copied-note';
-    btn.addEventListener('click', () => copyText(fillAge(a.prompt), note));
+    btn.addEventListener('click', () => { copyText(fillAge(a.prompt), note); track('audit_copy', { audit: no }); });
     row.append(btn, note);
     body.append(claim, row);
 
@@ -2296,15 +2471,45 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     const addr = ['david', String.fromCharCode(64), 'datedavid', String.fromCharCode(46), 'org'].join('');
     a.textContent = addr;
     a.href = 'mailto' + String.fromCharCode(58) + addr;
+    a.addEventListener('click', () => track('email_click', { where: 'transmission' }));
     const subject = encodeURIComponent('Video call with David');
     const body = encodeURIComponent('Hi David,\n\nThree times that work for me (with my time zone):\n1. \n2. \n3. \n\nPreferred platform: \n\nAnything you should know first: \n');
     document.querySelectorAll('a.bookcall').forEach(b => {
       b.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + subject + '&body=' + body;
+      b.addEventListener('click', () => track('book_call', { where: (b.closest('section') || {}).id || (b.closest('.nudge') ? 'nudge' : 'other') }));
     });
     const rSubject = encodeURIComponent('Referral');
     const rBody = encodeURIComponent('Hi David,\n\nI know someone you should meet.\n\nHow I know her: \nWhat made me think of you two: \nDoes she know I am writing? \nHow to reach her, or me: \n');
+    const nudge = document.getElementById('nudge'), nudgeAddr = document.getElementById('nudgeAddr');
+    if (nudge && nudgeAddr) {
+      nudgeAddr.textContent = addr;
+      nudgeAddr.href = 'mailto' + String.fromCharCode(58) + addr;
+      nudgeAddr.addEventListener('click', () => track('email_click', { where: 'nudge' }));
+      const seen = () => { try { return sessionStorage.getItem('nudged') === '1'; } catch (e) { return false; } };
+      const mark = () => { try { sessionStorage.setItem('nudged', '1'); } catch (e) {} };
+      const hide = () => { nudge.classList.remove('show'); nudge.setAttribute('aria-hidden', 'true'); mark(); if (ticking) clearInterval(ticking); };
+      const t0 = Date.now(), mins = document.getElementById('nudgeMins'), tag = document.getElementById('nudgeTag');
+      const refresh = () => {
+        const m = Math.max(1, Math.floor((Date.now() - t0) / 60000));
+        mins.textContent = m === 1 ? 'a minute' : m + ' minutes';
+        tag.textContent = m + (m === 1 ? ' MINUTE IN' : ' MINUTES IN');
+      };
+      let ticking = null;
+      const show = () => {
+        if (seen() || (location.hash || '').slice(1) === 'transmission') return;
+        refresh(); ticking = setInterval(refresh, 60000);
+        nudge.classList.add('show'); nudge.setAttribute('aria-hidden', 'false'); mark(); track('nudge_shown');
+      };
+      document.getElementById('nudgeClose').addEventListener('click', hide);
+      nudge.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { track('nudge_click', { link: a.id || a.textContent.trim() }); hide(); }));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+      const banner = document.getElementById('consent');
+      const showWhenAnswered = () => { if (banner && !banner.hidden) setTimeout(showWhenAnswered, 15000); else show(); };
+      if (!seen()) setTimeout(showWhenAnswered, 60000);
+    }
     document.querySelectorAll('a.refer').forEach(b => {
       b.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + rSubject + '&body=' + rBody;
+      b.addEventListener('click', () => track('referral_click'));
     });
   })();
 
@@ -2363,7 +2568,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     const btn = document.getElementById('copyPitch'), txt = document.getElementById('pitchText'), note = document.getElementById('notePitch');
     if (btn && txt && note) {
       note.dataset.done = '\u2713 copied \u2014 paste it into a text or an email';
-      btn.addEventListener('click', () => copyText(txt.textContent.trim(), note));
+      btn.addEventListener('click', () => { copyText(txt.textContent.trim(), note); track('pitch_copy'); });
     }
     const fit = document.getElementById('fitcheck'), verdict = document.getElementById('fitVerdict');
     if (fit && verdict) {
@@ -2398,6 +2603,65 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     }
   })();
 
+  // time since the first wedding spreadsheet, in years, months, and days
+  (function () {
+    const el = document.getElementById('sincePlan');
+    if (!el) return;
+    function tick() {
+      const from = new Date(2019, 7, 31), now = new Date();
+      let y = now.getFullYear() - from.getFullYear(), m = now.getMonth() - from.getMonth(), d = now.getDate() - from.getDate();
+      if (d < 0) { m -= 1; d += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+      if (m < 0) { y -= 1; m += 12; }
+      const part = (n, w) => n + ' ' + w + (n === 1 ? '' : 's');
+      el.textContent = [part(y, 'year'), part(m, 'month'), part(d, 'day')].join(', ');
+    }
+    tick(); setInterval(tick, 60000);
+  })();
+
+  // the consent banner: shown until answered, unless the browser already says no
+  (function () {
+    const banner = document.getElementById('consent');
+    if (!banner) return;
+    const decide = (v) => {
+      try { localStorage.setItem('consent', v); } catch (e) {}
+      banner.hidden = true;
+      if (v === 'granted') {
+        loadAnalytics();
+        const act = document.querySelector('section.topic.active');
+        track('page_view', { page_title: act ? act.dataset.title : 'Start Here', page_path: '/#' + (act ? act.id : 'radius') });
+      }
+    };
+    document.getElementById('consentYes').addEventListener('click', () => decide('granted'));
+    document.getElementById('consentNo').addEventListener('click', () => decide('denied'));
+    if (consentState() === null) banner.hidden = false;
+    const reset = document.getElementById('consentReset');
+    if (reset) reset.addEventListener('click', () => {
+      try { localStorage.removeItem('consent'); } catch (e) {}
+      banner.hidden = false;
+      const n = document.getElementById('consentNote');
+      n.textContent = 'Cleared. The question is back at the bottom of the page.'; n.classList.add('show');
+      setTimeout(() => n.classList.remove('show'), 3000);
+    });
+  })();
+
+  // the call-me form: builds an email from the fields; nothing is stored on the site
+  (function () {
+    const f = document.getElementById('callForm');
+    if (!f) return;
+    f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const g = (id) => (document.getElementById(id).value || '').trim();
+      const name = g('cfName'), phone = g('cfPhone'), when = g('cfWhen'), note = g('cfNote');
+      const addr = ['david', String.fromCharCode(64), 'datedavid', String.fromCharCode(46), 'org'].join('');
+      const subject = encodeURIComponent('Please call me: ' + name);
+      const body = encodeURIComponent('Name: ' + name + '\nPhone: ' + phone + '\nBest time to call: ' + when + '\n\n' + note + '\n');
+      track('call_request');
+      location.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + subject + '&body=' + body;
+      const note2 = document.getElementById('cfNote2');
+      note2.textContent = 'Your email app should have opened with the request filled in. If it did not, write to the address above with the same details.';
+    });
+  })();
+
   // the chuppah date: nine months from the day the page is read, day clamped
   (function () {
     const el = document.getElementById('chuppahDate');
@@ -2418,7 +2682,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
   })();
 
   const btn00 = document.getElementById('copy00');
-  if (btn00) btn00.addEventListener('click', () => copyText(AUDIT00, document.getElementById('note00')));
+  if (btn00) btn00.addEventListener('click', () => { copyText(AUDIT00, document.getElementById('note00')); track('audit_copy', { audit: '00' }); });
 
   // live odometer: 370 km/s in the CMB frame
   const odo = document.getElementById('odo');

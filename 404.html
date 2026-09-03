@@ -7,10 +7,23 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0b1026">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b1026'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23e8b44a' stroke-width='4' stroke-dasharray='6 5'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23eae6d8'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Space+Grotesk:wght@400&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<!-- Google Analytics (G-GD340Z2HSF) loads only if the visitor consented on the main site -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  (function () {
+    var ok = false; try { ok = !navigator.globalPrivacyControl && localStorage.getItem('consent') === 'granted'; } catch (e) {}
+    if (!ok) return;
+    var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-GD340Z2HSF'; document.head.appendChild(sc);
+    gtag('js', new Date()); gtag('config', 'G-GD340Z2HSF', { page_title: '404', anonymize_ip: true, allow_google_signals: false, allow_ad_personalization_signals: false });
+  })();
+</script>
 <style>
+  @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('fonts/Fraunces.woff2') format('woff2'); }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/SpaceGrotesk-normal-400.woff2') format('woff2'); }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/SpaceGrotesk-normal-500.woff2') format('woff2'); }
+  @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/IBMPlexMono-normal-400.woff2') format('woff2'); }
+  @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/IBMPlexMono-normal-500.woff2') format('woff2'); }
   :root { --ink: #0b1026; --paper: #eae6d8; --faint: #8b93b8; --gold: #e8b44a; --line: rgba(234, 230, 216, 0.14); }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {

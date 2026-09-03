@@ -74,6 +74,12 @@ BANNED = ['load-bearing', 'load bearing', 'delve', 'testament to', 'paradigm shi
           "isn't just", 'not just about', 'game-chang', 'double-click on']
 hits = [b for b in BANNED if b in s.lower()]
 check('no banned phrases', not hits, str(hits))
+n4 = open(os.path.join(ROOT, '404.html'), encoding='utf-8').read()
+check('analytics id present on both pages', 'G-GD340Z2HSF' in s and 'G-GD340Z2HSF' in n4)
+check('analytics loads only after consent', 'src="https://www.googletagmanager.com' not in s and 'src="https://www.googletagmanager.com' not in n4 and "localStorage.getItem('consent')" in s)
+check('fonts self-hosted, no Google Fonts requests', 'fonts.googleapis.com' not in s and 'fonts.gstatic.com' not in s and 'fonts.googleapis.com' not in n4)
+fontfiles = set(re.findall(r"url\('(fonts/[^']+)'\)", s))
+check('font files exist', fontfiles and all(os.path.exists(os.path.join(ROOT, f)) for f in fontfiles), str(sorted(fontfiles)))
 
 # audit prompts may use em dashes; the visible prose keeps a budget
 patent_src = s.split('<div class="body patent">', 1)[1].split('</details>', 1)[0] if '<div class="body patent">' in s else ''
@@ -109,6 +115,16 @@ if os.path.exists(nf):
 check('robots.txt allows crawling and names the sitemap', os.path.exists(os.path.join(ROOT, 'robots.txt')) and 'Sitemap: https://datedavid.org/sitemap.xml' in open(os.path.join(ROOT, 'robots.txt')).read())
 check('sitemap.xml lists the canonical URL', os.path.exists(os.path.join(ROOT, 'sitemap.xml')) and '<loc>https://datedavid.org/</loc>' in open(os.path.join(ROOT, 'sitemap.xml')).read())
 
+# --- unlisted pages ------------------------------------------------------
+cc = os.path.join(ROOT, 'coronacrush', 'index.html')
+check('coronacrush page exists', os.path.exists(cc))
+if os.path.exists(cc):
+    ccs = open(cc, encoding='utf-8').read()
+    check('coronacrush is noindex', 'content="noindex' in ccs)
+    check('coronacrush email never in source', 'david@' not in ccs and 'mailto:' not in ccs)
+    sm = open(os.path.join(ROOT, 'sitemap.xml')).read() if os.path.exists(os.path.join(ROOT, 'sitemap.xml')) else ''
+    check('coronacrush is unlisted', 'coronacrush' not in s and 'coronacrush' not in sm)
+
 # --- metadata -------------------------------------------------------------
 for needle, name in [('property="og:image"', 'og:image'), ('property="og:title"', 'og:title'),
                      ('rel="canonical"', 'canonical'), ('name="description"', 'meta description'),
@@ -116,7 +132,7 @@ for needle, name in [('property="og:image"', 'og:image'), ('property="og:title"'
     check(f'metadata: {name}', needle in s)
 
 # --- javascript parses ----------------------------------------------------
-js = s.split('<script>', 1)[1].rsplit('</script>', 1)[0]
+js = s.rsplit('<script>', 1)[1].rsplit('</script>', 1)[0]  # the site's own script is the last one
 with tempfile.NamedTemporaryFile('w', suffix='.js', delete=False, encoding='utf-8') as f:
     f.write(js); jspath = f.name
 r = subprocess.run(['node', '--check', jspath], capture_output=True, text=True)

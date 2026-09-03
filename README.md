@@ -22,7 +22,10 @@ says so.
 ## How it works
 
 **One static file.** Everything is `index.html`: hand-written CSS, vanilla
-JavaScript, no framework, no build step, and no dependency beyond Google Fonts.
+JavaScript, no framework, no build step. The three typefaces are self-hosted
+from `fonts/`. Google Analytics is the only third party, and its script loads
+only after the visitor accepts the consent banner (sections are sent as page
+views, calls to action as events); the Privacy section documents the rest.
 `404.html` is the only other page; it redirects `/family`-style paths to
 `/#family` and otherwise links home.
 

@@ -114,11 +114,12 @@
     var box = host.nextElementSibling;
     if (!box || !box.classList.contains('mailfb')) {
       box = document.createElement('div'); box.className = 'mailfb';
-      box.innerHTML = '<p class="fine">If your mail app opened with this filled in, you\'re done. If nothing happened, copy it into any email.</p><pre></pre><div class="row"><a class="btn" href="#" role="button">Copy the email</a><span class="note"></span></div>';
+      box.innerHTML = '<p class="fine">If your mail app opened with this filled in, you\'re done. If nothing happened, your browser has no mail app wired up: open it in Gmail instead, or copy it into any email.</p><pre></pre><div class="row"><a class="btn gmail" target="_blank" rel="noopener" href="#">Open in Gmail</a><a class="btn" href="#" role="button">Copy the email</a><span class="note"></span></div>';
       host.insertAdjacentElement('afterend', box);
     }
     box.querySelector('pre').textContent = plain;
-    box.querySelector('a.btn').onclick = function (ev) {
+    box.querySelector('a.gmail').href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) + '&su=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    box.querySelectorAll('a.btn')[1].onclick = function (ev) {
       ev.preventDefault();
       var note = box.querySelector('.note');
       var done = function (ok) { note.textContent = ok ? '\u2713 copied' : 'copy failed'; setTimeout(function () { note.textContent = ''; }, 2500); };

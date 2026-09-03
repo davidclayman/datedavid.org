@@ -9,9 +9,9 @@ number behind it, timestamped in the commit log.
 
 The dating radius is two astronomical seconds: two seconds of the Sun's motion
 relative to the cosmic microwave background, about 460 miles or 740 km. An
-"airline remix" converts that distance into a wall-clock travel budget (about
+"travel reach" rule converts that distance into a wall-clock travel budget (about
 eight hours, benchmarked on the author's EV with its charging stops) so any US
-city reachable nonstop inside the same clock also qualifies. Around that
+or Canadian city reachable nonstop inside the same clock also qualifies. Around that
 frame sits a full disclosure of the life plan: family size, the marriage
 timeline, money, geography, health, dealbreakers, and an age range stated as a
 function of family feasibility rather than taste.
@@ -66,7 +66,7 @@ copied text carries the age without the page stating a birthdate.
 
 **Live widgets.** The cosmic odometer, the ticking fractional age, the grandparent
 clock with adjustable assumption sliders, the age-range ceiling, the nine-month
-chuppah date, and the airline-remix map are all inline JavaScript. The map is
+chuppah date, and the Travel Reach map are all inline JavaScript. The map is
 generated SVG over a simplified lower-48 outline.
 
 **Contact.** The email address is assembled at view time and never appears in the

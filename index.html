@@ -260,6 +260,15 @@
   .mailfb .fine { font-size: 0.82rem; color: var(--faint); margin-bottom: 0.5rem; }
   .mailfb .pitch-text { font-size: 0.9rem; }
 
+  .skip {
+    position: absolute; left: 16px; top: -100px; z-index: 20;
+    background: var(--gold); color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem;
+    letter-spacing: 0.08em; padding: 0.6rem 0.9rem; border-radius: 4px; text-decoration: none;
+  }
+  .skip:focus { top: 12px; outline: 2px solid var(--paper); outline-offset: 2px; }
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  main:focus { outline: none; }
+
   .sidenav { display: none; }
   @media (min-width: 1180px) {
     nav.topics { display: none; }
@@ -684,6 +693,7 @@
   <div class="rail" id="navRail"></div>
 </nav>
 
+<a class="skip" href="#content">Skip to content</a>
 <aside class="sidenav" id="sideNav" aria-label="Sections"></aside>
 <a class="ribbon" id="ribbon" href="#referrals" aria-label="Amateur Matchmaker Prize: $2,000 for the introduction that leads to a first child. Read the Referrals page.">Amateur Matchmaker Prize<small>$2,000 · Referrals ›</small></a>
 <div class="nudge" id="nudge" role="dialog" aria-label="A reminder to reach out" aria-hidden="true">
@@ -698,7 +708,7 @@
   <div class="row"><button class="copy" type="button" id="consentYes">Yes, count me</button><button class="copy" type="button" id="consentNo">No, thanks</button></div>
 </div>
 
-<main class="wrap">
+<main class="wrap" id="content" tabindex="-1">
 
   <!-- ============ THE RADIUS ============ -->
   <section class="topic" id="radius" data-title="Start Here" data-chapter="Start here">
@@ -1747,6 +1757,7 @@
     </details>
     <div id="ledger"></div>
     <p class="hint">Trust, or verify, or both. Dealer's choice.</p>
+    <p class="hint" id="auditRecheck">Every prompt on this ledger was last run in full on <strong>2026-09-03</strong>; the corrections are logged on <a href="#revisions">Revisions</a>. Next full recheck due <strong>2026-12-03</strong>, since flight schedules, prices, and life tables all drift.</p>
   </section>
 
   <!-- ============ YEAR TEN ============ -->
@@ -1859,6 +1870,35 @@
     <p class="crosslink">The claims themselves: <a href="#audits">the Audit Ledger</a>. The revisions the editor helped make: <a href="#revisions">Revisions</a>.</p>
   </section>
 
+  <!-- ============ GLOSSARY ============ -->
+  <section class="topic" id="glossary" data-title="Glossary" data-chapter="Trust, but verify">
+    <h2 class="head">Glossary</h2>
+    <p class="subhead">The site leans on words it never defines. Here they are, briefly, for the reader who didn't grow up with them and the friend a yente forwarded this to.</p>
+    <ul class="items">
+      <li><span class="k">Ketubah</span><span class="v">The Jewish marriage contract, read and signed at the wedding. Among other things it records the husband's financial obligation to his wife if the marriage ends by divorce or his death: 200 zuz for a first marriage, 100 for a widow, divorcée, or convert. Zuz is an ancient silver coin; the sum is symbolic today but the document is binding in a Jewish court.</span></li>
+      <li><span class="k">Kashrut, kosher, glatt</span><span class="v">Kashrut is the body of Jewish dietary law; kosher food follows it. No pork or shellfish, meat and dairy kept apart, meat slaughtered and inspected in a prescribed way. Glatt is a stricter standard for kosher meat. "Kosher-style" means keeping the broad rules without certification.</span></li>
+      <li><span class="k">Shabbat, havdalah</span><span class="v">The Sabbath, from Friday sundown to Saturday nightfall: a day of rest with traditional prohibitions on work, and in observant homes on electricity, driving, and screens. Havdalah is the short ceremony that ends it.</span></li>
+      <li><span class="k">Minyan, the three daily services</span><span class="v">A minyan is the quorum of ten adults required for communal prayer. Observant Jewish men pray three fixed services a day, morning, afternoon, and evening; the Dealbreakers page is about those three.</span></li>
+      <li><span class="k">Halacha</span><span class="v">Jewish law: the accumulated rulings on how to live, drawn from the Torah, the Talmud, and later authorities. "Halachic" means according to that law.</span></li>
+      <li><span class="k">The streams</span><span class="v">Reform, Conservative, and Orthodox are the main American denominations, in roughly rising order of traditional observance; Modern Orthodox is the wing of Orthodoxy engaged with secular life; Haredi or ultra-Orthodox communities sit beyond it. "Traditional" and "Just Jewish" are what people call themselves when they'd rather not pick a stream.</span></li>
+      <li><span class="k">Ashkenazi, Sephardi, Mizrahi</span><span class="v">Jewish communities by heritage: Ashkenazi from Central and Eastern Europe, Sephardi from Spain and Portugal and their diaspora, Mizrahi from the Middle East and North Africa. Customs differ, including whether a child may be named after a living relative. My father's side is Ashkenazi; my mother was born in Morocco.</span></li>
+      <li><span class="k">Brit milah, mohel, metzitzah b'peh</span><span class="v">Brit milah is ritual circumcision, traditionally on a boy's eighth day, performed by a mohel. Metzitzah b'peh is a rare and controversial step in which the mohel uses his mouth; it has caused infections and is avoided by medicalized practice. The Before the Chuppah page explains my position.</span></li>
+      <li><span class="k">Bar mitzvah, bat mitzvah</span><span class="v">The coming of age at thirteen (twelve for girls in some communities), when a child becomes responsible for the commandments, usually marked by reading from the Torah in synagogue and, often, a party.</span></li>
+      <li><span class="k">Chuppah</span><span class="v">The canopy a Jewish couple marries under, and by extension the wedding itself. "Before the Chuppah" means before the wedding.</span></li>
+      <li><span class="k">Get, agunah, halachic prenup</span><span class="v">A get is a Jewish bill of divorce, which under Jewish law only the husband can grant. A woman refused one is an agunah, "chained," unable to remarry within the tradition. A halachic prenuptial agreement makes refusal costly enough that it doesn't happen; I commit to signing one on Before the Chuppah.</span></li>
+      <li><span class="k">Pikuach nefesh</span><span class="v">The principle that saving a life overrides nearly every other commandment. It is why an observant doctor works on Shabbat, and it appears on the Shelf as one root of my civil-disobedience streak.</span></li>
+      <li><span class="k">Beth Din</span><span class="v">A Jewish religious court, of three judges, which handles divorces, conversions, and disputes among people who accept its authority. The Beth Din of America publishes the standard halachic prenup.</span></li>
+      <li><span class="k">Hebrew school, day school</span><span class="v">Hebrew school is part-time Jewish education, typically afternoons or Sundays, alongside public school. A Jewish day school is a full-time private school teaching secular and Jewish subjects; the Education page weighs its cost.</span></li>
+      <li><span class="k">Yente</span><span class="v">Yiddish for a busybody, softened over time into "matchmaker," the sense the Referrals page uses. Amateurs welcome.</span></li>
+      <li><span class="k">JScreen, carrier screening</span><span class="v">Carrier screening is a genetic test for recessive conditions a healthy person can pass to children if the other parent carries the same one. JScreen is a nonprofit program that offers it, with a panel weighted toward conditions common in Jewish populations. My results are on the Family page.</span></li>
+      <li><span class="k">529</span><span class="v">An American tax-advantaged savings account for education, named for its section of the tax code. Growth is untaxed when spent on tuition and related costs; the beneficiary can be changed within a family.</span></li>
+      <li><span class="k">FIRE</span><span class="v">"Financial independence, retire early": a community and a body of arithmetic about saving enough that work becomes optional. The Work page uses its math to describe semi-retirement.</span></li>
+      <li><span class="k">Stable matching</span><span class="v">A pairing of everyone in a market such that no two people would both rather be with each other than with their assigned partners. The idea won a Nobel Prize in economics in 2012 and organizes the Matching page.</span></li>
+      <li><span class="k">The cosmic microwave background</span><span class="v">The faint afterglow of the early universe, filling the sky in every direction. Because it is nearly the same everywhere, our motion through it can be measured, about 370 kilometers a second; that speed times two seconds is the radius on the front page.</span></li>
+    </ul>
+    <p class="crosslink">A term I've missed? <a href="#feedback">The Feedback Clause</a> covers vocabulary too.</p>
+  </section>
+
   <!-- ============ PRIVACY ============ -->
   <section class="topic" id="privacy" data-title="Privacy" data-chapter="Trust, but verify">
     <h2 class="head">Privacy</h2>
@@ -1878,7 +1918,7 @@
   <!-- ============ QUESTIONS FOR YOU ============ -->
   <section class="topic" id="questions" data-title="Questions for You" data-chapter="Your turn">
     <h2 class="head">Questions for You</h2>
-    <p class="subhead">Forty-two sections about me is a monologue. This is the interview I'm hoping for. You may bring notes.</p>
+    <p class="subhead">Forty-four sections about me is a monologue. This is the interview I'm hoping for. You may bring notes.</p>
     <ul class="items">
       <li>
         <span class="tag">Question 01</span>
@@ -1922,6 +1962,19 @@
       </li>
     </ul>
     <p class="crosslink">Answers, in any order, at any length: <a href="#transmission">Send a Transmission</a>. The Feedback Clause pays interest on all of them.</p>
+  </section>
+
+  <!-- ============ NOTES RECEIVED ============ -->
+  <section class="topic" id="notes" data-title="Notes Received" data-chapter="Your turn">
+    <h2 class="head">Notes Received</h2>
+    <p class="subhead">The Feedback Clause asks every reader for two paragraphs. This is where they go, the unflattering ones included, so the loop this site keeps talking about actually closes in public.</p>
+    <div class="prose">
+      <p><strong>The rule.</strong> Any note sent under the Feedback Clause may be posted here, anonymized: no names, no cities, no details that could identify the writer, and nothing at all if she asks. I'll post what I heard, what I changed because of it, and what I heard and chose not to change, with the reason. Praise gets no special treatment; the notes I most want on this page are the ones that stung.</p>
+      <p><strong>Why publish them.</strong> The Selection Effects page admits that everyone who writes back has already survived every filter on the site, so my private inbox will flatter the design. Publishing the notes is the correction: it lets a reader see what people like her actually said, not just what I decided to keep.</p>
+      <p><strong>So far.</strong> None yet. The site went live in September 2026, and this page will fill as the notes arrive. If you'd like to be first, the price is two or three honest paragraphs, and you'll get the same care back.</p>
+    </div>
+    <ul class="items" id="notesList" hidden></ul>
+    <p class="crosslink">Send one: <a href="#transmission">Transmission</a>. The clause itself: <a href="#feedback">Feedback</a>. What I've already changed my mind about: <a href="#revisions">Revisions</a>.</p>
   </section>
 
   <!-- ============ REFERRALS ============ -->
@@ -2111,13 +2164,14 @@ He's clear about what he wants, which is to marry and raise two or three kids so
 
   function route() {
     const raw = (location.hash || '#radius').slice(1);
+    if (raw === 'content') { const m = document.getElementById('content'); if (m) m.focus(); return; }
     const audit = /^audit-\d{2}$/.test(raw) ? raw : null;
     const id = audit ? 'audits' : (raw === 'saferyes' ? 'safeword' : raw);
     const el = document.getElementById(id);
     const target = el && el.classList.contains('topic') ? id : 'radius';
     sections.forEach(s => s.classList.toggle('active', s.id === target));
-    rail.querySelectorAll('a').forEach(a => a.classList.toggle('active', a.dataset.target === target));
-    if (side) side.querySelectorAll('a').forEach(a => a.classList.toggle('active', a.dataset.target === target));
+    rail.querySelectorAll('a').forEach(a => { const on = a.dataset.target === target; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    if (side) side.querySelectorAll('a').forEach(a => { const on = a.dataset.target === target; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (ribbon) ribbon.classList.toggle('hidden', target === 'referrals' || ribbonDone());
     const act = rail.querySelector('a.active');
     if (act) act.scrollIntoView({ inline: 'center', block: 'nearest' });

@@ -42,6 +42,17 @@ router shows one section per `#id` and builds the nav rail from DOM order. The
 Contents page groups the sections into chapters from the `data-chapter`
 attribute. Add a section, tag its chapter, and both update themselves.
 
+**Recheck cadence.** The Audit Ledger states when every prompt was last run in
+full and when the next full recheck is due (quarterly). The test suite prints a
+warning, not a failure, once that date passes. Notes Received publishes
+anonymized reader feedback; the Glossary defines the Jewish and technical terms
+the site uses.
+
+**Accessibility.** A skip link (`#content`) jumps past the navigation and focuses
+`main`; every interactive element has a visible focus style; the active nav link
+carries `aria-current`; sliders and the map carry labels; motion respects
+`prefers-reduced-motion`.
+
 **The Audit Ledger.** Claims map to numbered `{ title, claim, prompt }` entries in
 the `AUDITS` array in the inline script. Cards render automatically and
 `#audit-NN` deep links open and scroll to a card. Audit 00 is a static meta-audit

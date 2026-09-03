@@ -29,7 +29,7 @@ audits_src = s.split('const AUDITS = [', 1)[1].split('\n  ];', 1)[0]
 n_audits = len(re.findall(r'\n      title:', audits_src))
 check('audit count sane', 10 <= n_audits <= 40, f'found {n_audits}')
 
-valid = set(ids) | {f'audit-{i:02d}' for i in range(0, n_audits + 1)}  # 00 is the static meta-audit
+valid = set(ids) | {f'audit-{i:02d}' for i in range(0, n_audits + 1)} | {'content'}  # 00 is the static meta-audit; content is the skip-link target
 hrefs = set(re.findall(r'href="#([a-zA-Z0-9-]+)"', s))
 bad = hrefs - valid
 check('internal links resolve', not bad, f'dangling: {sorted(bad)}')
@@ -124,6 +124,14 @@ if os.path.exists(cc):
     check('coronacrush email never in source', 'david@' not in ccs and 'mailto:' not in ccs)
     sm = open(os.path.join(ROOT, 'sitemap.xml')).read() if os.path.exists(os.path.join(ROOT, 'sitemap.xml')) else ''
     check('coronacrush is unlisted', 'coronacrush' not in s and 'coronacrush' not in sm)
+
+# --- audit recheck schedule (warns, never fails) --------------------------
+import datetime
+m = re.search(r'Next full recheck due <strong>(\d{4}-\d{2}-\d{2})</strong>', s)
+check('ledger states a recheck date', bool(m))
+if m and datetime.date.fromisoformat(m.group(1)) < datetime.date.today():
+    print('WARN  the audit recheck date has passed: rerun the ledger and update the dates on the Audit Ledger page')
+check('skip link and focusable main', 'class="skip" href="#content"' in s and 'id="content" tabindex="-1"' in s)
 
 # --- metadata -------------------------------------------------------------
 for needle, name in [('property="og:image"', 'og:image'), ('property="og:title"', 'og:title'),

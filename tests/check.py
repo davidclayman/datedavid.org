@@ -124,6 +124,14 @@ if os.path.exists(cc):
     check('coronacrush email never in source', 'david@' not in ccs and 'mailto:' not in ccs)
     sm = open(os.path.join(ROOT, 'sitemap.xml')).read() if os.path.exists(os.path.join(ROOT, 'sitemap.xml')) else ''
     check('coronacrush is unlisted', 'coronacrush' not in s and 'coronacrush' not in sm)
+sb = os.path.join(ROOT, 'shabbat', 'index.html')
+check('shabbat page exists', os.path.exists(sb))
+if os.path.exists(sb):
+    sbs = open(sb, encoding='utf-8').read()
+    check('shabbat is noindex', 'content="noindex' in sbs)
+    check('shabbat email never in source', 'david@' not in sbs and 'mailto:' not in sbs)
+    sm2 = open(os.path.join(ROOT, 'sitemap.xml')).read() if os.path.exists(os.path.join(ROOT, 'sitemap.xml')) else ''
+    check('shabbat is unlisted', 'href="/shabbat' not in s and 'href="shabbat' not in s and '/shabbat' not in sm2)
 
 # --- audit recheck schedule (warns, never fails) --------------------------
 import datetime

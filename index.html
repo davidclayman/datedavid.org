@@ -1243,7 +1243,7 @@
 
     <div class="radius clockbox">
       <div class="big"><span id="clkKidsOverlap">36.1</span> <span>yrs with our children</span></div>
-      <div class="big"><span id="clkOverlap">4.1</span> <span>yrs with our grandkids</span></div>
+      <div class="big"><span id="clkOverlap">4.1</span> <span id="clkOverlapLabel">yrs with our grandkids</span></div>
       <div class="sub">expected overlaps under typical US male life expectancy (~78), given the assumptions below</div>
       <div class="ctl">
         <label>DELAY UNTIL OUR FIRST CHILD ARRIVES: <strong><span id="valDelay">1.50</span> YRS FROM TODAY</strong>
@@ -2692,7 +2692,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
   // the grandparent clock: overlap with grandkids, declining live,
   // with adjustable assumptions (delay to first child; age kids finish having kids)
   (function () {
-    const ids = ['proseAge','agerangeAge','agerangeCeil','clkKidsOverlap','clkOverlap','clkAge','clkFirst','clkMeet','clkHs','clkCol','clkGrad','sldDelay','sldKids','valDelay','valKids'];
+    const ids = ['proseAge','agerangeAge','agerangeCeil','clkKidsOverlap','clkOverlap','clkOverlapLabel','clkAge','clkFirst','clkMeet','clkHs','clkCol','clkGrad','sldDelay','sldKids','valDelay','valKids'];
     const el = Object.fromEntries(ids.map(i => [i, document.getElementById(i)]));
     if (ids.some(i => !el[i])) return;
     const born = Date.UTC(1986, 2, 31, 5, 0, 0);
@@ -2708,7 +2708,9 @@ Be honest rather than kind. The author wrote this prompt himself and published i
       el.agerangeAge.textContent = age.toFixed(6);
       el.agerangeCeil.textContent = (age + 5).toFixed(6);
       el.clkKidsOverlap.textContent = (LE - age - delay).toFixed(7);
-      el.clkOverlap.textContent = (LE - age - delay - kidsDone).toFixed(7);
+      const gk = LE - age - delay - kidsDone;
+      el.clkOverlap.textContent = Math.abs(gk).toFixed(7);
+      el.clkOverlapLabel.textContent = gk >= 0 ? 'yrs with our grandkids' : 'yrs short of meeting our grandkids';
       el.clkAge.textContent = age.toFixed(4);
       el.clkFirst.textContent = (age + delay).toFixed(1);
       el.clkMeet.textContent = (age + delay + kidsDone).toFixed(1);

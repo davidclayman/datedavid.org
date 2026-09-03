@@ -192,6 +192,8 @@
   .nudge .addr { font-family: 'IBM Plex Mono', monospace; color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
   .nudge .row { margin-top: 0.8rem; gap: 0.7rem; }
   .nudge .copy { padding: 0.5rem 0.85rem; }
+  .nudge .mailfb { margin: 0.8rem 0 0; }
+  .nudge .mailfb .pitch-text { font-size: 0.85rem; max-height: 9rem; overflow: auto; }
   .nudge .close {
     position: absolute; top: 0.45rem; right: 0.6rem;
     background: none; border: 0; color: var(--faint); font-size: 1.2rem; line-height: 1; cursor: pointer; padding: 0.2rem 0.4rem;
@@ -667,7 +669,7 @@
   <button class="close" type="button" id="nudgeClose" aria-label="Dismiss">×</button>
   <span class="tag" id="nudgeTag">2 MINUTES IN</span>
   <strong>Thanks for spending <span id="nudgeMins">two minutes</span> with me.</strong> That's usually a sign you care enough to keep reading, so one reminder before you do: you can just write. Nothing here needs to be finished first. One line to <a class="addr" id="nudgeAddr" href="#transmission">the address</a> is a perfectly good first message, and a video call is one request away.
-  <div class="row"><a class="copy bookcall" href="#transmission">Request a video call</a><a class="copy" id="nudgeWrite" href="#transmission">Send a transmission</a></div>
+  <div class="row"><a class="copy bookcall" href="#transmission">Request a video call</a><a class="copy" id="nudgeWrite" href="#transmission">Write to me</a></div>
 </div>
 <div class="consent" id="consent" role="region" aria-label="Analytics consent" hidden>
   <span class="tag">ONE QUESTION FIRST</span>
@@ -2637,6 +2639,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     if (nudge && nudgeAddr) {
       nudgeAddr.textContent = addr;
       nudgeAddr.href = 'mailto' + String.fromCharCode(58) + addr;
+      document.getElementById('nudgeWrite').href = 'mailto' + String.fromCharCode(58) + addr;
       nudgeAddr.addEventListener('click', () => track('email_click', { where: 'nudge' }));
       const seen = () => { try { return sessionStorage.getItem('nudged') === '1'; } catch (e) { return false; } };
       const mark = () => { try { sessionStorage.setItem('nudged', '1'); } catch (e) {} };
@@ -2656,13 +2659,8 @@ Be honest rather than kind. The author wrote this prompt himself and published i
       document.getElementById('nudgeClose').addEventListener('click', hide);
       nudge.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
         track('nudge_click', { link: a.id || a.textContent.trim() });
-        hide();
-        // a mail link from the card: go to Transmission and reveal the same email there, for computers with no mail app
-        if ((a.getAttribute('href') || '').indexOf('mailto') === 0) {
-          const twin = a.classList.contains('bookcall') ? document.getElementById('bookLink') : document.getElementById('contactLink');
-          location.hash = '#transmission';
-          setTimeout(() => { if (twin) { mailFallback(twin); twin.scrollIntoView({ block: 'center' }); } }, 50);
-        }
+        // mail links reveal their text inside the card and leave the reader where she is; anything else dismisses the card
+        if ((a.getAttribute('href') || '').indexOf('mailto') !== 0) hide();
       }));
       document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
       const banner = document.getElementById('consent');
@@ -2817,7 +2815,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     const params = new URLSearchParams(q === -1 ? '' : href.slice(q + 1));
     const subject = params.get('subject') || '', body = params.get('body') || '';
     const plain = 'To: ' + to + (subject ? '\nSubject: ' + subject : '') + (body ? '\n\n' + body : '') + '\n';
-    let host = a.closest('.nudge') ? null : a.closest('li, p, .row, form');
+    let host = a.closest('.nudge') ? a.closest('.nudge').querySelector('.row') : a.closest('li, p, .row, form');
     if (!host) return;
     let box = host.nextElementSibling;
     if (!box || !box.classList.contains('mailfb')) {

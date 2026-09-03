@@ -223,6 +223,19 @@
   .nudge .close:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
   @media (prefers-reduced-motion: reduce) { .nudge { transition: none; } }
   @media (max-width: 640px) { .nudge { bottom: 64px; padding: 1rem 1rem 0.9rem; font-size: 0.9rem; } }
+  /* wide desktops: park the card in the unused right margin beside the column instead of over it */
+  @media (min-width: 1280px) {
+    .nudge {
+      left: calc(50% + 340px + 28px);
+      right: auto;
+      top: 50%;
+      bottom: auto;
+      width: min(340px, calc(50vw - 340px - 60px));
+      transform: translate(0, calc(-50% + 12px));
+      font-size: 0.9rem;
+    }
+    .nudge.show { transform: translate(0, -50%); }
+  }
 
   .consent {
     position: fixed;
@@ -538,8 +551,10 @@
   .audit .claim { padding-top: 1rem; font-size: 0.92rem; color: #cfd3e6; max-width: 58ch; }
   .audit .row { margin-top: 1rem; display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; }
 
-  button.copy {
+  button.copy, a.copy {
     appearance: none;
+    display: inline-block;
+    text-decoration: none;
     border: 1px solid var(--gold);
     background: transparent;
     color: var(--gold);
@@ -551,8 +566,8 @@
     cursor: pointer;
     transition: background 0.18s, color 0.18s;
   }
-  button.copy:hover { background: var(--gold); color: var(--ink); }
-  button.copy:focus-visible { outline: 2px solid var(--paper); outline-offset: 3px; }
+  button.copy:hover, a.copy:hover { background: var(--gold); color: var(--ink); }
+  button.copy:focus-visible, a.copy:focus-visible { outline: 2px solid var(--paper); outline-offset: 3px; }
   .copied-note {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.75rem;

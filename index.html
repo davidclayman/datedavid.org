@@ -441,22 +441,22 @@
   .clockbox .big { font-size: clamp(1.9rem, 5.5vw, 2.9rem); }
   .clockbox .big + .big { margin-top: 0.35rem; }
   .clockbox .odometer a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
-  .clockbox .ctl {
+  .clockbox .ctl, .chartbox .ctl {
     margin-top: 1.2rem;
     padding-top: 1.1rem;
     border-top: 1px dashed var(--line);
     display: grid;
     gap: 0.9rem;
   }
-  .clockbox .ctl label {
+  .clockbox .ctl, .chartbox .ctl label {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.72rem;
     letter-spacing: 0.08em;
     color: var(--faint);
     display: block;
   }
-  .clockbox .ctl strong { color: var(--gold); font-weight: 500; font-variant-numeric: tabular-nums; }
-  .clockbox .ctl input[type="range"] {
+  .clockbox .ctl, .chartbox .ctl strong { color: var(--gold); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .clockbox .ctl, .chartbox .ctl input[type="range"] {
     width: 100%;
     margin-top: 0.45rem;
     accent-color: var(--gold);
@@ -476,7 +476,7 @@
     position: relative;
   }
   .chartbox::before {
-    content: "TRAVEL REACH · LOWER 48 AND CANADA · NONSTOPS ONLY";
+    content: attr(data-label);
     position: absolute;
     top: -0.62em;
     left: 1.1rem;
@@ -489,6 +489,8 @@
   }
   .chartbox { overflow-x: auto; }
   .chartbox svg { width: 100%; min-width: 640px; height: auto; display: block; }
+  .chartbox .ctl { margin: 0.6rem 0.4rem 0.4rem; padding-top: 0.9rem; }
+  .chartbox .fine { margin: 0.5rem 0.4rem 0; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.12em; color: var(--faint); }
 
   .audit {
     scroll-margin-top: 70px;
@@ -774,7 +776,7 @@
       <p><strong>Canada counts.</strong> The clock doesn't check passports, and I hold three. Toronto is about a 290-mile drive from Cleveland, inside the driving radius outright, and roughly a 90-minute nonstop when I don't feel like driving; from South Florida it's about <span class="num">3:15</span>. Montreal and Ottawa are about <span class="num">3:30</span> from Florida and short hops from Cleveland, well inside the line, and Quebec City works by landing in Montreal and driving the last three hours, which comes out right about on the clock. So, said plainly: for a promising match, Toronto and Quebec both fit the travel budget. I worked in Montreal once, with enough practice I can get my French close to bilingual, and dating someone in Canada would be very welcome, not merely permitted. The western provinces sit where the Pacific Northwest does: Calgary about on the line from Florida, Vancouver just over, and neither with a nonstop from Cleveland.</p>
       <p><strong>The fine print.</strong> Nonstops only, since a single connection detonates the whole budget, and the real constraint is now the route map: the clock is generous, but a city only qualifies if somebody actually flies there nonstop from South Florida or Cleveland, and plenty of mid-sized cities on both sides of the border have no such flight. Airline schedules change quarterly, so the qualifying set breathes the way the original radius breathes with Earth's orbit. And the chart below is exactly that, a chart: dots on a projection, drawn to make a point.</p>
     </div>
-    <div class="chartbox"><div id="remixMap"></div></div>
+    <div class="chartbox" data-label="TRAVEL REACH · LOWER 48 AND CANADA · NONSTOPS ONLY"><div id="remixMap"></div></div>
     <p class="crosslink">The drive math, the overhead chain, and the block times: <a href="#audit-12">Audit 12</a>.</p>
   </section>
 
@@ -1098,7 +1100,22 @@
         <span class="v">A blank version of all of the above, for you to fill in at whatever pace and depth you like. None of it is required. All of it is welcome, and the family tree especially, since I intend to learn your cousins' names before they learn mine.</span>
       </li>
     </ul>
-    <p class="crosslink">The travel math behind showing up at all: <a href="#remix">Travel Reach</a>. The housing line: <a href="#budget">Budget</a>. What "girlfriend" is the first step toward: <a href="#budget">the six months</a>.</p>
+    <h3 class="head-sm">After the first weekend: the relocation ladder</h3>
+    <p class="subhead">If we start in different cities and it makes more sense for me to become local to you, this is the ladder I'd propose to climb. Illustrative, not strict: every rung moves with your comfort.</p>
+    <div class="prose">
+      <p><strong>The proposal.</strong> Second and third dates, flown in for. Then a weekly Airbnb in your city, a week or two at a time, so we find out what Tuesdays are like without anyone signing anything. Then a month-to-month furnished apartment through FurnishedFinder, which is where "I'm in town" becomes "I live here." Then, when you're ready and not before, a one-year lease, which becomes our first home if the story goes the way I hope and gets sublet if it doesn't. Engagement, the courthouse, and the big cheap party sit wherever they land; the Home page's evidence-leaning plan is separate addresses until the ring, so moving in together is the last rung, at the ring or the chuppah, our call together.</p>
+      <p><strong>The chart is a sketch.</strong> The bars below are a picture of one plausible year, not a schedule anyone signs. Drag the slider and the whole ladder stretches or compresses to your pace: nine months if we both already know, eighteen or more if you'd rather be sure, and every rung is reversible until the last one. The only thing that doesn't move is the order, because each step is cheaper than the next and I don't take a step you haven't asked for. My remote job and the <a href="#home">no-rent home base</a> are what make the ladder affordable; the <a href="#budget">housing line</a> pays for the rungs.</p>
+    </div>
+    <div class="chartbox" data-label="THE RELOCATION LADDER · ILLUSTRATIVE · MOVES WITH HER COMFORT">
+      <div id="ladder"></div>
+      <div class="ctl">
+        <label>YOUR PACE: CHUPPAH IN ABOUT <strong><span id="valPace">12</span> MONTHS</strong> FROM THE FIRST DATE
+          <input type="range" id="sldPace" min="9" max="24" step="1" value="12" aria-label="Months from the first date to the wedding, which stretches or compresses every phase">
+        </label>
+      </div>
+      <p class="fine">ORDER FIXED, DATES NOT · EVERY RUNG REVERSIBLE UNTIL THE LAST · SLIDE TO YOUR PACE</p>
+    </div>
+    <p class="crosslink">The travel math behind showing up at all: <a href="#remix">Travel Reach</a>. The housing line: <a href="#budget">Budget</a>. What "girlfriend" is the first step toward: <a href="#budget">the six months</a>. Why separate addresses until the ring: <a href="#home">Home</a>.</p>
   </section>
 
   <!-- ============ FEEDBACK ============ -->
@@ -2752,6 +2769,68 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     });
 
     host.innerHTML = `<svg viewBox="0 0 1000 705" role="img" aria-label="Chart of the United States and southern Canada showing cities reachable nonstop within the eight-hour travel budget, which is nearly the whole country including Denver, Phoenix, Las Vegas, San Diego, and Los Angeles, plus Toronto and Montreal; San Francisco sits on the line and Portland and Seattle just outside from Florida">${s}</svg>`;
+  })();
+
+  // ============================================================
+  // THE RELOCATION LADDER: an illustrative Gantt chart that stretches with her pace
+  // ============================================================
+  (function () {
+    const host = document.getElementById('ladder'), sld = document.getElementById('sldPace'), val = document.getElementById('valPace');
+    if (!host || !sld) return;
+    const MONO = 'font-family="IBM Plex Mono, monospace"';
+    const GOLD = '#e8b44a', PAPER = '#eae6d8', FAINT = '#8b93b8';
+    // phases in "k-months": k = H / 12, so a 12-month horizon reads in plain months.
+    // fixed:true phases keep their real length whatever the pace.
+    const PHASES = [
+      { n: 'Screening call, virtual date',            s: 0,    e: 0.25, fixed: true },
+      { n: 'First weekend in your city',              s: 0.25, e: 0.5,  fixed: true },
+      { n: 'Second and third dates, flown in',        s: 0.5,  e: 1.5 },
+      { n: 'Weekly Airbnb, a week or two at a time',  s: 1.5,  e: 3 },
+      { n: 'Month-to-month furnished apartment',      s: 3,    e: 7 },
+      { n: 'One-year lease, when you\u2019re ready',   s: 7,    e: 7, lease: true },
+      { n: 'Engagement window (hoped for early)',     s: 6,    e: 9, band: true },
+      { n: 'Courthouse, then the big cheap party',    s: 9,    e: 12 },
+      { n: 'Move in together: ring or chuppah',       s: 9,    e: 12, movein: true }
+    ];
+    function draw() {
+      const H = +sld.value, k = H / 12;
+      val.textContent = H;
+      const span = Math.ceil((7 * k + 12 + 1) / 3) * 3;  // axis runs past the end of the lease
+      const W = 1000, L = 300, R = 24, T = 30, ROW = 34, B = 46;
+      const HGT = T + PHASES.length * ROW + B;
+      const X = m => L + (m / span) * (W - L - R);
+      const m = ph => ({ s: ph.fixed ? ph.s : ph.s * k, e: ph.lease ? ph.s * k + 12 : (ph.fixed ? ph.e : ph.e * k) });
+      let s = '';
+      for (let mo = 0; mo <= span; mo += 3) {
+        s += `<line x1="${X(mo).toFixed(1)}" y1="${T - 6}" x2="${X(mo).toFixed(1)}" y2="${HGT - B + 6}" stroke="${FAINT}" stroke-width="1" opacity="${mo % 12 === 0 ? 0.35 : 0.15}"/>`;
+        s += `<text x="${X(mo).toFixed(1)}" y="${T - 12}" ${MONO} font-size="11" fill="${FAINT}" text-anchor="middle">${mo === 0 ? 'FIRST DATE' : (mo % 12 === 0 ? 'YEAR ' + (mo / 12) : 'MO ' + mo)}</text>`;
+      }
+      PHASES.forEach((ph, i) => {
+        const y = T + i * ROW + ROW / 2, r = m(ph);
+        const x1 = X(r.s), x2 = X(Math.min(r.e, span));
+        s += `<text x="${L - 14}" y="${(y + 4).toFixed(1)}" ${MONO} font-size="12.5" fill="${ph.movein ? GOLD : PAPER}" text-anchor="end">${ph.n}</text>`;
+        if (ph.band) {
+          s += `<rect x="${x1.toFixed(1)}" y="${y - 9}" width="${(x2 - x1).toFixed(1)}" height="18" rx="3" fill="none" stroke="${GOLD}" stroke-dasharray="4 3" opacity="0.8"/>`;
+          s += `<circle cx="${x1.toFixed(1)}" cy="${y}" r="4" fill="${GOLD}"/>`;
+        } else if (ph.movein) {
+          s += `<rect x="${x1.toFixed(1)}" y="${y - 9}" width="${(x2 - x1).toFixed(1)}" height="18" rx="3" fill="none" stroke="${GOLD}" stroke-dasharray="2 3" opacity="0.6"/>`;
+          s += `<rect x="${x2.toFixed(1)}" y="${y - 9}" width="${(X(span) - x2).toFixed(1)}" height="18" rx="3" fill="${GOLD}" opacity="0.9"/>`;
+          s += `<text x="${(X(span) - 8).toFixed(1)}" y="${(y + 4).toFixed(1)}" ${MONO} font-size="11" fill="#0b1026" text-anchor="end" font-weight="500">HOME</text>`;
+        } else {
+          s += `<rect x="${x1.toFixed(1)}" y="${y - 9}" width="${Math.max(x2 - x1, 3).toFixed(1)}" height="18" rx="3" fill="${GOLD}" opacity="${ph.lease ? 0.55 : 0.85}"/>`;
+          if (ph.lease && r.e > span) s += `<text x="${(x2 - 6).toFixed(1)}" y="${(y + 4).toFixed(1)}" ${MONO} font-size="11" fill="#0b1026" text-anchor="end">\u2192</text>`;
+        }
+      });
+      // the chuppah line
+      const xc = X(H);
+      s += `<line x1="${xc.toFixed(1)}" y1="${T - 4}" x2="${xc.toFixed(1)}" y2="${HGT - B + 8}" stroke="${PAPER}" stroke-width="1.2" stroke-dasharray="6 4" opacity="0.8"/>`;
+      const flip = xc > W - 190;
+      s += `<text x="${(xc + (flip ? -6 : 6)).toFixed(1)}" y="${HGT - B + 24}" ${MONO} font-size="11.5" letter-spacing="1.5" fill="${PAPER}" text-anchor="${flip ? 'end' : 'start'}">CHUPPAH \u2248 MONTH ${H}</text>`;
+      s += `<text x="24" y="${HGT - 8}" ${MONO} font-size="10.5" letter-spacing="1.2" fill="${FAINT}">ILLUSTRATIVE. PHASES MOVE WITH YOUR COMFORT; ONLY THE ORDER IS FIXED. THE LEASE BAR RUNS ITS FULL YEAR.</text>`;
+      host.innerHTML = `<svg viewBox="0 0 ${W} ${HGT}" role="img" aria-label="Gantt chart of an illustrative relocation ladder from a first date to marriage: screening call, first weekend, flown-in dates, a weekly Airbnb, a month-to-month furnished apartment, a one-year lease when she is ready, an engagement window, the courthouse and party, and moving in together at the ring or the chuppah. A slider stretches every phase to her pace, from nine to twenty-four months.">${s}</svg>`;
+    }
+    sld.addEventListener('input', draw);
+    draw();
   })();
 
   // contact address, assembled at view time to stay off scraper lists

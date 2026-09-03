@@ -2306,7 +2306,7 @@ Use current figures where possible and keep both the endorsement and the critiqu
     },
     {
       title: "The airline remix: a 460-mile drive equals about five and a half hours gate to gate",
-      claim: "Driving 460 miles takes about 7 hours door to door, so any US city reachable by nonstop flight inside the same wall-clock budget qualifies. With a 30-minute airport drive and lean overhead, that allows roughly five and a half hours of flight, which reaches everywhere except the Pacific Northwest.",
+      claim: "Driving 460 miles takes about 7 hours door to door, so any US city reachable by nonstop flight inside the same wall-clock budget qualifies. With a 30-minute airport drive and lean overhead, that allows roughly five and a half hours of flight, which reaches most major cities; the Bay Area and Portland fall outside, and Seattle fits only from the Cleveland base.",
       prompt: `CONTEXT: A dating page defines a 460-mile driving radius, then offers an "airline remix": any US city qualifies if a nonstop flight arrives within the same door-to-door wall-clock time as the drive. Audit the arithmetic and the honesty of the assumptions.
 
 THE CLAIMED CHAIN:
@@ -2622,13 +2622,13 @@ Be honest rather than kind. The author wrote this prompt himself and published i
       { n: 'PHOENIX 5:10',     lat: 33.45, lon: -112.07, dx: -10, dy: 6,   a: 'end'    },
       { n: 'LAS VEGAS 5:15',   lat: 36.17, lon: -115.14, dx: 12,  dy: 5,   a: 'start'  },
       { n: 'LOS ANGELES ~5:40', lat: 34.05, lon: -118.24, dx: 6,   dy: -14, a: 'middle' },
-      { n: 'SAN DIEGO 5:30',   lat: 32.72, lon: -117.16, dx: 4,   dy: 24,  a: 'middle' }
+      { n: 'SAN DIEGO 5:18',   lat: 32.72, lon: -117.16, dx: 4,   dy: 24,  a: 'middle' }
     ];
-    // over the clock: the Pacific Northwest corner
+    // over the clock: the West Coast corner
     const NEAR = [
-      { n: 'SAN FRANCISCO +0:30', lat: 37.77, lon: -122.42, dx: 12, dy: 4,   a: 'start' },
-      { n: 'PORTLAND +0:50',      lat: 45.52, lon: -122.68, dx: 12, dy: 4,   a: 'start' },
-      { n: 'SEATTLE +1:00',       lat: 47.61, lon: -122.33, dx: 12, dy: 4,   a: 'start' }
+      { n: 'SAN FRANCISCO +1:00', lat: 37.77, lon: -122.42, dx: 12, dy: 4,   a: 'start' },
+      { n: 'PORTLAND +1:10',      lat: 45.52, lon: -122.68, dx: 12, dy: 4,   a: 'start' },
+      { n: 'SEATTLE +1:15 · FITS FROM CLE',       lat: 47.61, lon: -122.33, dx: 12, dy: 4,   a: 'start' }
     ];
     const HOME = { lat: 26.37, lon: -80.09 };
 

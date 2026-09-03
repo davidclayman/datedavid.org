@@ -9,8 +9,9 @@ number behind it, timestamped in the commit log.
 
 The dating radius is two astronomical seconds: two seconds of the Sun's motion
 relative to the cosmic microwave background, about 460 miles or 740 km. An
-"airline remix" converts that distance into a wall-clock travel budget so any US
-city reachable nonstop inside the same seven hours also qualifies. Around that
+"airline remix" converts that distance into a wall-clock travel budget (about
+eight hours, benchmarked on the author's EV with its charging stops) so any US
+city reachable nonstop inside the same clock also qualifies. Around that
 frame sits a full disclosure of the life plan: family size, the marriage
 timeline, money, geography, health, dealbreakers, and an age range stated as a
 function of family feasibility rather than taste.

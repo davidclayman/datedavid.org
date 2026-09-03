@@ -88,7 +88,7 @@ check('em-dash budget outside audit prompts and the filing (<=16)', n_dash <= 16
 
 check('radius numbers consistent',
       '460&nbsp;miles / 740&nbsp;km' in s and '7 hours 4 minutes' in s
-      and '5 hours 34 minutes' in s and '370&nbsp;km/s' in s)
+      and '5 hours 19 minutes' in s and '370&nbsp;km/s' in s)
 check('no stale one-second radius', '370 km <span>' not in s and '≈370' not in s and 'radius is 230' not in s and '≈230&nbsp;mi' not in s)
 check('birthdate constant in both tickers', s.count('Date.UTC(1986, 2, 31') == 2)
 

@@ -485,16 +485,15 @@
     border: 1px solid var(--line);
     border-radius: 6px;
     background: var(--plate);
-    padding: 1.4rem 0.9rem 0.7rem;
+    padding: 2.6rem 0.9rem 0.7rem;
     position: relative;
   }
   .chartbox::before {
     content: attr(data-label);
     position: absolute;
-    top: -0.62em;
+    top: 0.9rem;
     left: 1.1rem;
-    background: var(--ink);
-    padding: 0 0.55em;
+    padding: 0;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.66rem;
     letter-spacing: 0.18em;
@@ -503,6 +502,8 @@
   .chartbox { overflow-x: auto; }
   .chartbox svg { width: 100%; min-width: 640px; height: auto; display: block; }
   .chartbox .ctl { margin: 0.6rem 0.4rem 0.4rem; padding-top: 0.9rem; }
+  .chartbox.ladderbox { margin-top: 3rem; padding-top: 3rem; }
+  .chartbox.ladderbox::before { color: var(--paper); }
   .chartbox .fine { margin: 0.5rem 0.4rem 0; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.12em; color: var(--faint); }
 
   .audit {
@@ -1120,8 +1121,9 @@
     <div class="prose">
       <p><strong>The proposal.</strong> Second and third dates, flown in for. Then a weekly Airbnb in your city, a week or two at a time, so we find out what Tuesdays are like without anyone signing anything. Then a month-to-month furnished apartment through FurnishedFinder, which is where "I'm in town" becomes "I live here." Then, when you're ready and not before, a one-year lease, which becomes our first home if the story goes the way I hope and gets sublet if it doesn't. Engagement, the courthouse, and the big cheap party sit wherever they land; the Home page's evidence-leaning plan is separate addresses until the ring, so moving in together is the last rung, at the ring or the chuppah, our call together.</p>
       <p><strong>The chart is a sketch.</strong> The bars below are a picture of one plausible year, not a schedule anyone signs. Drag the slider and the whole ladder stretches or compresses to your pace: nine months if we both already know, eighteen or more if you'd rather be sure, and every rung is reversible until the last one. The only thing that doesn't move is the order, because each step is cheaper than the next and I don't take a step you haven't asked for. My remote job and the <a href="#home">no-rent home base</a> are what make the ladder affordable; the <a href="#budget">housing line</a> pays for the rungs.</p>
+      <p><strong>One known complication.</strong> As of September 2026 there's a four-month stretch coming up in which I expect to need to stay in Florida to finish emergency-medical training, the coursework and shifts the welcome packet's calendar already lists. During those months the ladder pauses on the third rung: I can still fly to you for weekends, and you're welcome in Florida any time, but the Airbnb and the apartment in your city wait until the training is done. After that I expect to be free again to consider or begin relocating, and the ladder resumes wherever your comfort left it.</p>
     </div>
-    <div class="chartbox" data-label="THE RELOCATION LADDER · ILLUSTRATIVE · MOVES WITH HER COMFORT">
+    <div class="chartbox ladderbox" data-label="THE RELOCATION LADDER · ILLUSTRATIVE · MOVES WITH HER COMFORT">
       <div id="ladder"></div>
       <div class="ctl">
         <label>YOUR PACE: CHUPPAH IN ABOUT <strong><span id="valPace">12</span> MONTHS</strong> FROM THE FIRST DATE
@@ -2811,7 +2813,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
       const H = +sld.value, k = H / 12;
       val.textContent = H;
       const span = Math.ceil((7 * k + 12 + 1) / 3) * 3;  // axis runs past the end of the lease
-      const W = 1000, L = 300, R = 24, T = 30, ROW = 34, B = 46;
+      const W = 1000, L = 300, R = 24, T = 44, ROW = 34, B = 46;
       const HGT = T + PHASES.length * ROW + B;
       const X = m => L + (m / span) * (W - L - R);
       const m = ph => ({ s: ph.fixed ? ph.s : ph.s * k, e: ph.lease ? ph.s * k + 12 : (ph.fixed ? ph.e : ph.e * k) });

@@ -116,22 +116,22 @@ check('robots.txt allows crawling and names the sitemap', os.path.exists(os.path
 check('sitemap.xml lists the canonical URL', os.path.exists(os.path.join(ROOT, 'sitemap.xml')) and '<loc>https://datedavid.org/</loc>' in open(os.path.join(ROOT, 'sitemap.xml')).read())
 
 # --- unlisted pages ------------------------------------------------------
-cc = os.path.join(ROOT, 'coronacrush', 'index.html')
-check('coronacrush page exists', os.path.exists(cc))
-if os.path.exists(cc):
-    ccs = open(cc, encoding='utf-8').read()
-    check('coronacrush is noindex', 'content="noindex' in ccs)
-    check('coronacrush email never in source', 'david@' not in ccs and 'mailto:' not in ccs)
-    sm = open(os.path.join(ROOT, 'sitemap.xml')).read() if os.path.exists(os.path.join(ROOT, 'sitemap.xml')) else ''
-    check('coronacrush is unlisted', 'coronacrush' not in s and 'coronacrush' not in sm)
-sb = os.path.join(ROOT, 'shabbat', 'index.html')
-check('shabbat page exists', os.path.exists(sb))
-if os.path.exists(sb):
-    sbs = open(sb, encoding='utf-8').read()
-    check('shabbat is noindex', 'content="noindex' in sbs)
-    check('shabbat email never in source', 'david@' not in sbs and 'mailto:' not in sbs)
-    sm2 = open(os.path.join(ROOT, 'sitemap.xml')).read() if os.path.exists(os.path.join(ROOT, 'sitemap.xml')) else ''
-    check('shabbat is unlisted', 'href="/shabbat' not in s and 'href="shabbat' not in s and '/shabbat' not in sm2)
+# reachable only by direct link: noindex, no email in source, never linked from the main page or the sitemap
+sm = open(os.path.join(ROOT, 'sitemap.xml')).read() if os.path.exists(os.path.join(ROOT, 'sitemap.xml')) else ''
+for slug in ('coronacrush', 'shabbat', 'justmatched'):
+    pg = os.path.join(ROOT, slug, 'index.html')
+    check(f'{slug} page exists', os.path.exists(pg))
+    if not os.path.exists(pg):
+        continue
+    src = open(pg, encoding='utf-8').read()
+    check(f'{slug} is noindex', 'content="noindex' in src)
+    check(f'{slug} email never in source', 'david@' not in src and 'mailto:' not in src)
+    check(f'{slug} is unlisted', f'href="/{slug}' not in s and f'href="{slug}' not in s and f'/{slug}' not in sm)
+    check(f'{slug} analytics loads only after consent', 'src="https://www.googletagmanager.com' not in src and "localStorage.getItem('consent')" in src)
+    check(f'{slug} greeting is sanitized', "get('for')" in src and 'replace(/[^A-Za-z' in src)
+    deep = set(re.findall(r'href="\.\./#([^"]+)"', src))
+    bad = [i for i in deep if i not in valid]
+    check(f'{slug} links into the main page resolve', not bad, str(bad))
 
 # --- audit recheck schedule (warns, never fails) --------------------------
 import datetime

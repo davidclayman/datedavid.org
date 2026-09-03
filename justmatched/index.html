@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Date David · Just Matched</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="For people who just matched with David on a dating app: the questions a first conversation asks, and where the site already answers them.">
+<meta name="theme-color" content="#0b1026">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b1026'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23e8b44a' stroke-width='4' stroke-dasharray='6 5'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23eae6d8'/%3E%3C/svg%3E">
+<!-- Google Analytics (G-GD340Z2HSF) loads only if the visitor consented on the main site -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  (function () {
+    var ok = false; try { ok = !navigator.globalPrivacyControl && localStorage.getItem('consent') === 'granted'; } catch (e) {}
+    if (!ok) return;
+    var sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-GD340Z2HSF'; document.head.appendChild(sc);
+    gtag('js', new Date()); gtag('config', 'G-GD340Z2HSF', { page_title: 'Just matched', anonymize_ip: true, allow_google_signals: false, allow_ad_personalization_signals: false });
+  })();
+</script>
+<style>
+  @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('../fonts/Fraunces.woff2') format('woff2'); }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/SpaceGrotesk-normal-400.woff2') format('woff2'); }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/SpaceGrotesk-normal-500.woff2') format('woff2'); }
+  @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/IBMPlexMono-normal-400.woff2') format('woff2'); }
+  @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/IBMPlexMono-normal-500.woff2') format('woff2'); }
+  :root { --ink: #0b1026; --plate: #0f1633; --paper: #eae6d8; --faint: #8b93b8; --gold: #e8b44a; --line: rgba(234, 230, 216, 0.14); }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--ink); color: var(--paper);
+    font-family: 'Space Grotesk', system-ui, sans-serif; line-height: 1.6; min-height: 100vh;
+    background-image:
+      radial-gradient(circle at 70% 20%, rgba(232,180,74,0.06), transparent 40%),
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 100% 100%, 96px 96px, 96px 96px;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 9vh 24px 12vh; }
+  .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); margin-bottom: 2rem; }
+  .eyebrow b { color: var(--gold); font-weight: 500; }
+  h1 { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(2.1rem, 6vw, 3.3rem); line-height: 1.12; margin-bottom: 2rem; }
+  h1 em { font-style: italic; font-weight: 500; color: var(--gold); }
+  h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.35rem; margin: 2.4rem 0 0.7rem; }
+  p { color: #cfd3e6; max-width: 58ch; font-size: 1.02rem; }
+  p + p { margin-top: 1rem; }
+  p strong { color: var(--paper); font-weight: 500; }
+  a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
+  .progress { font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; letter-spacing: 0.08em; color: var(--faint); margin: 1.2rem 0 0.4rem; display: flex; align-items: center; gap: 0.9rem; }
+  .progress .bar { flex: 1; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+  .progress .bar i { display: block; height: 100%; width: 0; background: var(--gold); transition: width 0.3s; }
+  .tour { list-style: none; max-width: 60ch; margin: 0.4rem 0 1rem; }
+  .tour li { border-bottom: 1px dashed var(--line); }
+  .tour label { display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.7rem; padding: 0.95rem 0; cursor: pointer; }
+  .tour input { width: 1.05rem; height: 1.05rem; margin-top: 0.3rem; accent-color: var(--gold); cursor: pointer; }
+  .tour .q { display: block; font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.08rem; color: var(--paper); margin-bottom: 0.25rem; }
+  .tour .a { color: #cfd3e6; font-size: 0.97rem; }
+  .tour input:checked ~ span .q { color: var(--faint); text-decoration: line-through; text-decoration-color: rgba(232,180,74,0.5); }
+  .tour a { white-space: nowrap; }
+  .short { list-style: none; max-width: 58ch; margin: 1rem 0; color: #cfd3e6; }
+  .short li { padding: 0.35rem 0 0.35rem 1.2rem; position: relative; }
+  .short li::before { content: '·'; position: absolute; left: 0.2rem; color: var(--gold); }
+  .row { margin-top: 1.4rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .btn { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; letter-spacing: 0.06em; color: var(--gold); border: 1px solid var(--gold); border-radius: 4px; padding: 0.6rem 0.95rem; text-decoration: none; }
+  .btn:hover { background: rgba(232,180,74,0.1); }
+  .mailfb { max-width: 58ch; margin: 0.9rem 0 1.2rem; }
+  .mailfb .fine { font-size: 0.82rem; color: var(--faint); margin-bottom: 0.5rem; }
+  .mailfb pre { white-space: pre-wrap; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.9rem; color: #cfd3e6; background: var(--plate); border: 1px solid var(--line); border-radius: 6px; padding: 1rem 1.1rem; }
+  .mailfb .note { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--gold); margin-left: 0.6rem; }
+  footer { margin-top: 5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.18em; color: var(--faint); text-transform: uppercase; }
+  footer a { color: inherit; border-bottom-color: currentColor; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="eyebrow">UNLISTED · FOR PEOPLE WHO <b>JUST MATCHED WITH ME</b></div>
+
+  <h1>We matched<span id="who"></span>. <em>The profile was the trailer.</em> This is the index.</h1>
+
+  <p>A dating profile gets about a thousand characters, and I spent a good share of mine on a link. If you followed it, you found forty-some sections, which is a lot to hand someone before a first coffee. So here is the reading order: the questions people ask in their first three messages, and where the site already answers each one, so our conversation can start on message four. Tick them off as you go. The ticks are saved in your browser only and never reach me.</p>
+
+  <h2>The questions, and where the answers already are</h2>
+
+  <div class="progress" aria-live="polite"><span id="count">0 of 0 read</span><span class="bar"><i id="fill"></i></span></div>
+
+  <ul class="tour" id="tour">
+    <li><label><input type="checkbox" data-k="family"><span><span class="q">Is the marriage-and-kids line real, or profile talk?</span><span class="a">Real, and stated without hedging: two or three children, whether they arrive with you or after you, with me as a heavily engaged coparent either way. <a href="../#family">Family</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="budget"><span><span class="q">How fast is this going to move?</span><span class="a">If we're right for each other, a decision on engagement within six months, twelve at the outside. I won't waste your time, and I'd like the same in return. <a href="../#budget">Budget</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="home"><span><span class="q">Why does a man in his early forties live with his parents?</span><span class="a">By choice, with a spreadsheet open. The short version is on the page and the landlord math is one click below it. <a href="../#home">Home</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="unplanned"><span><span class="q">What happened in the marriage?</span><span class="a">It comes out slowly, on purpose, and it starts with what happened to the last plan and why this one is written down. <a href="../#unplanned">Not As Planned</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="caseagainst"><span><span class="q">What's the catch? Nobody is this organized without one.</span><span class="a">Several. The FAQ rebuts the objections; this page concedes them, and most of it is true. <a href="../#caseagainst">The Case Against Me</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="dealbreakers"><span><span class="q">Is he too religious for me, or not religious enough?</span><span class="a">I run anywhere from glatt to Chipotle and match you. The eleven structural dealbreakers are listed, kept short on purpose, with a note about not self-rejecting. <a href="../#dealbreakers">Dealbreakers</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="dontcare"><span><span class="q">What does he quietly filter on?</span><span class="a">The filters most profiles run silently, switched off and said out loud, then the one thing I do care about, and an honest paragraph on health. <a href="../#dontcare">Don't Care</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="partnership"><span><span class="q">Will he expect me to carry the house or step back from my career?</span><span class="a">Dual-career by default, stay-at-home by reason rather than convention, and half of everything domestic. Religiously. <a href="../#partnership">Partnership</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="geography"><span><span class="q">Where would we live? I am not moving to Florida.</span><span class="a">Three candidate cities, one principle, and a method for choosing; the city doesn't have to be in the United States. <a href="../#geography">Geography</a> and <a href="../#abroad">Abroad</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="money"><span><span class="q">Prenup? Ring? Who pays for what?</span><span class="a">One narrow prenup and one shared pot; no diamond, and a counter-offer with your name on it. <a href="../#money">Money</a> and <a href="../#ring">The Ring</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="proposals"><span><span class="q">What is a first date with him actually like, and who travels?</span><span class="a">I come to you, by car or by plane. Candidate first dates, none requiring a telescope, and a first weekend in your city with the itinerary spelled out. <a href="../#proposals">Proposals</a> and <a href="../#weekend">First Weekend</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="safeword"><span><span class="q">What is the Safeword section?</span><span class="a">The intimacy chapter. Read it there; this page won't paraphrase it. <a href="../#safeword">Safeword</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="verifyme"><span><span class="q">Is any of this checkable, and is he safe to meet?</span><span class="a">Real name, searchable, and every factual claim carries a numbered prompt you can hand to any AI assistant. <a href="../#verifyme">Verify Me</a> and <a href="../#audits">Audit Ledger</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="yearten"><span><span class="q">Where does he think this ends up?</span><span class="a">A ten-year target state, published now so you can hold me to it and our kids can laugh at it later. <a href="../#yearten">Year Ten</a></span></span></label></li>
+    <li><label><input type="checkbox" data-k="questions"><span><span class="q">What does he want to know about me?</span><span class="a">Forty-odd sections about me is a monologue. This is the interview I'm hoping for, and you may bring notes. <a href="../#questions">Questions for You</a></span></span></label></li>
+  </ul>
+
+  <h2>The ninety-second version</h2>
+  <p>If you'd rather message first and read later, the five things the site would want you to know:</p>
+  <ul class="short">
+    <li>I'm looking for someone Jewish, or converted before we met.</li>
+    <li>Someone who wants children, or already has them.</li>
+    <li>Someone who reads, which needn't mean books, but does mean deep thought and relentless curiosity.</li>
+    <li>I want to marry and raise two or three kids, soon, and I'll say so on the first date rather than in year two.</li>
+    <li>I'll come to you: anywhere within two astronomical seconds, which turns out to be most of the country.</li>
+  </ul>
+
+  <h2>What happens next</h2>
+  <p>Reply in the app if that's easiest; the little box that eats paragraphs is fine for logistics. If you'd rather write something longer, or you'd like a virtual date before we spend a week typing at each other, the buttons are here. An hour on video, on a day you pick; I prefer Google Meet and I'm happy on Zoom, WhatsApp, Signal, or Teams. And whichever way you lean afterward, I'd love two or three honest sentences about how I came across, and you'll get the same care back.</p>
+
+  <div class="row">
+    <a class="btn" id="write" href="../#transmission">Write to me</a>
+    <a class="btn" id="call" href="../#transmission">Request the virtual date</a>
+    <a class="btn" href="../">Read the whole site</a>
+  </div>
+
+  <h2>If it's a no</h2>
+  <p>That's a perfectly good outcome, and an unmatch needs no explanation. If something on the site decided it, though, I'd be grateful to know which page; the <a href="../#feedback">Feedback Clause</a> explains why. And if you know someone the rest of it would suit, there's a <a href="../#referrals">matchmaker prize</a> for the introduction.</p>
+
+  <footer>THIS PAGE IS UNLISTED AND UNINDEXED · YOUR TICKS STAY IN YOUR BROWSER · <a href="../#privacy">PRIVACY</a></footer>
+</main>
+<script>
+  // ?for=Name personalizes the greeting; letters, spaces, hyphens, apostrophes only
+  (function () {
+    var n = new URLSearchParams(location.search).get('for') || '';
+    n = n.replace(/[^A-Za-zÀ-ɏ' \-]/g, '').trim().slice(0, 30);
+    if (n) document.getElementById('who').textContent = ', ' + n;
+  })();
+
+  // the reading checklist: ticks persist in this browser only (localStorage), never sent anywhere
+  (function () {
+    var KEY = 'justmatched-read';
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('#tour input[type=checkbox]'));
+    var count = document.getElementById('count'), fill = document.getElementById('fill');
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+    boxes.forEach(function (b) { if (saved[b.dataset.k]) b.checked = true; });
+    function render() {
+      var n = boxes.filter(function (b) { return b.checked; }).length, total = boxes.length;
+      count.textContent = n + ' of ' + total + ' read';
+      fill.style.width = (total ? Math.round(100 * n / total) : 0) + '%';
+      if (n === total && total > 0) count.textContent = 'All ' + total + ' read. You now know more about me than most second dates did. Your move.';
+    }
+    boxes.forEach(function (b) {
+      b.addEventListener('change', function () {
+        var state = {};
+        boxes.forEach(function (x) { if (x.checked) state[x.dataset.k] = 1; });
+        try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+        render();
+      });
+    });
+    render();
+  })();
+
+  // any mail button also reveals its text, for a computer with no mail app
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a'); if (!a) return;
+    var href = a.getAttribute('href') || ''; if (href.indexOf('mailto') !== 0) return;
+    var q = href.indexOf('?'), to = href.slice(7, q === -1 ? undefined : q), params = new URLSearchParams(q === -1 ? '' : href.slice(q + 1));
+    var subject = params.get('subject') || '', body = params.get('body') || '';
+    var plain = 'To: ' + to + (subject ? '\nSubject: ' + subject : '') + (body ? '\n\n' + body : '') + '\n';
+    var host = a.closest('.row'); if (!host) return;
+    var box = host.nextElementSibling;
+    if (!box || !box.classList.contains('mailfb')) {
+      box = document.createElement('div'); box.className = 'mailfb';
+      box.innerHTML = '<p class="fine">If your mail app opened with this filled in, you\'re done. If nothing happened, copy it into any email.</p><pre></pre><div class="row"><a class="btn" href="#" role="button">Copy the email</a><span class="note"></span></div>';
+      host.insertAdjacentElement('afterend', box);
+    }
+    box.querySelector('pre').textContent = plain;
+    box.querySelector('a.btn').onclick = function (ev) {
+      ev.preventDefault();
+      var note = box.querySelector('.note');
+      var done = function (ok) { note.textContent = ok ? '✓ copied' : 'copy failed'; setTimeout(function () { note.textContent = ''; }, 2500); };
+      if (navigator.clipboard) navigator.clipboard.writeText(plain).then(function () { done(true); }, function () { done(false); }); else done(false);
+    };
+  });
+
+  // contact links assembled at view time, as on the main site
+  (function () {
+    var addr = ['david', String.fromCharCode(64), 'datedavid', String.fromCharCode(46), 'org'].join('');
+    var w = document.getElementById('write'), c = document.getElementById('call');
+    w.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + encodeURIComponent('We matched');
+    c.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + encodeURIComponent('Virtual date request for David (we matched online)') + '&body=' + encodeURIComponent('Hi David,\n\nThree times that work for me (with my time zone):\n1. \n2. \n3. \n\nPreferred platform (Google Meet, Zoom, WhatsApp, Signal, or Teams): \n');
+  })();
+</script>
+</body>
+</html>

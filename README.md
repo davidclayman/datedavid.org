@@ -26,8 +26,11 @@ JavaScript, no framework, no build step. The three typefaces are self-hosted
 from `fonts/`. Google Analytics is the only third party, and its script loads
 only after the visitor accepts the consent banner (sections are sent as page
 views, calls to action as events); the Privacy section documents the rest.
-`404.html` is the only other page; it redirects `/family`-style paths to
-`/#family` and otherwise links home.
+`404.html` redirects `/family`-style paths to `/#family` and otherwise links
+home. A few unlisted follow-up pages (each in its own folder, `noindex`, never
+linked from the main page or the sitemap) exist for people met in person or
+matched on an app; they take `?for=Name` to personalize the greeting and carry
+no state beyond an optional reading checklist kept in the visitor's browser.
 
 **Two layers.** The first section, Start Here, is the profile: hook, photo,
 introduction, what dating him is like, what he's looking for, the essential

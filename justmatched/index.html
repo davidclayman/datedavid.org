@@ -113,11 +113,14 @@
   </ul>
 
   <h2>What happens next</h2>
-  <p>Reply in the app if that's easiest; the little box that eats paragraphs is fine for logistics. If you'd rather write something longer, or you'd like a virtual date before we spend a week typing at each other, the buttons are here. An hour on video, on a day you pick; I prefer Google Meet and I'm happy on Zoom, WhatsApp, Signal, or Teams. And whichever way you lean afterward, I'd love two or three honest sentences about how I came across, and you'll get the same care back.</p>
+  <p>A confession about texting: I'm not big on ten slow rounds of messages before anyone books time. It gets tiring, it bleeds into work hours, and at the end of it we've judged each other's messaging game instead of each other, with neither of us sure when the other was ready to switch to actual human contact. So the shortcut is on the table from the first message: as soon as you're comfortable talking with me, let's book time and get a real decision. Reply in the app for logistics if that's easiest; the buttons below do the same by email.</p>
+  <p><strong>A screening call first, if you like.</strong> Fifteen or thirty minutes, video or phone, to see whether we're in range of each other and to answer whatever the site left open. No agenda beyond that, and no obligation to book anything after it.</p>
+  <p><strong>The check-ins.</strong> On any date, virtual or in person, I'll offer to set fifteen-minute reminders and ask at each one whether you've seen a dealbreaker yet. If you have, we close the call at fifteen, thirty, or forty-five minutes in and part as two people who saved each other an evening; nobody should sit through an hour they decided against at minute twelve. The same offer runs in my direction. It reads clinical on the page. In practice it's one honest question, asked kindly, a few times.</p>
+  <p>For the video itself I prefer Google Meet and I'm happy on Zoom, WhatsApp, Signal, or Teams. And whichever way you lean afterward, I'd love two or three honest sentences about how I came across, and you'll get the same care back.</p>
 
   <div class="row">
     <a class="btn" id="write" href="../#transmission">Write to me</a>
-    <a class="btn" id="call" href="../#transmission">Request the virtual date</a>
+    <a class="btn" id="call" href="../#transmission">Request a call or virtual date</a>
     <a class="btn" href="../">Read the whole site</a>
   </div>
 
@@ -187,7 +190,7 @@
     var addr = ['david', String.fromCharCode(64), 'datedavid', String.fromCharCode(46), 'org'].join('');
     var w = document.getElementById('write'), c = document.getElementById('call');
     w.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + encodeURIComponent('We matched');
-    c.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + encodeURIComponent('Virtual date request for David (we matched online)') + '&body=' + encodeURIComponent('Hi David,\n\nThree times that work for me (with my time zone):\n1. \n2. \n3. \n\nPreferred platform (Google Meet, Zoom, WhatsApp, Signal, or Teams): \n');
+    c.href = 'mailto' + String.fromCharCode(58) + addr + '?subject=' + encodeURIComponent('Call request for David (we matched online)') + '&body=' + encodeURIComponent('Hi David,\n\nWhat I\'d like (15-minute screen, 30 minutes, or the full hour): \n\nThree times that work for me (with my time zone):\n1. \n2. \n3. \n\nPreferred platform (Google Meet, Zoom, WhatsApp, Signal, phone, or Teams): \n\nFifteen-minute check-ins (yes / no thanks): \n');
   })();
 </script>
 </body>

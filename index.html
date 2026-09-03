@@ -233,6 +233,9 @@
   .callform .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
   @media (max-width: 480px) { .callform .two { grid-template-columns: 1fr; } }
   .callform .fine { font-size: 0.82rem; color: var(--faint); }
+  .mailfb { max-width: 58ch; margin: 0.9rem 0 1.2rem; }
+  .mailfb .fine { font-size: 0.82rem; color: var(--faint); margin-bottom: 0.5rem; }
+  .mailfb .pitch-text { font-size: 0.9rem; }
 
   .sidenav { display: none; }
   @media (min-width: 1180px) {
@@ -1443,6 +1446,51 @@
     <p class="crosslink">The fertility curve, the lifespan gap, the paternal-age genetics, and the satisficing argument: <a href="#audit-17">Audit 17</a>. The two paths this range is built on: <a href="#family">Family</a>.</p>
   </section>
 
+  <!-- ============ WHAT I DON'T CARE ABOUT ============ -->
+  <section class="topic" id="dontcare" data-title="Don't Care" data-chapter="The filters">
+    <h2 class="head">What I Don't Care About</h2>
+    <p class="subhead">The filters most profiles run silently, switched off and said out loud. Then the one thing I do care about, and an honest paragraph on health.</p>
+    <ul class="items">
+      <li>
+        <span class="k">Skin color</span>
+        <span class="v">Not a factor, and if it tilts at all it tilts the other way: I'd be glad to marry someone whose skin, and whose ancestry, are as different from mine as possible. The Dealbreakers page says the same about genetics, for the same reason.</span>
+      </li>
+      <li>
+        <span class="k">Height, hair, eyes</span>
+        <span class="v">None of it. Tall or short, any color hair or none, any color eyes. I published my own numbers on Who I Am so you can decide about mine; I'm not running the same math on you.</span>
+      </li>
+      <li>
+        <span class="k">Where you fall in Judaism</span>
+        <span class="v">Anywhere from Just Jewish to Modern Orthodox, and I'll meet you there. Modern Orthodox is the ceiling, only because beyond it the thrice-daily liturgy on the Dealbreakers page becomes non-negotiable, and it's the one thing I can't give.</span>
+      </li>
+      <li>
+        <span class="k">Money</span>
+        <span class="v">Not how wealthy you are, and not your income, as long as you're skilled at something and solvent. The Money page pools whatever we each bring; the size of your half is not a filter, and the site says what I bring so that mine isn't a mystery either.</span>
+      </li>
+      <li>
+        <span class="k">Nationality</span>
+        <span class="v">American or not, it makes no difference. I hold three passports myself, my mother was born in Morocco, and the Geography page already assumes we might settle near your parents wherever they are.</span>
+      </li>
+      <li>
+        <span class="k">What I do care about</span>
+        <span class="v">How educated you are. I care about that a great deal, and the Dealbreakers page's definition of reading, deep thought and relentless curiosity in whatever form, is the version of educated I mean.</span>
+      </li>
+      <li>
+        <span class="k">Disability and health</span>
+        <span class="v">There is a wide range of conditions I wouldn't discriminate on, and I think I'm more accepting of the human condition, in all its variety, than most. A wheelchair wouldn't give me pause. Neither would ADHD, celiac disease, a peanut allergy (I love peanuts and would give them up for a marriage without a second thought), or depression or anxiety that's mostly under control. Then there's a narrow band where I reserve the option to pass, after studying the specifics in real depth, and I'd rather name it than leave you guessing: conditions that involve the digestive system in ways I haven't yet learned to handle. IBS is one I've concluded I probably wouldn't choose going in. Multiple sclerosis, because of what it often does to bowel control later in life, was a genuinely hard call when I met someone who had it. I'm not proud of the line, but it's honest, and honest is what this site is for. And the line applies only to the choosing: if any of it arrives after we're married, it is my duty and my honor to carry you through it, the same duty and honor that has me changing half of our babies' diapers.</span>
+      </li>
+      <li>
+        <span class="k">We're all human</span>
+        <span class="v">Every one of us has a body that will fail somewhere, a history with damage in it, and a need to be loved anyway. Getting married and having children is a roll of the dice, for everyone, and the honest people know it going in. I'm ready to embrace and accept your flaws, the ones on this page and the ones neither of us has found yet. I'm hoping you'll be ready to embrace and accept mine, and this whole site is my attempt to show you what they are before you have to discover them.</span>
+      </li>
+      <li>
+        <span class="k">Just ask</span>
+        <span class="v">If you have any question about whether I can handle your conditions, ask, and you'll get a real answer rather than a polite one. If you want to know about my own non-obvious medical history, ask, and I'll tell you after our first date, which is when that kind of detail starts to make sense to share. The welcome packet on <a href="#weekend">First Weekend</a> includes the full file.</span>
+      </li>
+    </ul>
+    <p class="crosslink">The short list of things that do disqualify: <a href="#dealbreakers">Dealbreakers</a>. The biases this page is meant to correct: <a href="#selection">Selection Effects</a>.</p>
+  </section>
+
   <!-- ============ DEALBREAKERS ============ -->
   <section class="topic" id="dealbreakers" data-title="Dealbreakers" data-chapter="The filters">
     <h2 class="head">Dealbreakers</h2>
@@ -1757,7 +1805,7 @@
   <!-- ============ QUESTIONS FOR YOU ============ -->
   <section class="topic" id="questions" data-title="Questions for You" data-chapter="Your turn">
     <h2 class="head">Questions for You</h2>
-    <p class="subhead">Forty sections about me is a monologue. This is the interview I'm hoping for.</p>
+    <p class="subhead">Forty-one sections about me is a monologue. This is the interview I'm hoping for.</p>
     <ul class="items">
       <li>
         <span class="tag">Question 01</span>
@@ -2701,6 +2749,33 @@ Be honest rather than kind. The author wrote this prompt himself and published i
       setTimeout(() => n.classList.remove('show'), 3000);
     });
   })();
+
+  // every prefilled mail link also reveals its text, so a computer with no mail app can still send it
+  function mailFallback(a) {
+    const href = a.getAttribute('href') || '';
+    if (href.indexOf('mailto') !== 0) return;
+    const q = href.indexOf('?');
+    const to = href.slice(7, q === -1 ? undefined : q);
+    const params = new URLSearchParams(q === -1 ? '' : href.slice(q + 1));
+    const subject = params.get('subject') || '', body = params.get('body') || '';
+    const plain = 'To: ' + to + (subject ? '\nSubject: ' + subject : '') + (body ? '\n\n' + body : '') + '\n';
+    let host = a.closest('.nudge') ? null : a.closest('li, p, .row, form');
+    if (!host) return;
+    let box = host.nextElementSibling;
+    if (!box || !box.classList.contains('mailfb')) {
+      box = document.createElement('div'); box.className = 'mailfb';
+      box.innerHTML = '<p class="fine">If your mail app opened with this filled in, you\'re done. If nothing happened, copy it into any email.</p><p class="pitch-text"></p><div class="row"><button class="copy" type="button">Copy the email</button><span class="copied-note"></span></div>';
+      host.insertAdjacentElement('afterend', box);
+    }
+    box.querySelector('.pitch-text').textContent = plain;
+    const note = box.querySelector('.copied-note'); note.dataset.done = '\u2713 copied \u2014 paste it into any email';
+    box.querySelector('button').onclick = () => copyText(plain, note);
+    box.hidden = false;
+  }
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a');
+    if (a && (a.getAttribute('href') || '').indexOf('mailto') === 0) mailFallback(a);
+  });
 
   // the call-me form: builds an email from the fields; nothing is stored on the site
   (function () {

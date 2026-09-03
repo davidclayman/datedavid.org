@@ -53,6 +53,10 @@
   .row { margin-top: 1.4rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
   .btn { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; letter-spacing: 0.06em; color: var(--gold); border: 1px solid var(--gold); border-radius: 4px; padding: 0.6rem 0.95rem; text-decoration: none; }
   .btn:hover { background: rgba(232,180,74,0.1); }
+  .mailfb { max-width: 58ch; margin: 0.9rem 0 1.2rem; }
+  .mailfb .fine { font-size: 0.82rem; color: var(--faint); margin-bottom: 0.5rem; }
+  .mailfb pre { white-space: pre-wrap; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.9rem; color: #cfd3e6; background: var(--plate); border: 1px solid var(--line); border-radius: 6px; padding: 1rem 1.1rem; }
+  .mailfb .note { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--gold); margin-left: 0.6rem; }
   footer { margin-top: 5rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.18em; color: var(--faint); text-transform: uppercase; }
   footer a { color: inherit; border-bottom-color: currentColor; }
 </style>
@@ -99,6 +103,29 @@
     n = n.replace(/[^A-Za-z\u00C0-\u024F' \-]/g, '').trim().slice(0, 30);
     if (n) document.getElementById('who').textContent = ' ' + n;
   })();
+  // any mail button also reveals its text, for a computer with no mail app
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a'); if (!a) return;
+    var href = a.getAttribute('href') || ''; if (href.indexOf('mailto') !== 0) return;
+    var q = href.indexOf('?'), to = href.slice(7, q === -1 ? undefined : q), params = new URLSearchParams(q === -1 ? '' : href.slice(q + 1));
+    var subject = params.get('subject') || '', body = params.get('body') || '';
+    var plain = 'To: ' + to + (subject ? '\nSubject: ' + subject : '') + (body ? '\n\n' + body : '') + '\n';
+    var host = a.closest('.row'); if (!host) return;
+    var box = host.nextElementSibling;
+    if (!box || !box.classList.contains('mailfb')) {
+      box = document.createElement('div'); box.className = 'mailfb';
+      box.innerHTML = '<p class="fine">If your mail app opened with this filled in, you\'re done. If nothing happened, copy it into any email.</p><pre></pre><div class="row"><a class="btn" href="#" role="button">Copy the email</a><span class="note"></span></div>';
+      host.insertAdjacentElement('afterend', box);
+    }
+    box.querySelector('pre').textContent = plain;
+    box.querySelector('a.btn').onclick = function (ev) {
+      ev.preventDefault();
+      var note = box.querySelector('.note');
+      var done = function (ok) { note.textContent = ok ? '\u2713 copied' : 'copy failed'; setTimeout(function () { note.textContent = ''; }, 2500); };
+      if (navigator.clipboard) navigator.clipboard.writeText(plain).then(function () { done(true); }, function () { done(false); }); else done(false);
+    };
+  });
+
   // contact links assembled at view time, as on the main site
   (function () {
     var addr = ['david', String.fromCharCode(64), 'datedavid', String.fromCharCode(46), 'org'].join('');

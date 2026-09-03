@@ -346,30 +346,36 @@
   .verdict.swap { animation: fadein 0.3s ease; }
   @keyframes glow { 0% { text-shadow: 0 0 0 rgba(232,180,74,0); } 25% { color: var(--paper); text-shadow: 0 0 22px rgba(232,180,74,0.9); } 100% { text-shadow: 0 0 0 rgba(232,180,74,0); } }
   .odometer strong.glow { animation: glow 1.4s ease-out; }
-  /* photos rise into place, one after another, each time their section opens */
-  section.topic.active .gallery .fig { animation: rise 0.55s ease both; animation-delay: 0.15s; }
-  section.topic.active .gallery .fig:nth-child(2) { animation-delay: 0.25s; }
-  section.topic.active .gallery .fig:nth-child(3) { animation-delay: 0.35s; }
+  /* photos rise into place, one after another, when they scroll into view (only once scripting is running) */
+  html.js .gallery .fig { opacity: 0; }
+  html.js .gallery.inview .fig { animation: rise 0.55s ease both; animation-delay: 0.1s; }
+  html.js .gallery.inview .fig:nth-child(2) { animation-delay: 0.2s; }
+  html.js .gallery.inview .fig:nth-child(3) { animation-delay: 0.3s; }
   /* audit cards unfold instead of popping open */
   :root { interpolate-size: allow-keywords; }
   .audit::details-content { height: 0; overflow: clip; transition: height 0.3s ease, content-visibility 0.3s allow-discrete; }
   .audit[open]::details-content { height: auto; }
   .audit[open] .body { animation: fadein 0.3s ease both; }
-  /* the Travel Reach map draws itself each time the section opens */
-  #remixMap .outline { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 0.9s ease-out forwards; }
+  /* the Travel Reach map draws itself when it scrolls into view, and again on the next visit */
+  #remixMap .outline { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  #remixMap.inview .outline { animation: draw 0.9s ease-out forwards; }
   @keyframes draw { to { stroke-dashoffset: 0; } }
-  #remixMap .bg { opacity: 0; animation: bgin 0.6s ease 0.5s forwards; }
+  #remixMap .bg { opacity: 0; }
+  #remixMap.inview .bg { animation: bgin 0.6s ease 0.5s forwards; }
   @keyframes bgin { to { opacity: 0.35; } }
-  #remixMap .dot { transform-box: fill-box; transform-origin: center; animation: pop 0.35s ease-out both; animation-delay: var(--d, 0.4s); }
-  #remixMap .lbl { opacity: 0; animation: lblin 0.4s ease both; animation-delay: calc(var(--d, 0.4s) + 0.1s); }
+  #remixMap .dot { transform-box: fill-box; transform-origin: center; transform: scale(0); }
+  #remixMap.inview .dot { animation: pop 0.35s ease-out both; animation-delay: var(--d, 0.4s); }
+  #remixMap .lbl { opacity: 0; }
+  #remixMap.inview .lbl { animation: lblin 0.4s ease both; animation-delay: calc(var(--d, 0.4s) + 0.1s); }
   @keyframes lblin { to { opacity: var(--o, 1); } }
-  #remixMap .ping { transform-box: fill-box; transform-origin: center; animation: ping 1.6s ease-out 0.3s 3; opacity: 0; }
+  #remixMap .ping { transform-box: fill-box; transform-origin: center; opacity: 0; }
+  #remixMap.inview .ping { animation: ping 1.6s ease-out 0.3s 3; }
   @keyframes ping { 0% { transform: scale(0.3); opacity: 0.9; } 100% { transform: scale(2.6); opacity: 0; } }
-  /* the relocation ladder grows in, then slides when the pace changes */
-  #ladder .bar { transform-box: fill-box; transform-origin: left center; transition: x 0.35s ease, width 0.35s ease; }
-  #ladder .dot { transition: cx 0.35s ease; }
+  /* the relocation ladder grows in when it scrolls into view, then slides when the pace changes */
+  #ladder .bar { transform-box: fill-box; transform-origin: left center; transform: scaleX(0); transition: x 0.35s ease, width 0.35s ease; }
+  #ladder .dot { transform-box: fill-box; transform-origin: left center; transform: scaleX(0); transition: cx 0.35s ease; }
   #ladder .chup { transition: transform 0.35s ease; }
-  section.topic.active #ladder .bar, section.topic.active #ladder .dot { animation: growx 0.55s ease-out both; animation-delay: var(--d, 0s); }
+  #ladder.inview .bar, #ladder.inview .dot { animation: growx 0.55s ease-out both; animation-delay: var(--d, 0s); }
   @keyframes growx { from { transform: scaleX(0); } to { transform: scaleX(1); } }
   /* one switch turns all of it off */
   @media (prefers-reduced-motion: reduce) {
@@ -2261,6 +2267,22 @@ He's clear about what he wants, which is to marry and raise two or three kids so
   window.addEventListener('load', updateNavFades);
   updateNavFades();
 
+  document.documentElement.classList.add('js');
+  // pieces that animate when they scroll into view; the class comes off when the section changes so they replay next visit
+  const REVEAL = '#remixMap, #ladder, .gallery';
+  function revealCheck() {
+    document.querySelectorAll(REVEAL).forEach(el => {
+      if (el.classList.contains('inview') || !el.offsetParent) return;
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.88 && r.bottom > 0) el.classList.add('inview');
+    });
+  }
+  const revealSoon = () => { revealCheck(); requestAnimationFrame(revealCheck); };
+  window.addEventListener('scroll', revealSoon, { passive: true });
+  window.addEventListener('resize', revealSoon);
+  window.addEventListener('load', revealSoon);
+  let lastTarget = null;
+
   // a gold underline (rail) and side bar (sidebar) that glide to the active link
   const inds = [];
   [[rail, 'x'], [side, 'y']].forEach(([box, axis]) => {
@@ -2287,6 +2309,7 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     const id = audit ? 'audits' : (raw === 'saferyes' ? 'safeword' : raw);
     const el = document.getElementById(id);
     const target = el && el.classList.contains('topic') ? id : 'radius';
+    if (target !== lastTarget) { document.querySelectorAll('.inview').forEach(e => e.classList.remove('inview')); lastTarget = target; }
     sections.forEach(s => s.classList.toggle('active', s.id === target));
     rail.querySelectorAll('a').forEach(a => { const on = a.dataset.target === target; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (side) side.querySelectorAll('a').forEach(a => { const on = a.dataset.target === target; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
@@ -2302,8 +2325,9 @@ He's clear about what he wants, which is to marry and raise two or three kids so
       card.open = true;
       requestAnimationFrame(() => card.scrollIntoView({ block: 'start' }));
     } else {
-      window.scrollTo({ top: 0, behavior: 'auto' });
+      window.scrollTo({ top: 0, behavior: 'instant' });  // a new section starts at its top at once, so the in-view check sees the right scroll position
     }
+    revealSoon();
   }
   // the prize ribbon: shown on every page load until it's clicked once, then gone for that visit
   const ribbon = document.getElementById('ribbon');

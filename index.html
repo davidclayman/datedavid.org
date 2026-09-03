@@ -115,7 +115,9 @@
     transition: color 0.15s;
   }
   nav.topics a:hover { color: var(--paper); }
-  nav.topics a.active { color: var(--gold); border-bottom-color: var(--gold); }
+  nav.topics a.active { color: var(--gold); }
+  nav.topics .rail { position: relative; }
+  nav.topics .ind { position: absolute; bottom: 0; height: 2px; background: var(--gold); pointer-events: none; transition: left 0.32s cubic-bezier(0.2, 0.7, 0.2, 1), width 0.32s cubic-bezier(0.2, 0.7, 0.2, 1); }
   nav.topics a:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
   nav.topics::before,
   nav.topics::after {
@@ -319,7 +321,8 @@
       transition: color 0.15s;
     }
     .sidenav a:hover { color: var(--paper); }
-    .sidenav a.active { color: var(--gold); border-left-color: var(--gold); }
+    .sidenav a.active { color: var(--gold); }
+    .sidenav .ind { position: absolute; left: 0; width: 2px; background: var(--gold); pointer-events: none; transition: top 0.32s cubic-bezier(0.2, 0.7, 0.2, 1), height 0.32s; }
     .sidenav a:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
   }
 
@@ -333,6 +336,45 @@
   section.topic { display: none; }
   section.topic.active { display: block; animation: fadein 0.35s ease; }
   @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  /* the first three blocks of a section arrive a beat apart */
+  section.topic.active > :nth-child(-n+3) { animation: rise 0.4s ease both; }
+  section.topic.active > :nth-child(2) { animation-delay: 0.06s; }
+  section.topic.active > :nth-child(3) { animation-delay: 0.12s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes pop { 0% { transform: scale(0.6); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
+  .fitcheck input:checked, .tour input:checked { animation: pop 0.25s ease; }
+  .verdict.swap { animation: fadein 0.3s ease; }
+  @keyframes glow { 0% { text-shadow: 0 0 0 rgba(232,180,74,0); } 25% { color: var(--paper); text-shadow: 0 0 22px rgba(232,180,74,0.9); } 100% { text-shadow: 0 0 0 rgba(232,180,74,0); } }
+  .odometer strong.glow { animation: glow 1.4s ease-out; }
+  /* photos rise into place, one after another, each time their section opens */
+  section.topic.active .gallery .fig { animation: rise 0.55s ease both; animation-delay: 0.15s; }
+  section.topic.active .gallery .fig:nth-child(2) { animation-delay: 0.25s; }
+  section.topic.active .gallery .fig:nth-child(3) { animation-delay: 0.35s; }
+  /* audit cards unfold instead of popping open */
+  :root { interpolate-size: allow-keywords; }
+  .audit::details-content { height: 0; overflow: clip; transition: height 0.3s ease, content-visibility 0.3s allow-discrete; }
+  .audit[open]::details-content { height: auto; }
+  .audit[open] .body { animation: fadein 0.3s ease both; }
+  /* the Travel Reach map draws itself each time the section opens */
+  #remixMap .outline { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 0.9s ease-out forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  #remixMap .bg { opacity: 0; animation: bgin 0.6s ease 0.5s forwards; }
+  @keyframes bgin { to { opacity: 0.35; } }
+  #remixMap .dot { transform-box: fill-box; transform-origin: center; animation: pop 0.35s ease-out both; animation-delay: var(--d, 0.4s); }
+  #remixMap .lbl { opacity: 0; animation: lblin 0.4s ease both; animation-delay: calc(var(--d, 0.4s) + 0.1s); }
+  @keyframes lblin { to { opacity: var(--o, 1); } }
+  #remixMap .ping { transform-box: fill-box; transform-origin: center; animation: ping 1.6s ease-out 0.3s 3; opacity: 0; }
+  @keyframes ping { 0% { transform: scale(0.3); opacity: 0.9; } 100% { transform: scale(2.6); opacity: 0; } }
+  /* the relocation ladder grows in, then slides when the pace changes */
+  #ladder .bar { transform-box: fill-box; transform-origin: left center; transition: x 0.35s ease, width 0.35s ease; }
+  #ladder .dot { transition: cx 0.35s ease; }
+  #ladder .chup { transition: transform 0.35s ease; }
+  section.topic.active #ladder .bar, section.topic.active #ladder .dot { animation: growx 0.55s ease-out both; animation-delay: var(--d, 0s); }
+  @keyframes growx { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  /* one switch turns all of it off */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
   @media (prefers-reduced-motion: reduce) {
     section.topic.active { animation: none; }
     html { scroll-behavior: auto; }
@@ -1083,7 +1125,7 @@
       <li>
         <span class="tag">Packet 04</span>
         <span class="k">The shared platforms</span>
-        <span class="v">Invitations, not obligations: a shared calendar with my standing commitments already on it, shared location while I'm traveling to you, a shared photo album, a shared notes and lists app for groceries and plans, a shared expense tracker running the <a href="#budget">dating budget</a> in the open, a shared reading list, and a shared password vault for the streaming accounts. Whichever you already use wins; I'll switch.</span>
+        <span class="v">Invitations, not obligations: a shared calendar with my standing commitments already on it, shared location while I'm traveling to you, a shared photo album, a shared notes and lists app for groceries and plans, a shared expense tracker running the <a href="#budget">dating budget</a> in the open, a shared reading list, a shared password vault for the streaming accounts, and, if you want it, the <a href="#maintenance">fitness-data share</a>: my Oura, Fitbit, and Spotter schedule visible to you, yours to me on whatever platform you already wear. Whichever you already use wins; I'll switch.</span>
       </li>
       <li>
         <span class="tag">Packet 05</span>
@@ -1337,6 +1379,7 @@
     <p class="subhead">The Grandparent Clock makes my lifespan this site's central variable. Here is the maintenance schedule. Yes, I'll still buy your drink.</p>
     <div class="prose">
       <p><strong>The forcing function.</strong> I engineered an app called CtrlAltM⏻ve that locks every screen I own, work laptop included, until I've exercised that day. So I exercise every day, religiously, because I've made skipping impossible. Of everything in my life, it's the thing I'm most religious about.</p>
+      <p><strong>Fitness data, shared.</strong> It matters to me to be able to share my progress toward my health goals, and my fitness itself, with my partner, and I'm hoping you'll feel the same and want to share yours with me. I can join you on whatever platform you already use: I wear an Oura ring and a Fitbit Inspire 3 and keep an old Samsung Galaxy Watch in a drawer, and I wouldn't hesitate to buy different hardware if it makes syncing our data with each other smoother. CtrlAltM⏻ve is growing a feature I call Spotter, which will let you see my planned weekly workout schedule and whether I actually completed it, and I'm looking forward to handing you that view. If you help motivate me to stay more and more fit, that's one of the qualities I'm looking for in a spouse and lifetime partner, and I'll appreciate it forever. The offer runs both ways, at whatever depth you're comfortable with: a shared step count is plenty, and a shared training plan is a joy.</p>
       <p><strong>Sleep.</strong> I sleep on a schedule, nearly the same time every day of the year. No erratic hours, no partying through weekends and recovering through the week; my schedule is usually flexible enough that the only alarms I set are for red-eye flights.</p>
       <p><strong>The poisons.</strong> I don't smoke. I don't drink alcohol, which I consider what it is: a poison, with the honest footnote that at one drink a day the cost is measured in months of life, not years, and I still don't want them. I'll happily buy yours, though, under one small and lifelong condition: soft protest. Every few rounds, expect me to note, with a straight face and no sermon, that you are asking me to pay to have you poisoned against my better judgment, and then to pay. Your glass, your call, my joke. My abstaining is a health choice for me, not a rule for you, and I'd rather be honest about it on a website than awkward about it at a bar.</p>
       <p><strong>The screenings.</strong> I'm consistent about the screenings that have evidence behind them, blood pressure, lipids, diabetes, colorectal at 45, and skeptical of the ones that don't, since the general annual checkup has never been shown to extend a life and over-screening has its own harms. The mortality clock only bends one way on its own; the right tests are how you argue with it. The one number on this site the schedule doesn't address is my weight: 190 pounds at 5'10" is a body-mass index near 27, which is on the list. I want to stay alive and healthy as long as the effort and the math allow.</p>
@@ -2218,6 +2261,25 @@ He's clear about what he wants, which is to marry and raise two or three kids so
   window.addEventListener('load', updateNavFades);
   updateNavFades();
 
+  // a gold underline (rail) and side bar (sidebar) that glide to the active link
+  const inds = [];
+  [[rail, 'x'], [side, 'y']].forEach(([box, axis]) => {
+    if (!box) return;
+    const ind = document.createElement('span'); ind.className = 'ind'; ind.setAttribute('aria-hidden', 'true');
+    box.appendChild(ind); inds.push({ box, ind, axis, placed: false });
+  });
+  function placeIndicators() {
+    inds.forEach(o => {
+      const a = o.box.querySelector('a.active'); if (!a) return;
+      if (!o.placed) { o.ind.style.transition = 'none'; }
+      if (o.axis === 'x') { o.ind.style.left = a.offsetLeft + 'px'; o.ind.style.width = a.offsetWidth + 'px'; }
+      else { o.ind.style.top = a.offsetTop + 'px'; o.ind.style.height = a.offsetHeight + 'px'; }
+      if (!o.placed) { o.placed = true; requestAnimationFrame(() => { o.ind.style.transition = ''; }); }
+    });
+  }
+  window.addEventListener('resize', placeIndicators);
+  window.addEventListener('load', placeIndicators);
+
   function route() {
     const raw = (location.hash || '#radius').slice(1);
     if (raw === 'content') { const m = document.getElementById('content'); if (m) m.focus(); return; }
@@ -2232,6 +2294,7 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     const act = rail.querySelector('a.active');
     if (act) act.scrollIntoView({ inline: 'center', block: 'nearest' });
     updateNavFades();
+    placeIndicators();
     const activeSec = document.getElementById(target);
     track('page_view', { page_title: (activeSec && activeSec.dataset.title) || target, page_location: location.origin + location.pathname + '#' + target, page_path: '/#' + target });
     const card = audit && document.getElementById(audit);
@@ -2523,7 +2586,8 @@ Show the tables you rely on and cite them.`
 4. SCREENINGS. Which screenings for a man in his early 40s have strong evidence of extending life (blood pressure, lipids, colorectal from 45, diabetes), which are contested (PSA, whole-body scans, executive physicals), and can over-screening do harm? Does "superconsistent about screenings" need a qualifier?
 5. THE RANKING. The page says exercise is the thing he is "most religious about." Rank the four behaviors by expected life-years for this man, and say whether anything with comparable evidence is missing (weight, diet quality, social connection, not driving drunk-adjacent hours, sun protection).
 6. THE FILTER. The author says he'll buy a partner's drink under "soft protest," joking every few rounds that she is asking him to pay to have her poisoned. Is a zero-alcohol household a reasonable health position, a social liability, or a values test in disguise, and does the running joke land as charm or as pressure to a partner who drinks moderately?
-7. VERDICT. Grade the maintenance schedule for evidence quality, and name the one addition or deletion that would improve it most.
+7. THE SHARED DATA. The page proposes sharing fitness-tracker data and a weekly workout schedule (planned versus completed) with a partner, in both directions. What does the research say about partner or peer accountability, wearable data sharing, and social features in fitness apps on exercise adherence? Where does shared tracking help, and where does it turn into surveillance or a source of conflict? What norms would you set?
+8. VERDICT. Grade the maintenance schedule for evidence quality, and name the one addition or deletion that would improve it most.
 
 Cite the studies you rely on and give effect sizes, not adjectives.`
     },
@@ -2750,26 +2814,29 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     const HOME = { lat: 26.37, lon: -80.09 };
 
     let s = '';
-    s += '<path d="M' + OUTLINE.map(c => X(c[1]).toFixed(1) + ' ' + Y(c[0]).toFixed(1)).join(' L') +
+    // dots arrive east to west, the direction the flights go
+    const del = lon => (0.45 + Math.max(0, Math.min(1, (-67 - lon) / 58)) * 0.7).toFixed(2) + 's';
+    s += '<path class="outline" pathLength="1" d="M' + OUTLINE.map(c => X(c[1]).toFixed(1) + ' ' + Y(c[0]).toFixed(1)).join(' L') +
          ' Z" fill="rgba(139,147,184,0.05)" stroke="#8b93b8" stroke-width="1.2" opacity="0.6" stroke-linejoin="round"/>';
     BG.forEach(c => {
-      s += `<circle cx="${X(c[1]).toFixed(1)}" cy="${Y(c[0]).toFixed(1)}" r="2.3" fill="#8b93b8" opacity="0.35"/>`;
+      s += `<circle class="bg" cx="${X(c[1]).toFixed(1)}" cy="${Y(c[0]).toFixed(1)}" r="2.3" fill="#8b93b8" opacity="0.35"/>`;
     });
     s += `<ellipse cx="${X(HOME.lon).toFixed(1)}" cy="${Y(HOME.lat).toFixed(1)}" rx="119" ry="149" fill="none" stroke="#e8b44a" stroke-width="1.2" stroke-dasharray="5 5" opacity="0.55"/>`;
     DRIVE.concat(QUAL).forEach(c => {
-      s += `<circle cx="${X(c[1]).toFixed(1)}" cy="${Y(c[0]).toFixed(1)}" r="3" fill="#e8b44a" opacity="0.8"/>`;
+      s += `<circle class="dot" style="--d:${del(c[1])}" cx="${X(c[1]).toFixed(1)}" cy="${Y(c[0]).toFixed(1)}" r="3" fill="#e8b44a" opacity="0.8"/>`;
     });
     AIR.forEach(c => {
-      const x = X(c.lon), y = Y(c.lat);
-      s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.2" fill="#e8b44a"/>`;
-      s += `<text x="${(x + c.dx).toFixed(1)}" y="${(y + c.dy).toFixed(1)}" ${MONO} font-size="15" letter-spacing="1" fill="#e8b44a" text-anchor="${c.a}">${c.n}</text>`;
+      const x = X(c.lon), y = Y(c.lat), d = del(c.lon);
+      s += `<circle class="dot" style="--d:${d}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.2" fill="#e8b44a"/>`;
+      s += `<text class="lbl" style="--d:${d}" x="${(x + c.dx).toFixed(1)}" y="${(y + c.dy).toFixed(1)}" ${MONO} font-size="15" letter-spacing="1" fill="#e8b44a" text-anchor="${c.a}">${c.n}</text>`;
     });
     NEAR.forEach(c => {
-      const x = X(c.lon), y = Y(c.lat);
-      s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.2" fill="none" stroke="#e8b44a" stroke-dasharray="2 2" opacity="0.7"/>`;
-      s += `<text x="${(x + c.dx).toFixed(1)}" y="${(y + c.dy).toFixed(1)}" ${MONO} font-size="14" letter-spacing="1" fill="#e8b44a" opacity="0.6" text-anchor="${c.a}">${c.n}</text>`;
+      const x = X(c.lon), y = Y(c.lat), d = del(c.lon);
+      s += `<circle class="dot" style="--d:${d}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.2" fill="none" stroke="#e8b44a" stroke-dasharray="2 2" opacity="0.7"/>`;
+      s += `<text class="lbl" style="--d:${d};--o:0.6" x="${(x + c.dx).toFixed(1)}" y="${(y + c.dy).toFixed(1)}" ${MONO} font-size="14" letter-spacing="1" fill="#e8b44a" text-anchor="${c.a}">${c.n}</text>`;
     });
     const hx = X(HOME.lon), hy = Y(HOME.lat);
+    s += `<circle class="ping" cx="${hx.toFixed(1)}" cy="${hy.toFixed(1)}" r="6" fill="none" stroke="#e8b44a" stroke-width="1.2"/>`;
     s += `<circle cx="${hx.toFixed(1)}" cy="${hy.toFixed(1)}" r="6" fill="none" stroke="#eae6d8" stroke-width="1.4"/>`;
     s += `<circle cx="${hx.toFixed(1)}" cy="${hy.toFixed(1)}" r="2" fill="#eae6d8"/>`;
     s += `<text x="${(hx + 13).toFixed(1)}" y="${(hy + 5).toFixed(1)}" ${MONO} font-size="15" letter-spacing="2" fill="#eae6d8">HOME</text>`;
@@ -2805,47 +2872,61 @@ Be honest rather than kind. The author wrote this prompt himself and published i
       { n: 'Second and third dates, flown in',        s: 0.5,  e: 1.5 },
       { n: 'Weekly Airbnb, a week or two at a time',  s: 1.5,  e: 3 },
       { n: 'Month-to-month furnished apartment',      s: 3,    e: 7 },
-      { n: 'One-year lease, when you\u2019re ready',   s: 7,    e: 7, lease: true },
+      { n: 'One-year lease, when you’re ready',   s: 7,    e: 7, lease: true },
       { n: 'Engagement window (hoped for early)',     s: 6,    e: 9, band: true },
       { n: 'Courthouse, then the big cheap party',    s: 9,    e: 12 },
       { n: 'Move in together: ring or chuppah',       s: 9,    e: 12, movein: true }
     ];
+    const W = 1000, L = 300, R = 24, T = 44, ROW = 34, B = 46, HGT = T + PHASES.length * ROW + B;
+    const rowY = i => T + i * ROW + ROW / 2;
+    // the frame is built once; bars are then moved in place so they can slide to a new pace
+    let s = `<svg viewBox="0 0 ${W} ${HGT}" role="img" aria-label="Gantt chart of an illustrative relocation ladder from a first date to marriage: screening call, first weekend, flown-in dates, a weekly Airbnb, a month-to-month furnished apartment, a one-year lease when she is ready, an engagement window, the courthouse and party, and moving in together at the ring or the chuppah. A slider stretches every phase to her pace, from nine to twenty-four months.">`;
+    s += '<g class="axis"></g>';
+    PHASES.forEach((ph, i) => {
+      const y = rowY(i), d = `style="--d:${(i * 0.045).toFixed(3)}s"`;
+      s += `<text x="${L - 14}" y="${(y + 4).toFixed(1)}" ${MONO} font-size="12.5" fill="${ph.movein ? GOLD : PAPER}" text-anchor="end">${ph.n}</text>`;
+      if (ph.band) {
+        s += `<rect class="bar" data-i="${i}" y="${y - 9}" height="18" rx="3" fill="none" stroke="${GOLD}" stroke-dasharray="4 3" opacity="0.8" ${d}/>`;
+        s += `<circle class="dot" data-i="${i}" cy="${y}" r="4" fill="${GOLD}" ${d}/>`;
+      } else if (ph.movein) {
+        s += `<rect class="bar" data-i="${i}" y="${y - 9}" height="18" rx="3" fill="none" stroke="${GOLD}" stroke-dasharray="2 3" opacity="0.6" ${d}/>`;
+        s += `<rect class="bar home" data-i="${i}" y="${y - 9}" height="18" rx="3" fill="${GOLD}" opacity="0.9" ${d}/>`;
+        s += `<text class="hometag" y="${(y + 4).toFixed(1)}" ${MONO} font-size="11" fill="#0b1026" text-anchor="end" font-weight="500">HOME</text>`;
+      } else {
+        s += `<rect class="bar" data-i="${i}" y="${y - 9}" height="18" rx="3" fill="${GOLD}" opacity="${ph.lease ? 0.55 : 0.85}" ${d}/>`;
+        if (ph.lease) s += `<text class="leasearrow" y="${(y + 4).toFixed(1)}" ${MONO} font-size="11" fill="#0b1026" text-anchor="end">→</text>`;
+      }
+    });
+    s += `<g class="chup"><line x1="0" y1="${T - 4}" x2="0" y2="${HGT - B + 8}" stroke="${PAPER}" stroke-width="1.2" stroke-dasharray="6 4" opacity="0.8"/><text class="chuptext" y="${HGT - B + 24}" ${MONO} font-size="11.5" letter-spacing="1.5" fill="${PAPER}"></text></g>`;
+    s += `<text x="24" y="${HGT - 8}" ${MONO} font-size="10.5" letter-spacing="1.2" fill="${FAINT}">ILLUSTRATIVE. PHASES MOVE WITH YOUR COMFORT; ONLY THE ORDER IS FIXED. THE LEASE BAR RUNS ITS FULL YEAR.</text>`;
+    s += '</svg>';
+    host.innerHTML = s;
+    const svg = host.firstElementChild, axis = svg.querySelector('.axis'), chup = svg.querySelector('.chup'), chupText = svg.querySelector('.chuptext');
+    const place = (el, x, w) => { el.style.setProperty('x', x.toFixed(1) + 'px'); el.style.setProperty('width', Math.max(w, 3).toFixed(1) + 'px'); };
     function draw() {
       const H = +sld.value, k = H / 12;
       val.textContent = H;
       const span = Math.ceil((7 * k + 12 + 1) / 3) * 3;  // axis runs past the end of the lease
-      const W = 1000, L = 300, R = 24, T = 44, ROW = 34, B = 46;
-      const HGT = T + PHASES.length * ROW + B;
       const X = m => L + (m / span) * (W - L - R);
       const m = ph => ({ s: ph.fixed ? ph.s : ph.s * k, e: ph.lease ? ph.s * k + 12 : (ph.fixed ? ph.e : ph.e * k) });
-      let s = '';
+      let a = '';
       for (let mo = 0; mo <= span; mo += 3) {
-        s += `<line x1="${X(mo).toFixed(1)}" y1="${T - 6}" x2="${X(mo).toFixed(1)}" y2="${HGT - B + 6}" stroke="${FAINT}" stroke-width="1" opacity="${mo % 12 === 0 ? 0.35 : 0.15}"/>`;
-        s += `<text x="${X(mo).toFixed(1)}" y="${T - 12}" ${MONO} font-size="11" fill="${FAINT}" text-anchor="middle">${mo === 0 ? 'FIRST DATE' : (mo % 12 === 0 ? 'YEAR ' + (mo / 12) : 'MO ' + mo)}</text>`;
+        a += `<line x1="${X(mo).toFixed(1)}" y1="${T - 6}" x2="${X(mo).toFixed(1)}" y2="${HGT - B + 6}" stroke="${FAINT}" stroke-width="1" opacity="${mo % 12 === 0 ? 0.35 : 0.15}"/>`;
+        a += `<text x="${X(mo).toFixed(1)}" y="${T - 12}" ${MONO} font-size="11" fill="${FAINT}" text-anchor="middle">${mo === 0 ? 'FIRST DATE' : (mo % 12 === 0 ? 'YEAR ' + (mo / 12) : 'MO ' + mo)}</text>`;
       }
+      axis.innerHTML = a;
       PHASES.forEach((ph, i) => {
-        const y = T + i * ROW + ROW / 2, r = m(ph);
-        const x1 = X(r.s), x2 = X(Math.min(r.e, span));
-        s += `<text x="${L - 14}" y="${(y + 4).toFixed(1)}" ${MONO} font-size="12.5" fill="${ph.movein ? GOLD : PAPER}" text-anchor="end">${ph.n}</text>`;
-        if (ph.band) {
-          s += `<rect x="${x1.toFixed(1)}" y="${y - 9}" width="${(x2 - x1).toFixed(1)}" height="18" rx="3" fill="none" stroke="${GOLD}" stroke-dasharray="4 3" opacity="0.8"/>`;
-          s += `<circle cx="${x1.toFixed(1)}" cy="${y}" r="4" fill="${GOLD}"/>`;
-        } else if (ph.movein) {
-          s += `<rect x="${x1.toFixed(1)}" y="${y - 9}" width="${(x2 - x1).toFixed(1)}" height="18" rx="3" fill="none" stroke="${GOLD}" stroke-dasharray="2 3" opacity="0.6"/>`;
-          s += `<rect x="${x2.toFixed(1)}" y="${y - 9}" width="${(X(span) - x2).toFixed(1)}" height="18" rx="3" fill="${GOLD}" opacity="0.9"/>`;
-          s += `<text x="${(X(span) - 8).toFixed(1)}" y="${(y + 4).toFixed(1)}" ${MONO} font-size="11" fill="#0b1026" text-anchor="end" font-weight="500">HOME</text>`;
-        } else {
-          s += `<rect x="${x1.toFixed(1)}" y="${y - 9}" width="${Math.max(x2 - x1, 3).toFixed(1)}" height="18" rx="3" fill="${GOLD}" opacity="${ph.lease ? 0.55 : 0.85}"/>`;
-          if (ph.lease && r.e > span) s += `<text x="${(x2 - 6).toFixed(1)}" y="${(y + 4).toFixed(1)}" ${MONO} font-size="11" fill="#0b1026" text-anchor="end">\u2192</text>`;
-        }
+        const r = m(ph), x1 = X(r.s), x2 = X(Math.min(r.e, span));
+        const bars = svg.querySelectorAll(`.bar[data-i="${i}"]`);
+        place(bars[0], x1, x2 - x1);
+        if (ph.band) svg.querySelector(`.dot[data-i="${i}"]`).style.setProperty('cx', x1.toFixed(1) + 'px');
+        if (ph.movein) { place(bars[1], x2, X(span) - x2); svg.querySelector('.hometag').setAttribute('x', (X(span) - 8).toFixed(1)); }
+        if (ph.lease) { const tx = svg.querySelector('.leasearrow'); tx.setAttribute('x', (x2 - 6).toFixed(1)); tx.style.display = r.e > span ? '' : 'none'; }
       });
-      // the chuppah line
-      const xc = X(H);
-      s += `<line x1="${xc.toFixed(1)}" y1="${T - 4}" x2="${xc.toFixed(1)}" y2="${HGT - B + 8}" stroke="${PAPER}" stroke-width="1.2" stroke-dasharray="6 4" opacity="0.8"/>`;
-      const flip = xc > W - 190;
-      s += `<text x="${(xc + (flip ? -6 : 6)).toFixed(1)}" y="${HGT - B + 24}" ${MONO} font-size="11.5" letter-spacing="1.5" fill="${PAPER}" text-anchor="${flip ? 'end' : 'start'}">CHUPPAH \u2248 MONTH ${H}</text>`;
-      s += `<text x="24" y="${HGT - 8}" ${MONO} font-size="10.5" letter-spacing="1.2" fill="${FAINT}">ILLUSTRATIVE. PHASES MOVE WITH YOUR COMFORT; ONLY THE ORDER IS FIXED. THE LEASE BAR RUNS ITS FULL YEAR.</text>`;
-      host.innerHTML = `<svg viewBox="0 0 ${W} ${HGT}" role="img" aria-label="Gantt chart of an illustrative relocation ladder from a first date to marriage: screening call, first weekend, flown-in dates, a weekly Airbnb, a month-to-month furnished apartment, a one-year lease when she is ready, an engagement window, the courthouse and party, and moving in together at the ring or the chuppah. A slider stretches every phase to her pace, from nine to twenty-four months.">${s}</svg>`;
+      const xc = X(H), flip = xc > W - 190;
+      chup.style.transform = `translateX(${xc.toFixed(1)}px)`;
+      chupText.setAttribute('x', flip ? -6 : 6); chupText.setAttribute('text-anchor', flip ? 'end' : 'start');
+      chupText.textContent = `CHUPPAH ≈ MONTH ${H}`;
     }
     sld.addEventListener('input', draw);
     draw();
@@ -2930,12 +3011,23 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     const born = Date.UTC(1986, 2, 31, 5, 0, 0);
     const YEAR = 31556952000;
     const LE = 78.0; // typical US male life expectancy at this age; see Audit 16
+    // the sliders' values ease in over about a quarter second so the figures count rather than jump
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let sDelay = parseFloat(el.sldDelay.value), sKids = parseFloat(el.sldKids.value), last = performance.now();
     function tick() {
       const age = (Date.now() - born) / YEAR;
-      const delay = parseFloat(el.sldDelay.value);
-      const kidsDone = parseFloat(el.sldKids.value);
-      el.valDelay.textContent = delay.toFixed(2);
-      el.valKids.textContent = kidsDone;
+      const tDelay = parseFloat(el.sldDelay.value), tKids = parseFloat(el.sldKids.value);
+      const now = performance.now(), dt = Math.min(0.1, (now - last) / 1000); last = now;
+      if (reduce) { sDelay = tDelay; sKids = tKids; }
+      else {
+        const k = 1 - Math.exp(-dt / 0.09);
+        sDelay += (tDelay - sDelay) * k; sKids += (tKids - sKids) * k;
+        if (Math.abs(tDelay - sDelay) < 0.002) sDelay = tDelay;
+        if (Math.abs(tKids - sKids) < 0.002) sKids = tKids;
+      }
+      const delay = sDelay, kidsDone = sKids;
+      el.valDelay.textContent = tDelay.toFixed(2);
+      el.valKids.textContent = tKids;
       el.proseAge.textContent = age.toFixed(6);
       el.agerangeAge.textContent = age.toFixed(6);
       el.agerangeCeil.textContent = (age + 5).toFixed(6);
@@ -2975,6 +3067,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
         else if (n === 5) verdict.textContent = 'Refer her. Every line on this site says yes, and the rest is chemistry, which no checklist measures.';
         else if (n >= 3) verdict.textContent = `${n} of 5. Refer her, and let her decide; the lines are hers to weigh, and the site has a page for anyone who lands between them.`;
         else verdict.textContent = `${n} of 5. Probably not a fit on paper, but paper has been wrong before. Let her decide, and tell her which lines gave you pause.`;
+        verdict.classList.remove('swap'); void verdict.offsetWidth; verdict.classList.add('swap');
       };
       boxes.forEach(b => b.addEventListener('change', say));
     }
@@ -2987,15 +3080,31 @@ Be honest rather than kind. The author wrote this prompt himself and published i
     const out = document.getElementById('prizeOut'), yr = document.getElementById('prizeYear');
     const vy = document.getElementById('valPrizeYears'), vr = document.getElementById('valPrizeInfl');
     if (y && r && out && yr && vy && vr) {
-      const calc = () => {
-        const years = parseFloat(y.value), rate = parseFloat(r.value) / 100;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let sy = parseFloat(y.value), sr = parseFloat(r.value) / 100, raf = null, lastT = 0;
+      const render = (years, rate) => {
         const from2026 = (Date.now() - Date.UTC(2026, 8, 1)) / 31556952000;
         const total = Math.max(0, from2026 + years);
         out.textContent = Math.round(2000 * Math.pow(1 + rate, total)).toLocaleString('en-US');
         yr.textContent = String(new Date(Date.now() + years * 31556952000).getFullYear());
-        vy.textContent = years.toFixed(1); vr.textContent = (rate * 100).toFixed(1);
       };
-      y.addEventListener('input', calc); r.addEventListener('input', calc); calc();
+      const step = (now) => {
+        const ty = parseFloat(y.value), tr = parseFloat(r.value) / 100;
+        const dt = lastT ? Math.min(0.1, (now - lastT) / 1000) : 0.016; lastT = now;
+        const k = 1 - Math.exp(-dt / 0.09);
+        sy += (ty - sy) * k; sr += (tr - sr) * k;
+        if (Math.abs(ty - sy) < 0.005) sy = ty;
+        if (Math.abs(tr - sr) < 0.00005) sr = tr;
+        render(sy, sr);
+        if (sy !== ty || sr !== tr) raf = requestAnimationFrame(step); else { raf = null; lastT = 0; }
+      };
+      const calc = () => {
+        const ty = parseFloat(y.value), tr = parseFloat(r.value) / 100;
+        vy.textContent = ty.toFixed(1); vr.textContent = (tr * 100).toFixed(1);  // the labels show the target at once
+        if (reduce) { sy = ty; sr = tr; render(sy, sr); return; }
+        if (!raf) raf = requestAnimationFrame(step);
+      };
+      y.addEventListener('input', calc); r.addEventListener('input', calc); render(sy, sr); calc();
     }
   })();
 
@@ -3140,9 +3249,11 @@ Be honest rather than kind. The author wrote this prompt himself and published i
   // live odometer: 370 km/s in the CMB frame, shown in miles
   const odo = document.getElementById('odo');
   const t0 = performance.now();
+  const lit = {};
   function fmt() {
     const miles = ((performance.now() - t0) / 1000) * 370 * 0.621371;
     odo.textContent = Math.floor(miles).toLocaleString('en-US');
+    [100000, 238900].forEach(m => { if (miles >= m && !lit[m]) { lit[m] = true; odo.classList.remove('glow'); void odo.offsetWidth; odo.classList.add('glow'); } });
     const note = document.getElementById('odoNote');
     if (note) note.textContent = miles >= 238900 ? ' That is the distance to the Moon. Say hi before we start the trip back.' : miles >= 100000 ? ' That is four laps of the Earth, and you still haven\'t said hi.' : '';
   }
@@ -3151,6 +3262,7 @@ Be honest rather than kind. The author wrote this prompt himself and published i
   } else {
     (function tick(){ fmt(); requestAnimationFrame(tick); })();
   }
+
 </script>
 </body>
 </html>

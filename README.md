@@ -8,7 +8,7 @@ number behind it, timestamped in the commit log.
 ## The premise
 
 The dating radius is two astronomical seconds: two seconds of the Sun's motion
-relative to the cosmic microwave background, about 740 km or 460 miles. An
+relative to the cosmic microwave background, about 460 miles or 740 km. An
 "airline remix" converts that distance into a wall-clock travel budget so any US
 city reachable nonstop inside the same seven hours also qualifies. Around that
 frame sits a full disclosure of the life plan: family size, the marriage

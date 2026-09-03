@@ -87,7 +87,7 @@ n_dash = (s.count('\u2014') - audits_src.count('\u2014') - patent_src.count('\u2
 check('em-dash budget outside audit prompts and the filing (<=16)', n_dash <= 16, f'found {n_dash}')
 
 check('radius numbers consistent',
-      '740&nbsp;km / 460&nbsp;miles' in s and '7 hours 4 minutes' in s
+      '460&nbsp;miles / 740&nbsp;km' in s and '7 hours 4 minutes' in s
       and '5 hours 34 minutes' in s and '370&nbsp;km/s' in s)
 check('no stale 230-mile radius', ' 230 mi' not in s and '≈370' not in s)
 check('birthdate constant in both tickers', s.count('Date.UTC(1986, 2, 31') == 2)

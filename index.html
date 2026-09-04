@@ -116,6 +116,8 @@
   }
   nav.topics a:hover { color: var(--paper); }
   nav.topics a.active { color: var(--gold); }
+  nav.topics a:not(.core):not(.active) { display: none; }
+  nav.topics a.more { margin-left: auto; color: var(--gold); opacity: 0.85; }
   nav.topics .rail { position: relative; }
   nav.topics .ind { position: absolute; bottom: 0; height: 2px; background: var(--gold); pointer-events: none; transition: left 0.32s cubic-bezier(0.2, 0.7, 0.2, 1), width 0.32s cubic-bezier(0.2, 0.7, 0.2, 1); }
   nav.topics a:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
@@ -703,6 +705,9 @@
     background: var(--plate);
   }
   .hero { margin: 2.6rem 0 1.8rem; max-width: 360px; }
+  .hero.top { margin: 1rem 0 0.9rem; }
+  .byline { font-family: 'Fraunces', serif; font-size: 1.12rem; line-height: 1.45; color: #cfd3e6; max-width: 58ch; margin: 0 0 2.2rem; }
+  .byline strong { color: var(--paper); font-weight: 500; }
   .hero img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; display: block; border: 1px solid var(--line); border-radius: 6px; background: var(--plate); }
   .hero figcaption { margin-top: 0.55rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--faint); }
   .hero figcaption a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
@@ -762,7 +767,7 @@
 
 <a class="skip" href="#content">Skip to content</a>
 <aside class="sidenav" id="sideNav" aria-label="Sections"></aside>
-<a class="ribbon" id="ribbon" href="#referrals" aria-label="Amateur Matchmaker Prize: $2,000 for the introduction that leads to a first child. Read the Referrals page.">Amateur Matchmaker Prize<small>$2,000 · Referrals ›</small></a>
+<a class="ribbon hidden" id="ribbon" href="#referrals" aria-label="Amateur Matchmaker Prize: $2,000 for the introduction that leads to a first child. Read the Referrals page.">Amateur Matchmaker Prize<small>$2,000 · Referrals ›</small></a>
 <div class="nudge" id="nudge" role="dialog" aria-label="A reminder to reach out" aria-hidden="true">
   <button class="close" type="button" id="nudgeClose" aria-label="Dismiss">×</button>
   <span class="tag" id="nudgeTag">2 MINUTES IN</span>
@@ -779,6 +784,12 @@
 
   <!-- ============ THE RADIUS ============ -->
   <section class="topic" id="radius" data-title="Start Here" data-chapter="Start here">
+    <figure class="hero top">
+      <img src="photos/david-1.jpg" alt="David grinning at a Thai restaurant table behind a bowl of khao soi, April 6, 2025" loading="eager">
+      <figcaption>The face I make when the khao soi arrives, which is also the face I make when you do. April 2025; the rest, dated, on <a href="#observer">Who I Am</a>.</figcaption>
+    </figure>
+    <p class="byline"><strong>David Clayman, <span class="ageInt">40</span>.</strong> Former science teacher, now a public-health founder; South Florida and Cleveland; here to marry and raise a family, soon.</p>
+
     <div class="eyebrow">FRAME OF REFERENCE: <b>THE COSMIC MICROWAVE BACKGROUND</b></div>
 
     <h1>I'll travel exactly <em>two astronomical seconds</em> anywhere to meet you.</h1>
@@ -796,11 +807,6 @@
         Still think distance is a dealbreaker?<span id="odoNote"></span>
       </div>
     </div>
-
-    <figure class="hero">
-      <img src="photos/david-1.jpg" alt="David grinning at a Thai restaurant table behind a bowl of khao soi, April 6, 2025" loading="eager">
-      <figcaption>The face I make when the khao soi arrives, which is also the face I make when you do. April 2025; the rest, dated, on <a href="#observer">Who I Am</a>.</figcaption>
-    </figure>
 
     <div class="prose">
       <p><strong>Who this is.</strong> David Clayman, <span class="ageInt">40</span>, a former science teacher who now builds public-health software at the company I founded, based in South Florida with a second base in Cleveland. I work remotely, hold three passports, and can move to wherever you are on a week's notice. I read for pleasure, dance salsa when the chance comes, don't drink, and I'm divorced, which the site explains when the time is right. I want to marry and raise two or three children, soon, whether they arrive with you or after you. Everything below this line is me going first.</p>
@@ -2200,13 +2206,19 @@ He's clear about what he wants, which is to marry and raise two or three kids so
 
   const sections = Array.from(document.querySelectorAll('section.topic'));
   const rail = document.getElementById('navRail');
+  // the rail shows the Start Here chapter, whichever section is open, and one door to everything else;
+  // the Contents tab is that door, so it goes last
+  let doorTab = null;
   sections.forEach(sec => {
     const a = document.createElement('a');
     a.href = '#' + sec.id;
     a.textContent = sec.dataset.title;
     a.dataset.target = sec.id;
+    if (sec.dataset.chapter === 'Start here') a.classList.add('core');
+    if (sec.id === 'contents') { a.textContent = 'Everything else \u203a'; a.classList.add('more'); doorTab = a; return; }
     rail.appendChild(a);
   });
+  if (doorTab) rail.appendChild(doorTab);
 
   // the left sidebar (wide screens): the same chapters as the Contents page
   const side = document.getElementById('sideNav');
@@ -2315,7 +2327,7 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     sections.forEach(s => s.classList.toggle('active', s.id === target));
     rail.querySelectorAll('a').forEach(a => { const on = a.dataset.target === target; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     if (side) side.querySelectorAll('a').forEach(a => { const on = a.dataset.target === target; a.classList.toggle('active', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
-    if (ribbon) ribbon.classList.toggle('hidden', target === 'referrals' || ribbonDone());
+    if (ribbon) ribbon.classList.toggle('hidden', target === 'referrals' || ribbonDone() || visited(target) < 2);
     const act = rail.querySelector('a.active');
     if (act) act.scrollIntoView({ inline: 'center', block: 'nearest' });
     updateNavFades();
@@ -2331,10 +2343,17 @@ He's clear about what he wants, which is to marry and raise two or three kids so
     }
     revealSoon();
   }
-  // the prize ribbon: shown on every page load until it's clicked once, then gone for that visit
+  // the prize ribbon: the referral is for people who already like the site, so it appears only once a
+  // second section has been opened this session, and goes away for the visit once it's clicked
   const ribbon = document.getElementById('ribbon');
   let ribbonClicked = false;
   function ribbonDone() { return ribbonClicked; }
+  function visited(id) {
+    let seen = [];
+    try { seen = JSON.parse(sessionStorage.getItem('visited') || '[]'); } catch (e) {}
+    if (seen.indexOf(id) === -1) { seen.push(id); try { sessionStorage.setItem('visited', JSON.stringify(seen)); } catch (e) {} }
+    return seen.length;
+  }
   if (ribbon) ribbon.addEventListener('click', () => { ribbonClicked = true; ribbon.classList.add('hidden'); track('ribbon_click'); });
 
   window.addEventListener('hashchange', route);

@@ -117,6 +117,31 @@ if os.path.exists(nf):
 check('robots.txt allows crawling and names the sitemap', os.path.exists(os.path.join(ROOT, 'robots.txt')) and 'Sitemap: https://datedavid.org/sitemap.xml' in open(os.path.join(ROOT, 'robots.txt')).read())
 check('sitemap.xml lists the canonical URL', os.path.exists(os.path.join(ROOT, 'sitemap.xml')) and '<loc>https://datedavid.org/</loc>' in open(os.path.join(ROOT, 'sitemap.xml')).read())
 
+# --- relationship status bar ---------------------------------------------
+import datetime
+STAGES = ['Square 1: Not Past First Date', 'Hopeful: Exclusively Dating', 'Getting Close: Engagement Approaching', 'Tada! Engaged!!', 'Married!!']
+bar = re.search(r'<aside class="status" id="status"[^>]*>.*?</aside>', s, re.S)
+check('status bar present', bool(bar))
+stage = 0
+if bar:
+    b = bar.group(0)
+    m = re.search(r'data-stage="(\d)"', b)
+    stage = int(m.group(1)) if m else 0
+    check('status bar data-stage is 1..5', 1 <= stage <= 5, f'data-stage={m.group(1) if m else None}')
+    m2 = re.search(r'data-since="(\d{4}-\d{2}-\d{2})"', b)
+    check('status bar data-since is a past or present date', bool(m2) and datetime.date.fromisoformat(m2.group(1)) <= datetime.date.today())
+    check('status bar since line matches data-since', bool(m2) and f'<time datetime="{m2.group(1)}">{m2.group(1)}</time>' in b)
+    lis = re.findall(r'<li>.*?</li>', b, re.S)
+    check('status bar has five stages', len(lis) == 5, f'found {len(lis)}')
+    cur = [i for i, li in enumerate(lis, 1) if 'aria-current="step"' in li]
+    check('status bar marks one stage current, matching data-stage', cur == [stage], f'aria-current on {cur}, data-stage {stage}')
+    btns = re.findall(r'<button[^>]*>.*?</button>', b, re.S)
+    check('stages are buttons with no links inside', len(btns) == 5 and all('type="button"' in x and '<a ' not in x for x in btns))
+    names = [re.sub(r'<[^>]+>', '', re.search(r'<span class="t">(.*?)</span></button>', li, re.S).group(1)) for li in lis]
+    check('stage names are the five agreed labels', names == STAGES, str(names))
+    check('every stage has a note that links to a section', all(re.search(r'<p class="why" hidden>.*?href="#[a-z]+".*?</p>', li, re.S) for li in lis))
+check('nav rail is empty in the source', '<div class="rail" id="navRail"></div>' in s)
+
 # --- unlisted pages ------------------------------------------------------
 # reachable only by direct link: noindex, no email in source, never linked from the main page or the sitemap
 sm = open(os.path.join(ROOT, 'sitemap.xml')).read() if os.path.exists(os.path.join(ROOT, 'sitemap.xml')) else ''
@@ -131,12 +156,12 @@ for slug in ('coronacrush', 'shabbat', 'justmatched'):
     check(f'{slug} is unlisted', f'href="/{slug}' not in s and f'href="{slug}' not in s and f'/{slug}' not in sm)
     check(f'{slug} analytics loads only after consent', 'src="https://www.googletagmanager.com' not in src and "localStorage.getItem('consent')" in src)
     check(f'{slug} greeting is sanitized', "get('for')" in src and 'replace(/[^A-Za-z' in src)
+    check(f'{slug} states the current status', stage and (STAGES[stage - 1].upper() in src) and ('SINCE ' + (re.search(r'data-since="([^"]+)"', s).group(1)) in src))
     deep = set(re.findall(r'href="\.\./#([^"]+)"', src))
     bad = [i for i in deep if i not in valid]
     check(f'{slug} links into the main page resolve', not bad, str(bad))
 
 # --- audit recheck schedule (warns, never fails) --------------------------
-import datetime
 m = re.search(r'Next full recheck due <strong>(\d{4}-\d{2}-\d{2})</strong>', s)
 check('ledger states a recheck date', bool(m))
 if m and datetime.date.fromisoformat(m.group(1)) < datetime.date.today():
@@ -166,7 +191,9 @@ window.addEventListener('load',()=>setTimeout(()=>{
   document.title=(__errs.length?('JSERR:'+__errs[0]):'JSOK')
     +'|tabs='+document.querySelectorAll('#navRail a').length
     +'|age='+(document.getElementById('age')||{}).textContent
-    +'|a07='+(document.getElementById('audit-07')||{}).open;},400));
+    +'|a07='+(document.getElementById('audit-07')||{}).open
+    +'|st='+document.querySelectorAll('#status [aria-current="step"]').length
+    +'|stn='+(function(){var b=document.querySelectorAll('#status button.stage')[1];if(!b)return 'none';b.click();var n=document.getElementById('statusNote');return (n&&!n.hidden&&n.querySelector('a'))?'open':'closed';})();},400));
 </script></body>""")
     with tempfile.NamedTemporaryFile('w', suffix='.html', delete=False, dir=ROOT, encoding='utf-8') as f:
         f.write(probe); ppath = f.name
@@ -181,6 +208,8 @@ window.addEventListener('load',()=>setTimeout(()=>{
         check('smoke: nav tab count matches sections', f'tabs={len(ids)}' in t, t[:200])
         check('smoke: age ticker runs', re.search(r'age=4\d\.\d{6}', t) is not None, t[:200])
         check('smoke: audit deep link opens card', 'a07=true' in t, t[:200])
+        check('smoke: status bar marks one current stage', '|st=1|' in t, t[:200])
+        check('smoke: clicking an inactive stage opens its note', 'stn=open' in t, t[:200])
     finally:
         os.unlink(ppath)
 else:

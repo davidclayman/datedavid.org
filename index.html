@@ -153,9 +153,9 @@
   nav.topics.nav-end::after { opacity: 0; }
   nav.topics.nav-start::before { opacity: 0; }
 
-  /* relationship status: one bar, five stages, the current one filled; data-stage on the aside is the edit point */
-  .status { position: relative; font-family: 'IBM Plex Mono', monospace; }
-  .status .rail { max-width: 680px; margin: 0 auto; padding: 0.7rem 24px 0.55rem; display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem 0.5rem; }
+  /* relationship status: the current stage lit, the future steps in a pulldown, at the foot of every page */
+  .status { position: relative; font-family: 'IBM Plex Mono', monospace; border-top: 1px solid var(--line); }
+  .status .rail { max-width: 680px; margin: 0 auto; padding: 1.1rem 24px 1.3rem; display: flex; align-items: center; flex-wrap: wrap; gap: 0.45rem 0.6rem; }
   .status .lbl, .status .since { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); }
   .status ol { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem; }
   .status .stage {
@@ -167,16 +167,23 @@
   }
   .status .stage:hover, .status .stage.peek { color: var(--paper); border-color: var(--faint); }
   .status .stage .n { font-weight: 500; }
-  .status .stage:not([aria-current]) .x { display: none; }
-  .status .stage[aria-current="step"] { background: var(--gold); border-color: var(--gold); color: var(--ink); font-weight: 500; animation: pop 0.35s ease 0.15s backwards; }
+  .status .stage[aria-current="step"] { background: var(--gold); border-color: var(--gold); color: var(--ink); font-weight: 500; }
+  .status li.past .stage { text-decoration: line-through; opacity: 0.6; }
+  .status details.next { flex-basis: 100%; }
+  .status details.next summary {
+    display: inline-flex; align-items: center; gap: 0.5em; cursor: pointer; list-style: none;
+    font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+    padding: 0.2rem 0;
+  }
+  .status details.next summary::-webkit-details-marker { display: none; }
+  .status details.next summary::after { content: "▾"; transition: transform 0.2s; }
+  .status details.next[open] summary::after { transform: rotate(180deg); }
+  .status details.next ol { flex-direction: column; align-items: flex-start; gap: 0.4rem; margin-top: 0.6rem; }
+  .status details.next li { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.8rem; }
   .status .note { flex-basis: 100%; max-width: 58ch; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.84rem; line-height: 1.5; color: #cfd3e6; padding: 0.15rem 0 0.1rem; }
   .status .note strong { color: var(--paper); font-weight: 500; }
   .status .note a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted var(--gold); }
-  @media (max-width: 640px) {
-    .status .lbl { display: none; }
-    .status .stage:not([aria-current]) { padding: 0.3rem 0.5rem; }
-    .status .stage:not([aria-current]) .t { display: none; }
-  }
+  @media (max-width: 640px) { .status .lbl { display: none; } }
 
   .ribbon {
     position: fixed;
@@ -786,27 +793,6 @@
 <body>
 <div class="plate" aria-hidden="true"></div>
 <a class="skip" href="#content">Skip to content</a>
-
-<!-- relationship status: data-stage and data-since here, aria-current="step" on the matching button; the tests keep them in agreement -->
-<aside class="status" id="status" aria-label="Relationship status" data-stage="1" data-since="2026-09-04">
-  <div class="rail">
-    <span class="lbl">STATUS</span>
-    <ol role="list">
-      <li><button type="button" class="stage" aria-current="step" aria-controls="statusNote" aria-expanded="false"><span class="n">1</span><span class="t">Square 1<span class="x">: Not Past First Date</span></span></button>
-        <p class="why" hidden>Nobody has made it past a first date. The address is open, and <a href="#transmission">Transmission</a> is where it starts.</p></li>
-      <li><button type="button" class="stage" aria-controls="statusNote" aria-expanded="false"><span class="n">2</span><span class="t">Hopeful<span class="x">: Exclusively Dating</span></span></button>
-        <p class="why" hidden>One person, exclusively, and the clock on <a href="#budget">Budget</a> is running: six months is the hope, twelve or fifteen is fine.</p></li>
-      <li><button type="button" class="stage" aria-controls="statusNote" aria-expanded="false"><span class="n">3</span><span class="t">Getting Close<span class="x">: Engagement Approaching</span></span></button>
-        <p class="why" hidden>Engagement is in sight. The relocation ladder on <a href="#weekend">First Weekend</a> is being climbed, and the questions on <a href="#chuppah">Before the Chuppah</a> are being settled together.</p></li>
-      <li><button type="button" class="stage" aria-controls="statusNote" aria-expanded="false"><span class="n">4</span><span class="t"><span class="x">Tada! </span>Engaged!!</span></button>
-        <p class="why" hidden>The courthouse date from <a href="#wedding">Wedding</a> is on the calendar, and the check from <a href="#ring">The Ring</a> is written.</p></li>
-      <li><button type="button" class="stage" aria-controls="statusNote" aria-expanded="false"><span class="n">5</span><span class="t">Married!!</span></button>
-        <p class="why" hidden>The site is a record now. <a href="#yearten">Year Ten</a> is the target state it was steering toward, and <a href="#revisions">Revisions</a> keeps the ledger.</p></li>
-    </ol>
-    <span class="since">since <time datetime="2026-09-04">2026-09-04</time></span>
-    <p class="note" id="statusNote" aria-live="polite" hidden></p>
-  </div>
-</aside>
 
 <nav class="topics" aria-label="Topics">
   <div class="rail" id="navRail"></div>
@@ -2013,8 +1999,8 @@
       </li>
       <li>
         <span class="tag">2026-09-04</span>
-        <span class="k">A status bar at the top of the page</span>
-        <span class="v">Five stages, from Square 1 to Married, with the current one filled in gold and a one-line note behind each of the others. It starts at Square 1: nobody past a first date. Every change of stage gets a line here, dated.</span>
+        <span class="k">A status line at the foot of every page</span>
+        <span class="v">Four stages, from Square 1 to Engaged, with the current one filled in gold and the future steps in a pulldown, each with a one-line note. It starts at Square 1: nobody past a first date. Engaged is the last step listed, because what follows it is implied. Every change of stage gets a line here, dated.</span>
       </li>
     </ul>
     <p class="crosslink">The receipts, edit by edit: <a href="https://github.com/davidclayman/datedavid.org/commits/main">the commit log</a>. The promise this keeps: <a href="#yearten">Year Ten</a>.</p>
@@ -2223,6 +2209,31 @@ He's clear about what he wants, which is to marry and raise two or three kids so
   <footer>N 26°21' W 80°10' · N 41°29' W 81°32' · MOVING TOWARD LEO–CRATER · VERIFY AT YOUR LEISURE · <a href="#privacy" style="color:inherit;text-decoration:none;border-bottom:1px dotted currentColor">PRIVACY</a><span id="lastmod"></span></footer>
   <noscript><p class="nojs">JAVASCRIPT IS OFF, so this page showed every section at once instead of one at a time. The clocks are frozen at their defaults, the Audit Ledger's prompts and the contact address assemble themselves with JavaScript, and the prompts are readable in the page source if you'd rather stay dark. Everything else reads fine as one long scroll.</p></noscript>
 </main>
+
+<!-- relationship status. To change it: move the new current stage's <li> into ol.now (and the old one back into the pulldown, with class="past"),
+     move aria-current="step" with it, update data-stage, data-since and the <time>, the one line on each unlisted page, and add a Revisions entry. The tests check all of it. -->
+<aside class="status" id="status" aria-label="Relationship status" data-stage="1" data-since="2026-09-04">
+  <div class="rail">
+    <span class="lbl">STATUS</span>
+    <ol class="now" role="list">
+      <li data-n="1"><button type="button" class="stage" aria-current="step" aria-controls="statusNote" aria-expanded="false"><span class="n">1</span><span class="t">Square 1: Not Past First Date</span></button>
+        <p class="why" hidden>Nobody has made it past a first date. The address is open, and <a href="#transmission">Transmission</a> is where it starts.</p></li>
+    </ol>
+    <span class="since">since <time datetime="2026-09-04">2026-09-04</time></span>
+    <details class="next">
+      <summary>Future steps</summary>
+      <ol role="list">
+        <li data-n="2"><button type="button" class="stage" aria-controls="statusNote" aria-expanded="false"><span class="n">2</span><span class="t">Hopeful: Exclusively Dating</span></button>
+          <p class="why" hidden>One person, exclusively, and the clock on <a href="#budget">Budget</a> is running: six months is the hope, twelve or fifteen is fine.</p></li>
+        <li data-n="3"><button type="button" class="stage" aria-controls="statusNote" aria-expanded="false"><span class="n">3</span><span class="t">Getting Close: Engagement Approaching</span></button>
+          <p class="why" hidden>Engagement is in sight. The relocation ladder on <a href="#weekend">First Weekend</a> is being climbed, and the questions on <a href="#chuppah">Before the Chuppah</a> are being settled together.</p></li>
+        <li data-n="4"><button type="button" class="stage" aria-controls="statusNote" aria-expanded="false"><span class="n">4</span><span class="t">Tada! Engaged!!</span></button>
+          <p class="why" hidden>The courthouse date from <a href="#wedding">Wedding</a> is on the calendar, and the check from <a href="#ring">The Ring</a> is written. This is where the ladder ends, until I update it: <a href="#yearten">Year Ten</a> is the forecast from here.</p></li>
+      </ol>
+    </details>
+    <p class="note" id="statusNote" aria-live="polite" hidden></p>
+  </div>
+</aside>
 
 <script>
   // ============================================================

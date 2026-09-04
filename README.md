@@ -69,10 +69,10 @@ clock with adjustable assumption sliders, the age-range ceiling, the nine-month
 chuppah date, and the Travel Reach map are all inline JavaScript. The map is
 generated SVG over a simplified lower-48 outline.
 
-**Relationship status.** The bar above the navigation is static markup: five
-stages with the current one marked by `aria-current="step"`, plus `data-stage`
-and `data-since` on the `<aside class="status">`. Only the notes behind the
-stages are scripted.
+**Relationship status.** The line at the foot of every page is static markup:
+the current stage lit and marked by `aria-current="step"`, the future steps in a
+`<details>` pulldown, and `data-stage` and `data-since` on the
+`<aside class="status">`. Only the notes behind the stages are scripted.
 
 **Contact.** The email address is assembled at view time and never appears in the
 page source. The video-call booking link is a prefilled `mailto:` built the same
@@ -96,10 +96,12 @@ The copy has house rules, and the test suite enforces most of them:
 - Every section has a title and a chapter. Every internal link resolves. Every
   image has alt text and its file exists.
 - The contact address never appears in the source of either page.
-- To change the relationship status, edit `data-stage` and `data-since` on the
-  status bar, move `aria-current="step"` to the matching button, update the
-  one-line status on the three unlisted pages, and add a dated Revisions entry.
-  The tests fail if the bar, the attributes, and the unlisted lines disagree.
+- To change the relationship status, move the new stage's `<li>` from the
+  pulldown into `ol.now` (and the old one back, with `class="past"`), keep
+  `aria-current="step"` on the current button, update `data-stage`,
+  `data-since`, and the `<time>`, update the one-line status on the three
+  unlisted pages, and add a dated Revisions entry. The tests fail if any of
+  those disagree.
 
 Photos live in `photos/` and are dated in their captions. Metadata in `<head>`
 assumes the canonical URL `https://datedavid.org/`.

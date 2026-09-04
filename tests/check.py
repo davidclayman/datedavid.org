@@ -119,27 +119,31 @@ check('sitemap.xml lists the canonical URL', os.path.exists(os.path.join(ROOT, '
 
 # --- relationship status bar ---------------------------------------------
 import datetime
-STAGES = ['Square 1: Not Past First Date', 'Hopeful: Exclusively Dating', 'Getting Close: Engagement Approaching', 'Tada! Engaged!!', 'Married!!']
+STAGES = ['Square 1: Not Past First Date', 'Hopeful: Exclusively Dating', 'Getting Close: Engagement Approaching', 'Tada! Engaged!!']
 bar = re.search(r'<aside class="status" id="status"[^>]*>.*?</aside>', s, re.S)
-check('status bar present', bool(bar))
+check('status bar present, after main', bool(bar) and bar.start() > s.index('</main>'))
 stage = 0
 if bar:
     b = bar.group(0)
     m = re.search(r'data-stage="(\d)"', b)
     stage = int(m.group(1)) if m else 0
-    check('status bar data-stage is 1..5', 1 <= stage <= 5, f'data-stage={m.group(1) if m else None}')
+    check('status bar data-stage is 1..4', 1 <= stage <= 4, f'data-stage={m.group(1) if m else None}')
     m2 = re.search(r'data-since="(\d{4}-\d{2}-\d{2})"', b)
     check('status bar data-since is a past or present date', bool(m2) and datetime.date.fromisoformat(m2.group(1)) <= datetime.date.today())
     check('status bar since line matches data-since', bool(m2) and f'<time datetime="{m2.group(1)}">{m2.group(1)}</time>' in b)
-    lis = re.findall(r'<li>.*?</li>', b, re.S)
-    check('status bar has five stages', len(lis) == 5, f'found {len(lis)}')
-    cur = [i for i, li in enumerate(lis, 1) if 'aria-current="step"' in li]
-    check('status bar marks one stage current, matching data-stage', cur == [stage], f'aria-current on {cur}, data-stage {stage}')
+    lis = re.findall(r'<li data-n="(\d)">(.*?)</li>', b, re.S)
+    check('status bar has four stages, numbered 1 to 4', [int(n) for n, _ in lis] and sorted(int(n) for n, _ in lis) == [1, 2, 3, 4], str([n for n, _ in lis]))
+    now = re.search(r'<ol class="now" role="list">(.*?)</ol>', b, re.S)
+    now_lis = re.findall(r'<li data-n="(\d)">(.*?)</li>', now.group(1), re.S) if now else []
+    check('exactly one stage sits in the current slot, matching data-stage', len(now_lis) == 1 and int(now_lis[0][0]) == stage, str([n for n, _ in now_lis]))
+    cur = [int(n) for n, li in lis if 'aria-current="step"' in li]
+    check('aria-current marks the current stage only', cur == [stage], f'aria-current on {cur}, data-stage {stage}')
+    check('the pulldown holds the other stages', '<details class="next">' in b and all(int(n) != stage for n, _ in re.findall(r'<li data-n="(\d)">(.*?)</li>', b[b.index('<details class="next">'):], re.S)))
     btns = re.findall(r'<button[^>]*>.*?</button>', b, re.S)
-    check('stages are buttons with no links inside', len(btns) == 5 and all('type="button"' in x and '<a ' not in x for x in btns))
-    names = [re.sub(r'<[^>]+>', '', re.search(r'<span class="t">(.*?)</span></button>', li, re.S).group(1)) for li in lis]
-    check('stage names are the five agreed labels', names == STAGES, str(names))
-    check('every stage has a note that links to a section', all(re.search(r'<p class="why" hidden>.*?href="#[a-z]+".*?</p>', li, re.S) for li in lis))
+    check('stages are buttons with no links inside', len(btns) == 4 and all('type="button"' in x and '<a ' not in x for x in btns))
+    names = {int(n): re.sub(r'<[^>]+>', '', re.search(r'<span class="t">(.*?)</span></button>', li, re.S).group(1)) for n, li in lis}
+    check('stage names are the four agreed labels', [names.get(i) for i in range(1, 5)] == STAGES, str(names))
+    check('every stage has a note that links to a section', all(re.search(r'<p class="why" hidden>.*?href="#[a-z]+".*?</p>', li, re.S) for _, li in lis))
 check('nav rail is empty in the source', '<div class="rail" id="navRail"></div>' in s)
 
 # --- unlisted pages ------------------------------------------------------
@@ -193,7 +197,7 @@ window.addEventListener('load',()=>setTimeout(()=>{
     +'|age='+(document.getElementById('age')||{}).textContent
     +'|a07='+(document.getElementById('audit-07')||{}).open
     +'|st='+document.querySelectorAll('#status [aria-current="step"]').length
-    +'|stn='+(function(){var b=document.querySelectorAll('#status button.stage')[1];if(!b)return 'none';b.click();var n=document.getElementById('statusNote');return (n&&!n.hidden&&n.querySelector('a'))?'open':'closed';})();},400));
+    +'|stn='+(function(){var b=document.querySelectorAll('#status details.next button.stage')[0];if(!b)return 'none';b.click();var n=document.getElementById('statusNote');return (n&&!n.hidden&&n.querySelector('a'))?'open':'closed';})();},400));
 </script></body>""")
     with tempfile.NamedTemporaryFile('w', suffix='.html', delete=False, dir=ROOT, encoding='utf-8') as f:
         f.write(probe); ppath = f.name
